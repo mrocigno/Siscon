@@ -11,10 +11,15 @@ Importar serviços
 @section('content')
     <div style="padding: 20px">
         <div class="center-form max-size">
-            <table>
+            <table class="table-list">
+                <tr class="head">
+                    @foreach($titles as $title)
+                        <th>{!! $title !!}</th>
+                    @endforeach
+                </tr>
                 @foreach($rows as $row)
                     <tr>
-                        @foreach($row as $key => $column)
+                        @foreach($row as $column)
                             <td>{!! $column !!}</td>
                         @endforeach
                     </tr>
