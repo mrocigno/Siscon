@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Applicants;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use Excel;
@@ -41,7 +42,11 @@ class ImportController extends Controller {
                 ++$i;
                 array_push($titles,"$key");
             }
-            return view('import_view_plan')->with('rows',$results)->with('titles', $titles);
+            $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
+            return view('import_view_plan')
+                ->with('rows',$results)
+                ->with('titles', $titles)
+                ->with('applicants', $applicants);
         }
         
     }
