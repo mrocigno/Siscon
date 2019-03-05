@@ -164,8 +164,8 @@ Importar serviços
                             <input type="checkbox" value="true" name="concat" id="concat" checked>
                             <label for="concat">Nº e complemento já concantenado com o endereço</label>
                         </th>
-                        <td id="labeN" class="hideClass">Nº</td>
-                        <td id="labeSlctN" class="hideClass">
+                        <td class="hideClass labelN">Nº</td>
+                        <td class="hideClass labelN">
                             <select id="colN" name="colN" class="form-control">
                                 <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
@@ -173,7 +173,7 @@ Importar serviços
                                 @endforeach
                             </select>
                         </td>
-                        <td>da planilha</td>
+                        <td class="hideClass labelN">da planilha</td>
                     </tr>
 
                     <tr id="rowCompl" class="hideClass">

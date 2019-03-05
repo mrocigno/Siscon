@@ -16,9 +16,8 @@ $(document).ready(function(){
     });
 
     $("#concat").change(function () {
-        $("#labeN").toggleClass("hideClass showClass");
-        $("#labeSlctN").toggleClass("hideClass showClass");
-        $("#rowCompl").toggleClass("hideClass showClass");
+        $(".labelN").toggleClass("hideClass showClass");
+        $("#rowCompl").toggleClass("hideClass showClassRow");
     });
 
 });
