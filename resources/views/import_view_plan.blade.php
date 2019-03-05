@@ -26,12 +26,13 @@ Importar serviços
 
                             </select>
                         </td>
-                        <td>ou coluna da tabela</td>
+                        <td>ou <b>referente coluna</b></td>
                         <td>
                             <select name="colApplicant" class="form-control">
 
                             </select>
                         </td>
+                        <td>da planilha</td>
                     </tr>
                 </table>
             </form>
