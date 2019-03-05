@@ -13,7 +13,7 @@ Importar serviços
         <div class="center-form" style="margin-bottom: 20px">
             <form action="planilha/save" method="post">
                 {{ csrf_field() }}
-                <input name="localPath" value="{!! $file['localPath'] !!}">
+                <input name="localPath" value="{!! $file['localPath'] !!}" hidden>
                 <table>
                     <tr>
                         <th>Nome da remessa:</th>
