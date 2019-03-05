@@ -110,3 +110,9 @@ a, a:link, a:hover {
 .table-list th, .table-list td{
     text-align: center;
 }
+
+.elipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

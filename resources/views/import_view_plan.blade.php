@@ -45,7 +45,7 @@ Importar serviços
                         <th>Data de recebimento</th>
                         <td>Valor unico:</td>
                         <td>
-                            <input id="date_receive" name="date_receive" class="form-control" onchange="clean($('#colDate_receive'))"/>
+                            <input type="date" id="date_receive" name="date_receive" class="form-control" onchange="clean($('#colDate_receive'))"/>
                         </td>
                         <td>ou referente a coluna</td>
                         <td>
@@ -96,7 +96,7 @@ Importar serviços
                 @foreach($rows as $row)
                     <tr>
                         @foreach($row as $column)
-                            <td>{!! $column !!}</td>
+                            <td class="elipsis">{!! $column !!}</td>
                         @endforeach
                     </tr>
                 @endforeach
