@@ -62,7 +62,27 @@ class ImportController extends Controller {
     }
 
     public function save(Request $request){
-        var_dump($request->toArray());
+        $rules = [
+            'remessa' => 'required|max:30',
+            'solicitante' => 'required_without:colSol',
+            'colSol' => 'required_without:solicitante'
+        ];
+
+        $messages = [
+            'required' => 'Selecione um :attribute',
+            'required_without' => 'Selecione um :attribute'
+        ];
+
+        $fileds = [
+            'remessa' => $request->name,
+            'solicitante' => $request->applicant,
+            'colSol' => $request->colApplicant
+        ];
+
+        $validator = Validator::make($fileds, $rules, $messages);
+        if($validator->fails()){
+            var_dump($validator);
+        }
     }
     
 }
