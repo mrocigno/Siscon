@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
-use Excel;
+use SimpleXLSX;
 use Validator, Input, Redirect, Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -34,8 +34,11 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            $array = Excel::toArray(new UsersImport, $tempFile['localPath']);
-            var_dump($array);
+            if ( $xlsx = SimpleXLSX::parse($tempFile['localPath']) ) {
+                print_r( $xlsx->rows() );
+            } else {
+                echo SimpleXLSX::parseError();
+            }
         }
         
     }
