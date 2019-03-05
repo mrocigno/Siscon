@@ -26,10 +26,14 @@ Importar serviços
                             </select>
                             <br/><br/>
                             Ou referente a coluna:
+                            {{ $i=0 }}
                             @foreach($titles as $title)
-                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
-                                <label for="colApplicant">{!! $title !!}</label>
-                                <br/>
+                                @if(++$i % 2 > 0)<tr>@endif
+                                <td>
+                                    <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
+                                    <label for="colApplicant">{!! $title !!}</label>
+                                </td>
+                                @if($i % 2 > 0)</tr>@endif
                             @endforeach
                         </td>
                     </tr>
