@@ -35,7 +35,8 @@ class ImportController extends Controller {
         }else{
             $tempFile = $repository->saveTempFile($request->file);
             Excel::load($tempFile['localPath'], function($reader) {
-                var_dump($reader);
+                $results = $reader->get();
+                dd($results);
             });
         }
         
