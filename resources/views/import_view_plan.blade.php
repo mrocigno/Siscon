@@ -27,9 +27,10 @@ Importar serviços
                             <br/><br/>
                             Ou referente a coluna:
                             @for ($i = 0; $i < count($titles); $i++)
-                                The current value is {{ $i }}
+                                @if($i%2 > 0)<br/>@endif
+                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
+                                <label for="colApplicant">{!! $title !!}</label>
                             @endfor
-
                         </td>
                     </tr>
                 </table>
