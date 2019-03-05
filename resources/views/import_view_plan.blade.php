@@ -10,14 +10,15 @@ Importar serviços
 
 @section('content')
     <div style="padding: 20px">
-
         <div class="center-form" style="margin-bottom: 20px">
-            <form>
+            <form action="planilha/save" method="post">
+                {{ csrf_field() }}
+                <input name="localPath" value="{!! $file['localPath'] !!}">
                 <table>
                     <tr>
                         <th>Nome da remessa:</th>
                         <td colspan="2"><input type="text" name="name" class="form-control" value="{!! $file['name'] !!}"></td>
-                        <td>
+                        <td colspan="3">
                             <input type="checkbox" value="true" name="headTitle" id="headTitle" checked>
                             <label for="headTitle">Primeira linha contém o título da coluna</label>
                         </td>
