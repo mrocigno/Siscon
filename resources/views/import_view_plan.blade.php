@@ -18,6 +18,19 @@ Importar serviços
                         <th>Nome da remessa:</th>
                         <td><input type="text" name="name"></td>
                     </tr>
+                    <tr>
+                        <td>
+                            Solicitante:<br/>
+                            <select name="applicant">
+                                <option value=""></option>
+                            </select>
+                            <br/><br/>
+                            Ou referente a coluna:
+                            @foreach($titles as $title)
+                                <input type="radio" name="colApplicant" value="{!! $title !!}">
+                            @endforeach
+                        </td>
+                    </tr>
                 </table>
             </form>
         </div>
@@ -25,8 +38,8 @@ Importar serviços
         <div class="center-form max-size">
             <table class="table-list">
                 <tr class="head">
-                    @foreach($titles as $key => $title)
-                        <th>{!! $key !!}}<br/>{!! $title !!}</th>
+                    @foreach($titles as $title)
+                        <th>{!! $title !!}</th>
                     @endforeach
                 </tr>
                 @foreach($rows as $row)
