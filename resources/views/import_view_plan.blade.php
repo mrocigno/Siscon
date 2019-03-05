@@ -27,7 +27,7 @@ Importar serviços
                             <br/><br/>
                             Ou referente a coluna:
                             @foreach($titles as $title)
-                                <input type="radio" name="colApplicant" value="{!! $title !!}">
+                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/><br/>
                             @endforeach
                         </td>
                     </tr>
