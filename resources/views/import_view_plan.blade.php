@@ -25,12 +25,21 @@ Importar serviços
                                 <option value=""></option>
                             </select>
                             <br/><br/>
-                            Ou referente a coluna:
-                            @for ($i = 0; $i < count($titles); $i++)
-                                @if($i%2 > 0)<br/>@endif
-                                <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
-                                <label for="colApplicant">{!! $titles[$i] !!}</label>
-                            @endfor
+                            <table>
+                                <tr>
+                                    <th colspan="2">Ou referente a coluna:</th>
+                                </tr>
+                                <tr>
+                                @for ($i = 0; $i < count($titles); $i++)
+                                    <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
+                                    <label for="colApplicant">{!! $titles[$i] !!}</label>
+                                    @if($i%2 > 0)
+                                        </tr>
+                                        <tr>
+                                    @endif
+                                @endfor
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
