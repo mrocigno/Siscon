@@ -1,0 +1,8 @@
+.btn-import{
+    width: calc(100% - 100px);
+    height: 50px;
+    margin-left: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    font-weight: bold;
+}

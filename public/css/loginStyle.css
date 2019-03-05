@@ -1,0 +1,32 @@
+.center{
+  display: table;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  margin-top: calc(50vh - 100px);
+}
+
+th, td{
+  padding: 5px;
+}
+
+.font-lato{
+  font-family: 'Lato';
+}
+
+body{
+  background-color: #f4f4f5;
+  font-family: arial;
+}
+
+.errors{
+    font-weight: bold;
+    color: red;
+}
+
+.success{
+    font-weight: bold;
+    color: green;
+}

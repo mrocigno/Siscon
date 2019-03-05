@@ -1,0 +1,89 @@
+.fields{
+  background-color: white;
+  border-radius: 5px;
+  font-family: 'Lato';
+  font-weight: bold;
+  padding: 5px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.fields table{
+  width: 100%;
+}
+
+.fields table th{
+  text-align: center;
+}
+
+.add{
+  color: green;
+}
+
+.add th{
+  width: 30px;
+}
+
+.edit{
+  color: orange;
+}
+
+.edit th{
+  width: 30px;
+}
+
+.remove{
+  color: red;
+}
+
+.remove th{
+  width: 30px;
+}
+
+.center-form{
+  display: table;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.max-size{
+    width: 100%;
+    padding: 0px;
+}
+
+.table-list{
+    width: 100%;   
+}
+
+.table-list .head{
+    background-color: #f2a9ad;
+}
+
+.table-list tr{
+    border-bottom: 1px solid lightgray;
+}
+
+.table-list th, .table-list td{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
