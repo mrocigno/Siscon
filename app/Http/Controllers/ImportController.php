@@ -34,10 +34,10 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            return Excel::load($tempFile['localPath'], function($reader) {
+            Excel::load($tempFile['localPath'], function($reader) {
                 $results = $reader->get()->toArray();
 //                var_dump($results);
-                return view('import_view_plan')->with('rows',$results);
+                echo view('import_view_plan')->with('rows',$results);
             });
         }
         
