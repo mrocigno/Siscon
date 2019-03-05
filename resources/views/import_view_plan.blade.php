@@ -13,7 +13,7 @@ Importar serviços
     <table>
         @foreach($rows as $row)
             <tr>
-                @foreach($columns as $key => $column)
+                @foreach($row as $key => $column)
                     <td>{!! $column !!}</td>
                 @endforeach
             </tr>
