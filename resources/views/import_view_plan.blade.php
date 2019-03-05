@@ -17,6 +17,10 @@ Importar serviços
                     <tr>
                         <th>Nome da remessa:</th>
                         <td colspan="2"><input type="text" name="name" class="form-control" value="{!! $file['name'] !!}"></td>
+                        <td>
+                            <input type="checkbox" value="true" name="headTitle" id="headTitle" checked>
+                            <label for="headTitle">Primeira linha contém o título da coluna</label>
+                        </td>
                     </tr>
                     <tr>
                         <th>Solicitante</th>
