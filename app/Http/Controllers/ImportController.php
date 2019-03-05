@@ -35,9 +35,9 @@ class ImportController extends Controller {
         }else{
             $tempFile = $repository->saveTempFile($request->file);
             Excel::load($tempFile['localPath'], function($reader) {
-                $results = $reader->get();
-//                var_dump($results);
-                return view('import_view_plan')->with('rows', $reader->items());
+                $results = $reader->get()->toArray();
+                var_dump($results);
+//                return view('import_view_plan')->with('rows', $reader->items());
             });
         }
         
