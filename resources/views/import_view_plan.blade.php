@@ -9,22 +9,24 @@ Importar serviços
 @stop
 
 @section('content')
-    <div class="center-form">
-        <form>
-            <table>
-                <tr>
-                    <th>Nome da remessa:</th>
-                    <td><input type="text" name="name"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
     <div style="padding: 20px">
+
+        <div class="center-form">
+            <form>
+                <table>
+                    <tr>
+                        <th>Nome da remessa:</th>
+                        <td><input type="text" name="name"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
         <div class="center-form max-size">
             <table class="table-list">
                 <tr class="head">
-                    @foreach($titles as $title)
-                        <th>{!! $title !!}</th>
+                    @foreach($titles as $key => $title)
+                        <th>{!! $key !!}}<br/>{!! $title !!}</th>
                     @endforeach
                 </tr>
                 @foreach($rows as $row)
