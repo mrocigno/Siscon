@@ -36,8 +36,9 @@ class ImportController extends Controller {
             $tempFile = $repository->saveTempFile($request->file);
             $results = Excel::load($tempFile['localPath'])->get()->toArray();
             $titles = [];
+            $i = 0;
             foreach ($results[0] as $key => $values){
-                array_push($titles, $key);
+                array_push($titles, $key, '1');
             }
             return view('import_view_plan')->with('rows',$results)->with('titles', $titles);
         }
