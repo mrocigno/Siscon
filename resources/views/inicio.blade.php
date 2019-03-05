@@ -6,7 +6,7 @@ Inicio
 @section('content')
     
     <div>
-        TODO content
+        Se deus é por nós, quem é contra nós?
     </div>
     
 @stop
