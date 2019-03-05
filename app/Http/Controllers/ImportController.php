@@ -44,7 +44,7 @@ class ImportController extends Controller {
                 array_push($titles,"$key");
             }
             $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
-            $serviceType = ServiceType::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
+            $serviceType = ServiceType::orderBy('type','asc')->where('company_id', Auth::user()->company_id)->get();
             return view('import_view_plan')
                 ->with('rows',$results)
                 ->with('titles', $titles)
