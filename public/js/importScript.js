@@ -16,7 +16,8 @@ $(document).ready(function(){
     });
 
     $("#concat").change(function () {
-        $(".labelN").toggleClass("hideClass showClass");
+        $("#labeN").toggleClass("hideClass showClass");
+        $("#labeSlctN").toggleClass("hideClass showClass");
         $("#rowCompl").toggleClass("hideClass showClassRow");
     });
 
