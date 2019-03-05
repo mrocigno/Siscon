@@ -9,6 +9,16 @@ Importar serviços
 @stop
 
 @section('content')
+    <div class="center-form">
+        <form>
+            <table>
+                <tr>
+                    <th>Nome da remessa:</th>
+                    <td><input type="text" name="name"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <div style="padding: 20px">
         <div class="center-form max-size">
             <table class="table-list">
