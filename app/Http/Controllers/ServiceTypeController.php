@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator, Input, Redirect, Auth;
-use App\Http\Requests;
 use App\ServiceType;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ServiceTypeController extends Controller{
@@ -38,20 +38,20 @@ class ServiceTypeController extends Controller{
                 'type' => $request->name,
                 'company_id' => Auth::user()->company_id  
             ];
-            $product = ServiceType::create($data);
+            ServiceType::create($data);
             return Redirect::to('tipo-de-servico/add')
                 ->with('message', 'Tipo adicionado com sucesso');
         }
     }
     
     public function lista(){
-        $types = ServiceType::orderBy('id','asc')->where('company_id', Auth::user()->company_id)->get();
-        return view('admin.views.servicetype_list')->with('types', $types);
+        $query = ServiceType::orderBy('id','asc')->where('company_id', Auth::user()->company_id)->get();
+        return view('admin.views.servicetype_list')->with('types', $query);
     }
     
     public function edit($id){
-        $type = ServiceType::findOrFail($id);
-        return view('admin.views.servicetype_edit')->with('type', $type);
+        $query = ServiceType::findOrFail($id);
+        return view('admin.views.servicetype_edit')->with('type', $query);
     }
     
     public function update(Request $request){
@@ -74,17 +74,17 @@ class ServiceTypeController extends Controller{
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }else{
-            $type = ServiceType::findOrFail($request->id);
-            $type->type = $request->name;
-            $type->save();
+            $query = ServiceType::findOrFail($request->id);
+            $query->type = $request->name;
+            $query->save();
             return Redirect::to('tipo-de-servico/editar/' . $request->id)
                 ->with('message', 'Tipo de serviço editado com sucesso');
         }
     }
 
     public function destroy($id){
-        $type = ServiceType::findOrFail($id);
-        $type->delete();
+        $query = ServiceType::findOrFail($id);
+        $query->delete();
         return Redirect::to('tipo-de-servico/lista')
                 ->with('message', 'Tipo removido com sucesso'); 
     }

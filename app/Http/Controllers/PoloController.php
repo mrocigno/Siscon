@@ -3,85 +3,88 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Validator, Input, Redirect, Auth;
+use App\Polo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PoloController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
+class PoloController extends Controller{
+    public function add(){
+        return view('admin.views.polo_add');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request){
+        $rules = array(
+            'nome'    => 'required|max:30',
+        );
+
+        $messages = array(
+            'required' => "Preencha o campo :attribute",
+            'max'      => 'O nome deve ter até :max digitos'
+        );
+
+        $fields = [
+            'nome' => $request->name
+        ];
+
+        $validator = Validator::make($fields, $rules, $messages);
+        if ($validator->fails()) {
+            return Redirect::to('polo/add')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }else{
+            $data = [
+                'polo' => $request->name,
+                'company_id' => Auth::user()->company_id
+            ];
+            Polo::create($data);
+            return Redirect::to('polo/add')
+                ->with('message', 'Polo adicionado com sucesso');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function lista(){
+        $query = Polo::orderBy('id','asc')->where('company_id', Auth::user()->company_id)->get();
+        return view('admin.views.polo_list')->with('polo', $query);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
+    public function edit($id){
+        $query = Polo::findOrFail($id);
+        return view('admin.views.polo_edit')->with('polo', $query);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+    public function update(Request $request){
+        $rules = array(
+            'nome'    => 'required|max:30'
+        );
+
+        $messages = array(
+            'required' => "Preencha o campo :attribute",
+            'max'      => 'O nome deve ter até :max digitos'
+        );
+
+        $fields = [
+            'nome' => $request->name
+        ];
+
+        $validator = Validator::make($fields, $rules, $messages);
+        if ($validator->fails()) {
+            return Redirect::to('polo/editar/' . $request->id)
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }else{
+            $query = Polo::findOrFail($request->id);
+            $query->polo = $request->name;
+            $query->save();
+            return Redirect::to('polo/editar/' . $request->id)
+                ->with('message', 'Polo editado com sucesso');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $query = Polo::findOrFail($id);
+        $query->delete();
+        return Redirect::to('polo/lista')
+            ->with('message', 'Polo removido com sucesso');
     }
 }

@@ -14,17 +14,6 @@ class ServiceType extends Model{
      */
     protected $table = 'service_type';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['type'];
+    protected $fillable = ['type', 'company_id'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
 }

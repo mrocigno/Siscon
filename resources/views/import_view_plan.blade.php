@@ -16,7 +16,7 @@ Importar serviços
                 <table>
                     <tr>
                         <th>Nome da remessa:</th>
-                        <td colspan="4"><input type="text" name="name" class="form-control"></td>
+                        <td colspan="2"><input type="text" name="name" class="form-control"></td>
                     </tr>
                     <tr>
                         <th>Solicitante</th>
@@ -101,6 +101,44 @@ Importar serviços
                     </tr>
 
                     <tr>
+                        <th>Descrição do serviço</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input type="text" id="serviceDescr" name="serviceDescr" class="form-control" onchange="clean($('#colServiceDescr'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colServiceDescr" name="colServiceDescr" class="form-control" onchange="clean($('#serviceDescr'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th>Página guia</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input type="text" id="pgGuia" name="pgGuia" class="form-control" onchange="clean($('#colPgGuia'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colPgGuia" name="colPgGuia" class="form-control" onchange="clean($('#pgGuia'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+
+
+                    <tr>
                         <th colspan="3">
                             <input type="checkbox" value="true" name="concat" id="concat" checked>
                             <label for="concat">Nº e complemento já concantenado com o endereço</label>
@@ -118,7 +156,7 @@ Importar serviços
                     </tr>
 
                     <tr>
-                        <th colspan="2"></th>
+                        <th colspan="3"></th>
                         <td>Compl. referente a coluna</td>
                         <td>
                             <select id="colCompl" name="colCompl" class="form-control">

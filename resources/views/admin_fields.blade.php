@@ -31,6 +31,29 @@ Administrar campos
             </table>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="fields">
+            <table>
+                <tr>
+                    <th colspan="2">Polos</th>
+                </tr>
+                <tr class="add">
+                    <th><i class="fas fa-plus-circle"></i></td>
+                    <td><a href="polo/add">Adicionar</a></td>
+                </tr>
+                <tr class="edit">
+                    <th><i class="fas fa-pen-square"></i></td>
+                    <td><a href="polo/lista">Editar</a></td>
+                </tr>
+                <tr class="remove">
+                    <th><i class="fas fa-times-circle"></i></td>
+                    <td><a href="polo/lista">Remover</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <div class="col-md-3">
         <div class="fields">
             <table>

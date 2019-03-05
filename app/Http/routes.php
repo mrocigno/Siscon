@@ -58,6 +58,15 @@ Route::group(['prefix' => 'tipo-de-servico', 'middleware' => 'auth'], function (
     Route::post('/update', ['uses' => 'ServiceTypeController@update']);
 });
 
+Route::group(['prefix' => 'polo', 'middleware' => 'auth'], function () {
+    Route::get('/add', ['uses' => 'PoloController@add']);
+    Route::get('/lista', ['uses' => 'PoloController@lista']);
+    Route::post('/create', ['uses' => 'PoloController@store']);
+    Route::get('/delete/{id}', ['uses' => 'PoloController@destroy']);
+    Route::get('/editar/{id}', ['uses' => 'PoloController@edit']);
+    Route::post('/update', ['uses' => 'PoloController@update']);
+});
+
 Route::group(['prefix' => 'solicitante', 'middleware' => 'auth'], function () {
     Route::get('/add', ['uses' => 'ApplicantsController@add']);
     Route::get('/lista', ['uses' => 'ApplicantsController@lista']);
