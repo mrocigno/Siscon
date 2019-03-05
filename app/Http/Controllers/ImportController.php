@@ -34,11 +34,8 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            if ( $xlsx = SimpleXLSX::parse($request->file->name) ) {
-                print_r( $xlsx->rows() );
-            } else {
-                echo SimpleXLSX::parseError();
-            }
+            $array = Excel::toArray(new UsersImport, $tempFile['localPath']);
+            var_dump($array);
         }
         
     }
