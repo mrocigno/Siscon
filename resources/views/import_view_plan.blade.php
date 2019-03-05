@@ -26,10 +26,12 @@ Importar serviços
 
                             </select>
                         </td>
-                        <td>ou <b>referente coluna</b></td>
+                        <td>ou referente a coluna</td>
                         <td>
                             <select name="colApplicant" class="form-control">
-
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>da planilha</td>
