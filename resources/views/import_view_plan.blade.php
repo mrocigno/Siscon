@@ -31,8 +31,10 @@ Importar serviços
                                 </tr>
                                 <tr>
                                 @for ($i = 0; $i < count($titles); $i++)
-                                    <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
-                                    <label for="colApplicant">{!! $titles[$i] !!}</label>
+                                    <td>
+                                        <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
+                                        <label for="colApplicant">{!! $titles[$i] !!}</label>
+                                    </td>
                                     @if($i%2 > 0)
                                         </tr>
                                         <tr>
