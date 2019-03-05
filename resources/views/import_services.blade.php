@@ -10,10 +10,10 @@ Importar serviços
 
 @section('content')
     
-    <input type="button" class="btn btn-success btn-import" id="sltButton" value="Importar planilha" hidden>
+    <input type="button" class="btn btn-success btn-import" id="sltButton" value="Importar planilha">
     <form action="" method="POST" id="form" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <input type="file" name="file" id="file" />
+        <input type="file" name="file" id="file" hidden>
     </form>
     
 @stop

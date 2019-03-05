@@ -61,6 +61,10 @@ class ImportController extends Controller {
         }
     }
 
+    public function plan(){
+        return view('import_view_plan');
+    }
+
     public function save(Request $request){
         var_dump($request);
     }
