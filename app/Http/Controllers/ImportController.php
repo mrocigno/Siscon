@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Applicants;
+use App\Polo;
 use App\ServiceType;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
@@ -45,8 +46,10 @@ class ImportController extends Controller {
             }
             $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
             $serviceType = ServiceType::orderBy('type','asc')->where('company_id', Auth::user()->company_id)->get();
+            $polos = Polo::orderBy('polo','asc')->where('company_id', Auth::user()->company_id)->get();
             return view('import_view_plan')
                 ->with('rows',$results)
+                ->with('polos', $polos)
                 ->with('titles', $titles)
                 ->with('applicants', $applicants)
                 ->with('serviceType', $serviceType);

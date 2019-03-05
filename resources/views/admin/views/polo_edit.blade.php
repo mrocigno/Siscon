@@ -1,6 +1,6 @@
 @extends('admin.default')
 @section('title')
-    Editar tipo de serviço
+    Editar polo
 @stop
 
 @section('add')

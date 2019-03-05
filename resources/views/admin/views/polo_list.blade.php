@@ -1,6 +1,6 @@
 @extends('admin.default')
 @section('title')
-    Lista de tipos de serviço
+    Lista de polos
 @stop
 
 @section('list')

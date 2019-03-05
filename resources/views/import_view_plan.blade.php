@@ -136,7 +136,28 @@ Importar serviços
                         <td>da planilha</td>
                     </tr>
 
-
+                    <tr>
+                        <th>Polo</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <select id="polo" name="polo" class="form-control" onchange="clean($('#colPolo'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($polos as $polo)
+                                    <option value="{!! $polo->id !!}">{!! $polo->polo !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colPolo" name="colPolo" class="form-control" onchange="clean($('#polo'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
 
                     <tr>
                         <th colspan="3">
