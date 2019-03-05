@@ -15,6 +15,12 @@ $(document).ready(function(){
         $("#file").click();
     });
 
+    $("#concat").change(function () {
+        $("#labeN").toggleClass("hideClass showClass");
+        $("#labeSlctN").toggleClass("hideClass showClass");
+        $("#rowCompl").toggleClass("hideClass showClass");
+    });
+
 });
 
 function clean(field){
