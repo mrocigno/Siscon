@@ -28,8 +28,8 @@ Importar serviços
                             Ou referente a coluna:
                             @for ($i = 0; $i < count($titles); $i++)
                                 @if($i%2 > 0)<br/>@endif
-                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
-                                <label for="colApplicant">{!! $title !!}</label>
+                                <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
+                                <label for="colApplicant">{!! $titles[$i] !!}</label>
                             @endfor
                         </td>
                     </tr>
