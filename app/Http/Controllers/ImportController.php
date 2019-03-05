@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Import\PlanImport;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
-use SimpleXLSX;
+use Excel;
 use Validator, Input, Redirect, Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
