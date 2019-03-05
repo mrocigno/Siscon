@@ -6,3 +6,8 @@
     top: calc(50% - 25px);
     font-weight: bold;
 }
+
+.title{
+    font-weight: bold;
+    font-size: 20px;
+}

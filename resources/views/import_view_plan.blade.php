@@ -20,17 +20,15 @@ Importar serviços
                     </tr>
                     <tr>
                         <td>
-                            Solicitante: &nbsp;
-                            <select name="applicant">
+                            <l class="title">Solicitante:</l> &nbsp;
+                            <select class="form-control" name="applicant">
                                 <option value=""></option>
                             </select>
                             <br/>
-                            Ou referente a coluna:
+                            <l class="title">Ou referente a coluna:</l>
                             @for ($i = 0; $i < count($titles); $i++)
-
                                 <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
                                 <label for="colApplicant">{!! $titles[$i] !!}</label> &nbsp;&nbsp;
-
                             @endfor
 
                         </td>
