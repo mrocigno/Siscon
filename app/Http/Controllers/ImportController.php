@@ -34,7 +34,7 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            Excel::load('file.xls', function($reader) {
+            Excel::load($tempFile['localPath'], function($reader) {
                 var_dump($reader);
             });
         }
