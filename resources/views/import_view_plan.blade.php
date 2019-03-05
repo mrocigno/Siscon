@@ -11,7 +11,7 @@ Importar serviços
 @section('content')
     <div style="padding: 20px">
 
-        <div class="center-form">
+        <div class="center-form" style="margin-bottom: 20px">
             <form>
                 <table>
                     <tr>
@@ -164,7 +164,7 @@ Importar serviços
                             <input type="checkbox" value="true" name="concat" id="concat" checked>
                             <label for="concat">Nº e complemento já concantenado com o endereço</label>
                         </th>
-                        <td>Nº referente a coluna</td>
+                        <td>Nº</td>
                         <td>
                             <select id="colN" name="colN" class="form-control">
                                 <option value="">-- Selecione --</option>
@@ -178,7 +178,7 @@ Importar serviços
 
                     <tr>
                         <th colspan="3"></th>
-                        <td>Compl. referente a coluna</td>
+                        <td>Complemento</td>
                         <td>
                             <select id="colCompl" name="colCompl" class="form-control">
                                 <option value="">-- Selecione --</option>
