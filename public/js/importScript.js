@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     $("#concat").change(function () {
         $("#labeN").toggleClass("hideClass showClass");
-        $("#labeSlctN").toggleClass("hideClass showClass");
+        $("#labeSlctN").toggleClass("hideClass showClassCell");
         $("#rowCompl").toggleClass("hideClass showClassRow");
     });
 

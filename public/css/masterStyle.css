@@ -75,6 +75,10 @@ a, a:link, a:hover {
     display: table-row;
 }
 
+.showClassCell{
+    display: table-cell;
+}
+
 .iconMenu{
     width: 30px;
     text-align: center;
