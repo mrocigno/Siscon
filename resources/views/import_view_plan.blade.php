@@ -19,10 +19,10 @@ Importar serviços
                         <td colspan="4"><input type="text" name="name" class="form-control"></td>
                     </tr>
                     <tr>
-                        <th>Solicitante =</th>
+                        <th>Solicitante</th>
                         <td>Valor unico:</td>
                         <td>
-                            <select name="applicant" class="form-control" onchange="clean($('#colApplicant'))">
+                            <select id="applicant" name="applicant" class="form-control" onchange="clean($('#colApplicant'))">
                                 <option value="-1">-- Selecione --</option>
                                 @foreach($applicants as $applicant)
                                     <option value="{!! $applicant->id !!}">{!! $applicant->name !!}</option>
@@ -31,7 +31,7 @@ Importar serviços
                         </td>
                         <td>ou referente a coluna</td>
                         <td>
-                            <select  name="colApplicant" class="form-control" id="colApplicant">
+                            <select id="colApplicant" name="colApplicant" class="form-control" onchange="clean($('#applicant'))">
                                 <option value="-1">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
@@ -40,6 +40,25 @@ Importar serviços
                         </td>
                         <td>da planilha</td>
                     </tr>
+
+                    <tr>
+                        <th>Data de recebimento</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input id="date_receive" name="date_receive" class="form-control" onchange="clean($('#colDate_receive'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colDate_receive" name="colDate_receive" class="form-control" onchange="clean($('#date_receive'))">
+                                <option value="-1">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
                 </table>
             </form>
         </div>
