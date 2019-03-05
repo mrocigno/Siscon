@@ -52,12 +52,24 @@ return [
             'prefix'   => '',
         ],
 
+//        'mysql' => [
+//            'driver'    => 'mysql',
+//            'host'      => env('DB_HOST', 'mysql'),
+//            'database'  => env('DB_DATABASE', 'u377912716_wunuv'),
+//            'username'  => env('DB_USERNAME', 'u377912716_gylar'),
+//            'password'  => env('DB_PASSWORD', 'XaGyjeNuLa'),
+//            'charset'   => 'utf8',
+//            'collation' => 'utf8_unicode_ci',
+//            'prefix'    => '',
+//            'strict'    => false,
+//        ],
+
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'mysql'),
+            'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'u377912716_wunuv'),
-            'username'  => env('DB_USERNAME', 'u377912716_gylar'),
-            'password'  => env('DB_PASSWORD', 'XaGyjeNuLa'),
+            'username'  => env('DB_USERNAME', 'root'),
+            'password'  => env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

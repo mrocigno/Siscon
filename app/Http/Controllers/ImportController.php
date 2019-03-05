@@ -62,21 +62,37 @@ class ImportController extends Controller {
     }
 
     public function save(Request $request){
+        echo $request->concat;
         $rules = [
             'remessa' => 'required|max:30',
             'solicitante' => 'required_without:colSol',
-            'colSol' => 'required_without:solicitante'
+            'colSol' => 'required_without:solicitante',
+            'data' => 'required_without:colData',
+            'colData' => 'required_without:data',
+            'tipo' => 'required_without:colTipo',
+            'colTipo' => 'required_without:tipo',
+            'polo' => 'required_without:colPolo',
+            'colPolo' => 'required_without:polo',
+            'endereco' => 'required_without:colEndereco',
+            'colEndereco' => 'required_without:endereco'
         ];
 
         $messages = [
-            'required' => 'Selecione um :attribute',
-            'required_without' => 'Selecione um :attribute'
+            'required' => 'Selecione um :attribute'
         ];
 
         $fileds = [
             'remessa' => $request->name,
             'solicitante' => $request->applicant,
-            'colSol' => $request->colApplicant
+            'colSol' => $request->colApplicant,
+            'data' => $request->dateReceive,
+            'colData' => $request->colDateReceive,
+            'tipo' => $request->serviceType,
+            'colTipo' => $request->colServiceType,
+            'polo' => $request->polo,
+            'colPolo' => $request->colPolo,
+            'endereco' => $request->address,
+            'colEndereco' => $request->colAddress
         ];
 
         $validator = Validator::make($fileds, $rules, $messages);

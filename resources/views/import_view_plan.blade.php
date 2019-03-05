@@ -50,11 +50,11 @@ Importar serviços
                         <th>Data de recebimento</th>
                         <td>Valor unico:</td>
                         <td>
-                            <input type="date" id="date_receive" name="date_receive" class="form-control" onchange="clean($('#colDate_receive'))"/>
+                            <input type="date" id="dateReceive" name="dateReceive" class="form-control" onchange="clean($('#colDate_receive'))"/>
                         </td>
                         <td>ou referente a coluna</td>
                         <td>
-                            <select id="colDate_receive" name="colDate_receive" class="form-control" onchange="clean($('#date_receive'))">
+                            <select id="colDateReceive" name="colDateReceive" class="form-control" onchange="clean($('#date_receive'))">
                                 <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
