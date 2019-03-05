@@ -101,8 +101,10 @@ Importar serviços
                     </tr>
 
                     <tr>
-                        <th colspan="5">Nº e complemento já concantenado com o endereço</th>
-                        <td><input type="checkbox" value="true" name="concat" checked></td>
+                        <th colspan="5">
+                            <input type="checkbox" value="true" name="concat" checked>
+                            <label for="concat">Nº e complemento já concantenado com o endereço</label>
+                        </th>
                     </tr>
 
                 </table>
