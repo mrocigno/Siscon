@@ -9,9 +9,9 @@ Importar serviços
 @stop
 
 @section('content')
-    
+    <p class="errors" style="text-align: center">{!! session()->get('message') !!}</p>
     <input type="button" class="btn btn-success btn-import" id="sltButton" value="Importar planilha">
-    <form action="importar/planilha" method="POST" id="form" enctype="multipart/form-data">
+    <form action="importar" method="POST" id="form" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="file" name="file" id="file" hidden>
     </form>

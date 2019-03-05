@@ -18,6 +18,8 @@ $(document).ready(function(){
     $("#concat").change(function () {
         $(".labelN").toggleClass("hideClass showClassCell");
         $("#rowCompl").toggleClass("hideClass showClassRow");
+        $("#colCompl").val("");
+        $("#colN").val("");
     });
 
 });

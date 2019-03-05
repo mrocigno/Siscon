@@ -8,7 +8,7 @@ use App\ServiceType;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use Excel;
-use Validator, Input, Redirect, Auth;
+use Validator, Redirect, Input, Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -37,7 +37,16 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            $results = Excel::load($tempFile['localPath'])->get()->toArray();
+            return Redirect::to('importar/planilha')
+                ->with('localPath', $tempFile['localPath'])
+                ->with('name', $request->file->getClientOriginalName());
+        }
+    }
+
+    public function showPlan(){
+        try{
+            $localPath = session()->get('localPath');
+            $results = Excel::load($localPath)->get()->toArray();
             $titles = [];
             $i = 0;
             foreach ($results[0] as $key => $values){
@@ -45,8 +54,8 @@ class ImportController extends Controller {
                 array_push($titles,"$key");
             }
             $fileVles = [
-                'name' =>  $request->file->getClientOriginalName(),
-                'localPath' => $tempFile['localPath']
+                'name' =>  session()->get('name'),
+                'localPath' => $localPath
             ];
             $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
             $serviceType = ServiceType::orderBy('type','asc')->where('company_id', Auth::user()->company_id)->get();
@@ -58,6 +67,9 @@ class ImportController extends Controller {
                 ->with('titles', $titles)
                 ->with('applicants', $applicants)
                 ->with('serviceType', $serviceType);
+        }catch (\Exception $e){
+            return Redirect::back()
+                ->with('message', 'Erro ao abrir planilha');
         }
     }
 
@@ -97,7 +109,11 @@ class ImportController extends Controller {
 
         $validator = Validator::make($fileds, $rules, $messages);
         if($validator->fails()){
-            var_dump($validator->errors());
+            return Redirect::back()
+                ->with('localPath', $request->localPath)
+                ->with('name', $request->name)
+                ->withInput(Input::all())
+                ->withErrors($validator);
         }
     }
     

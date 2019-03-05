@@ -9,7 +9,7 @@ Administrar campos
 @stop
 
 @section('content')
-<div class="row" style="margin: 0px; padding: 20px">
+<div class="row" style="margin: 0px;">
     <div class="col-md-3">
         <div class="fields">
             <table>
