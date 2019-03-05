@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Import\PlanImport;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use SimpleXLSX;
@@ -34,11 +35,7 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            if ( $xlsx = SimpleXLSX::parse($tempFile['localPath']) ) {
-                print_r( $xlsx->rows() );
-            } else {
-                echo SimpleXLSX::parseError();
-            }
+            $array = Excel::toArray(new PlanImport(), $tempFile['localPath']);
         }
         
     }
