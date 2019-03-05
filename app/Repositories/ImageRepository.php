@@ -34,7 +34,7 @@ class ImageRepository{
             $fileName = time() . random_int(100, 999) .'.' . $extension; 
             $destinationPath = public_path('files/temp/');
             $fullPath = $destinationPath.$fileName;
-            $localPath = __DIR__ .'/files/temp/' . $fileName;
+            $localPath = '../public/files/temp/' . $fileName;
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
