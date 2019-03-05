@@ -9,15 +9,17 @@ Importar serviços
 @stop
 
 @section('content')
-    <div class="center-form max-size">
-        <table>
-            @foreach($rows as $row)
-                <tr>
-                    @foreach($row as $key => $column)
-                        <td>{!! $column !!}</td>
-                    @endforeach
-                </tr>
-            @endforeach
-        </table>
+    <div style="padding: 20px">
+        <div class="center-form max-size">
+            <table>
+                @foreach($rows as $row)
+                    <tr>
+                        @foreach($row as $key => $column)
+                            <td>{!! $column !!}</td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
 @stop

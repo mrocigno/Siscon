@@ -94,3 +94,18 @@ a, a:link, a:hover {
     width: 100%;
     padding: 0px;
 }
+.table-list{
+    width: 100%;
+}
+
+.table-list .head{
+    background-color: #f2a9ad;
+}
+
+.table-list tr{
+    border-bottom: 1px solid lightgray;
+}
+
+.table-list th, .table-list td{
+    text-align: center;
+}
