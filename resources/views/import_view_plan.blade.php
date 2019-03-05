@@ -26,9 +26,10 @@ Importar serviços
                             </select>
                             <br/><br/>
                             Ou referente a coluna:
-                            {{ $i=0 }}
+                            <?php $i = 0; ?>
                             @foreach($titles as $title)
-                                @if(++$i % 2 > 0)<tr>@endif
+                                <?php $i++; ?>
+                                @if($i % 2 > 0)<tr>@endif
                                 <td>
                                     <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
                                     <label for="colApplicant">{!! $title !!}</label>
