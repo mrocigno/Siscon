@@ -16,19 +16,19 @@ Importar serviços
                 <table>
                     <tr>
                         <th>Nome da remessa:</th>
-                        <td><input type="text" name="name"></td>
+                        <td colspan="4"><input type="text" name="name" class="form-control"></td>
                     </tr>
                     <tr>
                         <th>Solicitante</th>
                         <td>Valor unico:</td>
                         <td>
-                            <select name="applicant">
+                            <select name="applicant" class="form-control">
 
                             </select>
                         </td>
                         <td>ou coluna da tabela</td>
                         <td>
-                            <select name="colApplicant">
+                            <select name="colApplicant" class="form-control">
 
                             </select>
                         </td>
