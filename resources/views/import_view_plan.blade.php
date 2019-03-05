@@ -83,24 +83,6 @@ Importar serviços
                     </tr>
 
                     <tr>
-                        <th>Endereço</th>
-                        <td>Valor unico:</td>
-                        <td>
-                            <input type="text" id="address" name="address" class="form-control" onchange="clean($('#colAddress'))"/>
-                        </td>
-                        <td>ou referente a coluna</td>
-                        <td>
-                            <select id="colAddress" name="colAddress" class="form-control" onchange="clean($('#address'))">
-                                <option value="">-- Selecione --</option>
-                                @foreach($titles as $title)
-                                    <option value="{!! $title !!}">{!! $title !!}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>da planilha</td>
-                    </tr>
-
-                    <tr>
                         <th>Descrição do serviço</th>
                         <td>Valor unico:</td>
                         <td>
@@ -150,6 +132,24 @@ Importar serviços
                         <td>ou referente a coluna</td>
                         <td>
                             <select id="colPolo" name="colPolo" class="form-control" onchange="clean($('#polo'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th>Endereço</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input type="text" id="address" name="address" class="form-control" onchange="clean($('#colAddress'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colAddress" name="colAddress" class="form-control" onchange="clean($('#address'))">
                                 <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
