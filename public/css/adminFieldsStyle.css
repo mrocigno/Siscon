@@ -40,21 +40,6 @@
   width: 30px;
 }
 
-.center-form{
-  display: table;
-  background-color: white;
-  border-radius: 5px;
-  padding: 5px;
-  overflow: hidden;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.max-size{
-    width: 100%;
-    padding: 0px;
-}
-
 .table-list{
     width: 100%;   
 }
