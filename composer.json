@@ -6,11 +6,8 @@
     "type": "project",
     "minimum-stability": "dev", "prefer-stable": false,
     "require": {
-        "intervention/image": "^2.4",
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "shuchkin/simplexls": "*",
-        "shuchkin/simplexlsx": "*",
         "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {

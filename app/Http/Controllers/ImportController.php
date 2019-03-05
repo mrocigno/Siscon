@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Import\PlanImport;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use Excel;
@@ -35,7 +34,9 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            $array = Excel::toArray(new PlanImport(), $tempFile['localPath']);
+            Excel::load('file.xls', function($reader) {
+                var_dump($reader);
+            });
         }
         
     }
