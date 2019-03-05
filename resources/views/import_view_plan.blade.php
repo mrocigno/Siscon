@@ -101,10 +101,34 @@ Importar serviços
                     </tr>
 
                     <tr>
-                        <th colspan="5">
-                            <input type="checkbox" value="true" name="concat" checked>
+                        <th colspan="3">
+                            <input type="checkbox" value="true" name="concat" id="concat" checked>
                             <label for="concat">Nº e complemento já concantenado com o endereço</label>
                         </th>
+                        <td>Nº referente a coluna</td>
+                        <td>
+                            <select id="colN" name="colN" class="form-control">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2"></th>
+                        <td>Compl. referente a coluna</td>
+                        <td>
+                            <select id="colCompl" name="colCompl" class="form-control">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
                     </tr>
 
                 </table>
