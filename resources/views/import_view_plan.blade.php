@@ -19,18 +19,18 @@ Importar serviços
                         <td><input type="text" name="name"></td>
                     </tr>
                     <tr>
+                        <th>Solicitante</th>
+                        <td>Valor unico:</td>
                         <td>
-                            <l class="title">Solicitante:</l> &nbsp;
-                            <select class="form-control" name="applicant">
-                                <option value=""></option>
-                            </select>
-                            <br/>
-                            <l class="title">Ou referente a coluna:</l>
-                            @for ($i = 0; $i < count($titles); $i++)
-                                <input type="radio" name="colApplicant"  value="{!! $titles[$i] !!}"/>
-                                <label for="colApplicant">{!! $titles[$i] !!}</label> &nbsp;&nbsp;
-                            @endfor
+                            <select name="applicant">
 
+                            </select>
+                        </td>
+                        <td>ou coluna da tabela</td>
+                        <td>
+                            <select name="colApplicant">
+
+                            </select>
                         </td>
                     </tr>
                 </table>
