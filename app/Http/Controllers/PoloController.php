@@ -45,7 +45,7 @@ class PoloController extends Controller{
 
     public function lista(){
         $query = Polo::orderBy('id','asc')->where('company_id', Auth::user()->company_id)->get();
-        return view('admin.views.polo_list')->with('polo', $query);
+        return view('admin.views.polo_list')->with('polos', $query);
     }
 
     public function edit($id){
