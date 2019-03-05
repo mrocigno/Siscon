@@ -34,8 +34,8 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            $results = Excel::load($tempFile['localPath'])->get();
-            view('import_view_plan')->with('rows',$results);
+            $results = Excel::load($tempFile['localPath'])->get()->toArray();
+            return view('import_view_plan')->with('rows',$results);
         }
         
     }
