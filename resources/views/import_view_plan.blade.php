@@ -23,12 +23,13 @@ Importar serviços
                         <td>Valor unico:</td>
                         <td>
                             <select name="applicant" class="form-control">
-
+                                <option value="-1">-- Selecione --</option>
                             </select>
                         </td>
                         <td>ou referente a coluna</td>
                         <td>
                             <select name="colApplicant" class="form-control">
+                                <option value="-1">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
                                 @endforeach
