@@ -21,13 +21,15 @@ Importar serviços
                     <tr>
                         <td>
                             Solicitante:<br/>
-                            <select name="applicant">
+                            <select class="form-control" name="applicant">
                                 <option value=""></option>
                             </select>
                             <br/><br/>
                             Ou referente a coluna:
                             @foreach($titles as $title)
-                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/><br/>
+                                <input type="radio" name="colApplicant"  value="{!! $title !!}"/>
+                                <label for="colApplicant">{!! $title !!}</label>
+                                <br/>
                             @endforeach
                         </td>
                     </tr>
