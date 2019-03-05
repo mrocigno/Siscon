@@ -82,6 +82,29 @@ Importar serviços
                         <td>da planilha</td>
                     </tr>
 
+                    <tr>
+                        <th>Endereço</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input type="text" id="address" name="address" class="form-control" onchange="clean($('#colAddress'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colAddress" name="colAddress" class="form-control" onchange="clean($('#address'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="5">Nº e complemento já concantenado com o endereço</th>
+                        <td><input type="checkbox" value="true" name="concat" checked></td>
+                    </tr>
+
                 </table>
             </form>
         </div>
