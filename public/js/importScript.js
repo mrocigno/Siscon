@@ -14,4 +14,8 @@ $(document).ready(function(){
         $("#file").val(null);
         $("#file").click();
     });
+
+    function clean(field){
+        $(field).val(0);
+    }
 });

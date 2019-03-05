@@ -19,16 +19,16 @@ Importar serviços
                         <td colspan="4"><input type="text" name="name" class="form-control"></td>
                     </tr>
                     <tr>
-                        <th>Solicitante</th>
+                        <th>Solicitante =</th>
                         <td>Valor unico:</td>
                         <td>
-                            <select name="applicant" class="form-control">
+                            <select name="applicant" class="form-control" onclick="clean($('#colApplicant'))">
                                 <option value="-1">-- Selecione --</option>
                             </select>
                         </td>
                         <td>ou referente a coluna</td>
                         <td>
-                            <select name="colApplicant" class="form-control">
+                            <select  name="colApplicant" class="form-control" id="colApplicant">
                                 <option value="-1">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
