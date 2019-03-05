@@ -62,7 +62,7 @@ class ImportController extends Controller {
     }
 
     public function plan(){
-        return view('import_view_plan');
+        return view('teste');
     }
 
     public function save(Request $request){
