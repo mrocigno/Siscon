@@ -22,7 +22,7 @@ Importar serviços
                         <th>Solicitante =</th>
                         <td>Valor unico:</td>
                         <td>
-                            <select name="applicant" class="form-control" onclick="clean($('#colApplicant'))">
+                            <select name="applicant" class="form-control" onchange="clean($('#colApplicant'))">
                                 <option value="-1">-- Selecione --</option>
                             </select>
                         </td>
