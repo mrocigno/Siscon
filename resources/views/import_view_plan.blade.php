@@ -25,7 +25,7 @@ Importar serviços
                             <select name="applicant" class="form-control" onchange="clean($('#colApplicant'))">
                                 <option value="-1">-- Selecione --</option>
                                 @foreach($applicants as $applicant)
-                                    <option value="{!! $applicant !!}">{!! $applicant !!}</option>
+                                    <option value="{!! $applicant->id !!}">{!! $applicant->name !!}</option>
                                 @endforeach
                             </select>
                         </td>
