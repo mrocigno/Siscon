@@ -81,7 +81,7 @@ class ImportController extends Controller {
 
         $validator = Validator::make($fileds, $rules, $messages);
         if($validator->fails()){
-            var_dump($validator);
+            var_dump($validator->errors());
         }
     }
     
