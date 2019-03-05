@@ -9,6 +9,7 @@ class ImageRepository{
         
         if (!is_null($image)){
             $file = $image;
+
             $extension = $image->getClientOriginalExtension();
             
             $fileName = time() . random_int(100, 999) .'.' . $extension; 

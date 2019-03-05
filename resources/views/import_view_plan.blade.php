@@ -16,7 +16,7 @@ Importar serviços
                 <table>
                     <tr>
                         <th>Nome da remessa:</th>
-                        <td colspan="2"><input type="text" name="name" class="form-control"></td>
+                        <td colspan="2"><input type="text" name="name" class="form-control" value="{!! $file['name'] !!}"></td>
                     </tr>
                     <tr>
                         <th>Solicitante</th>
@@ -193,7 +193,7 @@ Importar serviços
                     <tr>
                         <td colspan="5"></td>
                         <td>
-                            <input type="submit" name="salve" value="Prosseguir" class="btn btn-success">
+                            <input type="submit" name="save" value="Prosseguir" class="btn btn-success">
                         </td>
                     </tr>
 

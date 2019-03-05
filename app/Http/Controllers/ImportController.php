@@ -44,11 +44,16 @@ class ImportController extends Controller {
                 ++$i;
                 array_push($titles,"$key");
             }
+            $fileVles = [
+                'name' =>  $request->file->getClientOriginalName(),
+                'localPath' => $tempFile['localPath']
+            ];
             $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
             $serviceType = ServiceType::orderBy('type','asc')->where('company_id', Auth::user()->company_id)->get();
             $polos = Polo::orderBy('polo','asc')->where('company_id', Auth::user()->company_id)->get();
             return view('import_view_plan')
                 ->with('rows',$results)
+                ->with('file', $fileVles)
                 ->with('polos', $polos)
                 ->with('titles', $titles)
                 ->with('applicants', $applicants)
