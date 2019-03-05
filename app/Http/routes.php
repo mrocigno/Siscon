@@ -24,8 +24,7 @@ Route::group(['prefix' => '/inicio', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => '/importar', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'ImportController@index'));
-    Route::post('', array('uses' => 'ImportController@importPlan'));
-    Route::get('/planilha', array('uses' => 'ImportController@plan'));
+    Route::post('/planilha', array('uses' => 'ImportController@importPlan'));
     Route::post('/planilha/save', array('uses' => 'ImportController@save'));
 });
 

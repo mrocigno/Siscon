@@ -51,7 +51,7 @@ class ImportController extends Controller {
             $applicants = Applicants::orderBy('name','asc')->where('company_id', Auth::user()->company_id)->get();
             $serviceType = ServiceType::orderBy('type','asc')->where('company_id', Auth::user()->company_id)->get();
             $polos = Polo::orderBy('polo','asc')->where('company_id', Auth::user()->company_id)->get();
-            return Redirect::to('importar/planilha')
+            return view('import_view_plan')
                 ->with('rows',$results)
                 ->with('file', $fileVles)
                 ->with('polos', $polos)
@@ -61,12 +61,8 @@ class ImportController extends Controller {
         }
     }
 
-    public function plan(){
-        return view('teste');
-    }
-
     public function save(Request $request){
-        var_dump($request);
+        var_dump($request->toArray());
     }
     
 }
