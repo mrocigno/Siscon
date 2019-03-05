@@ -39,7 +39,7 @@ class ImportController extends Controller {
             $i = 0;
             foreach ($results[0] as $key => $values){
                 ++$i;
-                $titles = "col $i<br/>$key";
+                array_push($titles,"col $i<br/>$key");
             }
             return view('import_view_plan')->with('rows',$results)->with('titles', $titles);
         }
