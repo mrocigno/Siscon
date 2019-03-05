@@ -18,5 +18,5 @@ $(document).ready(function(){
 });
 
 function clean(field){
-    $(field).val(-1);
+    $(field).val();
 }

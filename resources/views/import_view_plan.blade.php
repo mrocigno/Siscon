@@ -23,7 +23,7 @@ Importar serviços
                         <td>Valor unico:</td>
                         <td>
                             <select id="applicant" name="applicant" class="form-control" onchange="clean($('#colApplicant'))">
-                                <option value="-1">-- Selecione --</option>
+                                <option value="">-- Selecione --</option>
                                 @foreach($applicants as $applicant)
                                     <option value="{!! $applicant->id !!}">{!! $applicant->name !!}</option>
                                 @endforeach
@@ -32,7 +32,7 @@ Importar serviços
                         <td>ou referente a coluna</td>
                         <td>
                             <select id="colApplicant" name="colApplicant" class="form-control" onchange="clean($('#applicant'))">
-                                <option value="-1">-- Selecione --</option>
+                                <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
                                 @endforeach
@@ -50,7 +50,30 @@ Importar serviços
                         <td>ou referente a coluna</td>
                         <td>
                             <select id="colDate_receive" name="colDate_receive" class="form-control" onchange="clean($('#date_receive'))">
-                                <option value="-1">-- Selecione --</option>
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}">{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th>Tipo de serviço</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <select id="serviceType" name="serviceType" class="form-control" onchange="clean($('#colServiceType'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($serviceType as $type)
+                                    <option value="{!! $type->id !!}">{!! $type->type !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colServiceType" name="colServiceType" class="form-control" onchange="clean($('#serviceType'))">
+                                <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}">{!! $title !!}</option>
                                 @endforeach
