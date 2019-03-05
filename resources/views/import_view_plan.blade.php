@@ -11,13 +11,7 @@ Importar serviços
 @section('content')
     
     <table>
-        @foreach($rows as $row)
-            <tr>
-                @foreach($columns as $key => $column)
-                    <td>{!! $column !!}</td>
-                @endforeach
-            </tr>
-        @endforeach
+
     </table>
     
 @stop
