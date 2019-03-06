@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_03_012533_service_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_03_225624_add_removed_to_companies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_03_235555_add_softdelete_to_service_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_03_235921_add_companyid_to_service_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_04_000522_add_companyid_to_users.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_04_004345_drop_foreign_service_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_04_004614_drop_service_type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/default/drawer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/default/drawer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/import_view_plan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/import_view_plan.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,14 +348,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551791338454</updated>
       <workItem from="1551791347194" duration="23120000" />
-      <workItem from="1551818739684" duration="16984000" />
-    </task>
-    <task id="LOCAL-00043" summary="teste">
-      <created>1551800998563</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1551800998563</updated>
+      <workItem from="1551818739684" duration="17233000" />
     </task>
     <task id="LOCAL-00044" summary="teste">
       <created>1551801089097</created>
@@ -707,11 +686,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551828241681</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Import">
+      <created>1551837137847</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1551837137847</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40104000" />
+    <option name="totallyTimeSpent" value="40353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
