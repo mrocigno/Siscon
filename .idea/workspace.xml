@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="471">
+              <caret line="244" column="4" lean-forward="true" selection-start-line="244" selection-start-column="4" selection-end-line="244" selection-end-column="4" />
               <folding>
                 <element signature="e#40#59#0#PHP" expanded="true" />
               </folding>
@@ -350,14 +348,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551791338454</updated>
       <workItem from="1551791347194" duration="23120000" />
-      <workItem from="1551818739684" duration="17476000" />
-    </task>
-    <task id="LOCAL-00046" summary="teste">
-      <created>1551801383293</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1551801383293</updated>
+      <workItem from="1551818739684" duration="17781000" />
     </task>
     <task id="LOCAL-00047" summary="teste">
       <created>1551801512573</created>
@@ -695,11 +686,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551837433799</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Import">
+      <created>1551837616833</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1551837616833</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40596000" />
+    <option name="totallyTimeSpent" value="40901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1070,8 +1068,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="471">
+          <caret line="244" column="4" lean-forward="true" selection-start-line="244" selection-start-column="4" selection-end-line="244" selection-end-column="4" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
