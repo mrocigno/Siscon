@@ -4,7 +4,12 @@
     <title>Login</title>
     @include('default.head')
   </head>
-  <body>
+  <body style="
+    background-image: url('https://www.dachser.com/pt/layout/warehousing-contract-logistics-outsourcing-supply-chain.jpg');
+    background-size: initial;
+    background-position: center;
+    background-repeat: no-repeat;
+">
     <center>
       <div class="center">
         <form action="login" method="POST" name="formLogin">
