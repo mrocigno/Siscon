@@ -76,7 +76,6 @@ class ImportController extends Controller {
     }
 
     public function save(Request $request){
-        echo $request->concat;
         $rules = [
             'remessa' => 'required|max:30',
             'solicitante' => 'required_without:colSol',
@@ -235,9 +234,9 @@ class ImportController extends Controller {
                 ];
 
                 Services::create($data);
-                return Redirect::to('/remessa/lista')
-                    ->with('name', $request->name);
             }
+            return Redirect::to('/remessa/lista')
+                ->with('name', $request->name);
         }catch (Exception $e){
             return Redirect::to('importar')
                 ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());

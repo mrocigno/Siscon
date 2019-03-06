@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="" />
+    <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="113" column="35" lean-forward="true" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+            <state relative-caret-position="284">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
               <folding>
                 <element signature="e#40#59#0#PHP" expanded="true" />
               </folding>
@@ -348,21 +350,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551791338454</updated>
       <workItem from="1551791347194" duration="23120000" />
-      <workItem from="1551818739684" duration="17233000" />
-    </task>
-    <task id="LOCAL-00044" summary="teste">
-      <created>1551801089097</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1551801089097</updated>
-    </task>
-    <task id="LOCAL-00045" summary="teste">
-      <created>1551801118677</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1551801118677</updated>
+      <workItem from="1551818739684" duration="17476000" />
     </task>
     <task id="LOCAL-00046" summary="teste">
       <created>1551801383293</created>
@@ -693,11 +681,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551837137847</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Import">
+      <created>1551837423293</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1551837423293</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Import">
+      <created>1551837433799</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1551837433799</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40353000" />
+    <option name="totallyTimeSpent" value="40596000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1068,8 +1070,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ImportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="113" column="35" lean-forward="true" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+        <state relative-caret-position="284">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
