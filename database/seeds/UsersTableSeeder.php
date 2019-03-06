@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'name'     => 'Matheus Rocigno',
             'email'    => 'rocignom@gmail.com',
             'password' => Hash::make('123'),
-            'company_id' => 0
+            'company_id' => 1
         ));
     }
 }

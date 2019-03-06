@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Applicants;
+use App\Delivery;
 use App\Polo;
 use App\ServiceType;
+use App\Services;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use Excel;
@@ -67,9 +69,9 @@ class ImportController extends Controller {
                 ->with('titles', $titles)
                 ->with('applicants', $applicants)
                 ->with('serviceType', $serviceType);
-        }catch (\Exception $e){
+        }catch (Exception $e){
             return Redirect::back()
-                ->with('message', 'Erro ao abrir planilha');
+                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
         }
     }
 
@@ -114,6 +116,131 @@ class ImportController extends Controller {
                 ->with('name', $request->name)
                 ->withInput(Input::all())
                 ->withErrors($validator);
+        }else{
+            return $this->saveServices($request);
+        }
+    }
+
+    private function saveServices(Request $request){
+        try{
+            $results = Excel::load($request->localPath)->get()->toArray();
+            $companyId = Auth::user()->company_id;
+
+            $delivery = Delivery::create([
+                'company_id' => $companyId,
+                'name' => $request->name,
+                'num_services' => count($results)
+            ]);
+
+            foreach ($results as $row){
+                $identifier = (
+                ($request->identifier == "")?
+                    ($request->colIdentifier == ""? "" : $row[$request->colIdentifier]) :
+                    $request->identifier
+                );
+
+                $dateReceived = (
+                    ($request->dateReceive == "")?
+                        ($request->colDateReceive == ""? "" : $row[$request->colDateReceive]) :
+                        $request->dateReceive
+                );
+
+                $address = (
+                    ($request->address == "")?
+                        ($request->colAddress == ""? "" : $row[$request->colAddress]) :
+                        $request->address
+                );
+
+
+                $serviceDescr = (
+                    ($request->serviceDescr == "")?
+                        ($request->colServiceDescr == ""? "" : $row[$request->colServiceDescr]) :
+                        $request->serviceDescr
+                );
+
+                $pgGuia = (
+                    ($request->pgGuia == "")?
+                        ($request->colPgGuia == ""? "" : $row[$request->colPgGuia]) :
+                        $request->pgGuia
+                );
+
+                $unique = $request->applicant;
+                if($unique == ""){
+                    $field = $row[$request->colApplicant];
+                    if($field != ""){
+                        $query = Applicants::where('name', $field)->where('company_id', $companyId)->first();
+                        if($query)
+                            $applicant = $query->id;
+                        else {
+                            $query = Applicants::create([
+                                'company_id' => $companyId,
+                                'name' => $field
+                            ]);
+                            $applicant = $query->id;
+                        }
+                    }else
+                        $applicant = "";
+                }else
+                    $applicant = $unique;
+
+                $unique = $request->polo;
+                if($unique == ""){
+                    $field = $row[$request->colPolo];
+                    if($field != ""){
+                        $query = Polo::where('polo', $field)->where('company_id', $companyId)->first();
+                        if($query)
+                            $polo = $query->id;
+                        else {
+                            $query = Polo::create([
+                                'company_id' => $companyId,
+                                'polo' => $field
+                            ]);
+                            $polo = $query->id;
+                        }
+                    }else
+                        $polo = "";
+                }else
+                    $polo = $unique;
+
+                $unique = $request->serviceType;
+                if($unique == ""){
+                    $field = $row[$request->colServiceType];
+                    if($field != ""){
+                        $query = ServiceType::where('type', $field)->where('company_id', $companyId)->first();
+                        if($query)
+                            $serviceType = $query->id;
+                        else {
+                            $query = ServiceType::create([
+                                'company_id' => $companyId,
+                                'type' => $field
+                            ]);
+                            $serviceType = $query->id;
+                        }
+                    }else
+                        $serviceType = "";
+                }else
+                    $serviceType = $unique;
+
+                $data = [
+                    'company_id' => $companyId,
+                    'date_received' => $dateReceived,
+                    'identifier' => $identifier,
+                    'service_type_id' => $serviceType,
+                    'address' => $address,
+                    'service_description' => $serviceDescr,
+                    'pg_guia' => $pgGuia,
+                    'delivery_id' => $delivery->id,
+                    'applicant_id' => $applicant,
+                    'polo_id' => $polo
+                ];
+
+                Services::create($data);
+                return Redirect::to('/remessa/lista')
+                    ->with('name', $request->name);
+            }
+        }catch (Exception $e){
+            return Redirect::to('importar')
+                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
         }
     }
     

@@ -23,6 +23,7 @@ Importar serviços
                             <label for="headTitle">Primeira linha contém o título da coluna</label>
                         </td>
                     </tr>
+
                     <tr>
                         <th>Solicitante</th>
                         <td>Valor unico:</td>
@@ -40,6 +41,24 @@ Importar serviços
                                 <option value="">-- Selecione --</option>
                                 @foreach($titles as $title)
                                     <option value="{!! $title !!}" @if(old('colApplicant') == $title) selected @endif>{!! $title !!}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>da planilha</td>
+                    </tr>
+
+                    <tr>
+                        <th>Identificador</th>
+                        <td>Valor unico:</td>
+                        <td>
+                            <input type="text" id="identifier" name="identifier" value="{!! old('identifier') !!}" class="form-control" onchange="clean($('#colIdentifier'))"/>
+                        </td>
+                        <td>ou referente a coluna</td>
+                        <td>
+                            <select id="colIdentifier" name="colIdentifier" class="form-control" onchange="clean($('#identifier'))">
+                                <option value="">-- Selecione --</option>
+                                @foreach($titles as $title)
+                                    <option value="{!! $title !!}" @if(old('colIdentifier') == $title) selected @endif>{!! $title !!}</option>
                                 @endforeach
                             </select>
                         </td>
