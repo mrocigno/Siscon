@@ -16,11 +16,6 @@ th, td{
   font-family: 'Lato';
 }
 
-body{
-  background-color: #f4f4f5;
-  font-family: arial;
-}
-
 .errors{
     font-weight: bold;
     color: red;

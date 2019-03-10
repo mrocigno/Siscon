@@ -7,7 +7,7 @@
     <center style="padding: 20px;">
         <div class="center-form max-size">
             <table class="table-list">
-                <tr class="head">
+                <tr class="table-head">
                     <th>Deletar/Editar</th><th>ID</th><th>Nome</th><th>Email</th><th>Telefone</th><th>&nbsp;</th>
                 </tr>
                 @foreach($applicants as $applicant)

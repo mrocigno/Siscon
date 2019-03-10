@@ -6,6 +6,7 @@ use Validator, Input, Redirect;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 use App\Companies;
+use App\Delivery;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -38,6 +39,13 @@ class CompaniesController extends Controller{
                 ->withInput(Input::all());
         }else{
             $product = Companies::create($request->except('logo'));
+            Delivery::create(array(
+                'company_id'     => $product->id,
+                'name'     => 'Adicionados manualmente',
+                'removable'     => false,
+                'num_services' => 0
+            ));
+
             $product->logo = $img->saveImage($request->file('logo'), $product->id);
             $product->save();
             return Redirect::to('empresa/add')
@@ -89,7 +97,6 @@ class CompaniesController extends Controller{
     
     public function destroy($id){
         $company = Companies::findOrFail($id);
-        $company->removed = true;
         $company->delete();
         return Redirect::to('empresa/lista')
                 ->with('message', 'Empresa removida com sucesso'); 

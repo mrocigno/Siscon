@@ -104,7 +104,7 @@ Administrar campos
                 </tr>
                 <tr class="add">
                     <th><i class="fas fa-plus-circle"></i></td>
-                    <td><a href="#">Adicionar</a></td>
+                    <td><a href="importar">Adicionar</a></td>
                 </tr>
                 <tr class="edit">
                     <th><i class="fas fa-pen-square"></i></td>

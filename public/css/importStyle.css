@@ -11,3 +11,11 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+#table-refer-fields th{
+    text-align: center;
+}
+
+#table-refer-fields .gap{
+    height: 60px;
+}

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliveryTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CreateDeliveryTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery', function(Blueprint $table){
+        Schema::create('status', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('company_id');
-            $table->string('name', 100);
-            $table->integer('num_services');
-            $table->boolean('removable');
+            $table->string('status');
+            $table->text('description');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('delivery');
+        //dropando em services
     }
 }

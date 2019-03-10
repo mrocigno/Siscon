@@ -17,6 +17,7 @@ Route::get('/teste', function (){
 Route::get('/', array('uses' => 'UserController@index'));
 Route::get ('/login', array('uses' => 'UserController@index'));
 Route::post('/login', array('uses' => 'UserController@attemptLogin'));
+Route::get('/logout', array('uses' => 'UserController@logout'));
 
 Route::group(['prefix' => '/inicio', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'InitController@index'));
@@ -84,3 +85,8 @@ Route::group(['prefix' => 'remessa', 'middleware' => 'auth'], function () {
     Route::get('/editar/{id}', ['uses' => 'DeliveryController@edit']);
     Route::post('/update', ['uses' => 'DeliveryController@update']);
 });
+
+Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
+    Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServices']);
+});
+

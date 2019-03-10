@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Applicants;
 use App\Delivery;
 use App\Polo;
@@ -69,7 +70,7 @@ class ImportController extends Controller {
                 ->with('titles', $titles)
                 ->with('applicants', $applicants)
                 ->with('serviceType', $serviceType);
-        }catch (Exception $e){
+        }catch (\Exception $e){
             return Redirect::back()
                 ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
         }
@@ -87,7 +88,11 @@ class ImportController extends Controller {
             'polo' => 'required_without:colPolo',
             'colPolo' => 'required_without:polo',
             'endereco' => 'required_without:colEndereco',
-            'colEndereco' => 'required_without:endereco'
+            'colEndereco' => 'required_without:endereco',
+            'cidade' => 'required_without:colCidade',
+            'colCidade' => 'required_without:cidade',
+            'uf' => 'required_without:colUf',
+            'colUf' => 'required_without:uf'
         ];
 
         $messages = [
@@ -105,7 +110,11 @@ class ImportController extends Controller {
             'polo' => $request->polo,
             'colPolo' => $request->colPolo,
             'endereco' => $request->address,
-            'colEndereco' => $request->colAddress
+            'colEndereco' => $request->colAddress,
+            'cidade' => $request->city,
+            'colCidade' => $request->colCity,
+            'uf' => $request->uf,
+            'colUf' => $request->colUf
         ];
 
         $validator = Validator::make($fileds, $rules, $messages);
@@ -121,13 +130,14 @@ class ImportController extends Controller {
     }
 
     private function saveServices(Request $request){
-        try{
+//        try{
             $results = Excel::load($request->localPath)->get()->toArray();
             $companyId = Auth::user()->company_id;
 
             $delivery = Delivery::create([
                 'company_id' => $companyId,
                 'name' => $request->name,
+                'removable'     => true,
                 'num_services' => count($results)
             ]);
 
@@ -144,13 +154,6 @@ class ImportController extends Controller {
                         $request->dateReceive
                 );
 
-                $address = (
-                    ($request->address == "")?
-                        ($request->colAddress == ""? "" : $row[$request->colAddress]) :
-                        $request->address
-                );
-
-
                 $serviceDescr = (
                     ($request->serviceDescr == "")?
                         ($request->colServiceDescr == ""? "" : $row[$request->colServiceDescr]) :
@@ -162,6 +165,61 @@ class ImportController extends Controller {
                         ($request->colPgGuia == ""? "" : $row[$request->colPgGuia]) :
                         $request->pgGuia
                 );
+
+                $street = (
+                ($request->address == "")?
+                    ($request->colAddress == ""? "" : $row[$request->colAddress]) :
+                    $request->address
+                );
+
+                $city = (
+                ($request->city == "")?
+                    ($request->colCity == ""? "" : $row[$request->colCity]) :
+                    $request->city
+                );
+
+                $uf = (
+                ($request->uf == "")?
+                    ($request->colUf == ""? "" : $row[$request->colUf]) :
+                    $request->uf
+                );
+
+                if($request->concat == ""){
+                    //Não concatenado
+                    $n = $request->$row[$request->colN] . ($request->colCompl == ""? "": " " . $row[$request->colCompl]);
+                } else {
+                    //Concatenado
+                    $explodedAddress = explode(" ", $street);
+                    $street = "";
+                    if(is_numeric($explodedAddress[count($explodedAddress) - 1])){
+                        $n = $explodedAddress[count($explodedAddress) - 1];
+                        for ($i = 0; $i < count($explodedAddress) - 1; $i++){
+                            $street .= $explodedAddress[$i] . " ";
+                        }
+                    } elseif (is_numeric($explodedAddress[count($explodedAddress) - 2])){
+                        $n = $explodedAddress[count($explodedAddress) - 2] . " " . $explodedAddress[count($explodedAddress) - 1];
+                        for ($i = 0; $i < count($explodedAddress) - 2; $i++){
+                            $street .= $explodedAddress[$i] . " ";
+                        }
+                    } else {
+                        $n = "0";
+                        for ($i = 0; $i < count($explodedAddress); $i++){
+                            $street .= $explodedAddress[$i] . " ";
+                        }
+                    }
+                }
+
+                $query = Address::where('address', $street)->first();
+                if ($query)
+                    $address = $query->id;
+                else {
+                    $query = Address::create([
+                        'address' => trim($street),
+                        'city' => $city,
+                        'uf' => $uf
+                    ]);
+                    $address = $query->id;
+                }
 
                 $unique = $request->applicant;
                 if($unique == ""){
@@ -225,7 +283,8 @@ class ImportController extends Controller {
                     'date_received' => $dateReceived,
                     'identifier' => $identifier,
                     'service_type_id' => $serviceType,
-                    'address' => $address,
+                    'address_id' => $address,
+                    'n' => $n,
                     'service_description' => $serviceDescr,
                     'pg_guia' => $pgGuia,
                     'delivery_id' => $delivery->id,
@@ -237,10 +296,10 @@ class ImportController extends Controller {
             }
             return Redirect::to('/remessa/lista')
                 ->with('name', $request->name);
-        }catch (Exception $e){
-            return Redirect::to('importar')
-                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
-        }
+//        }catch (\Exception $e){
+//            return Redirect::to('importar')
+//                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
+//        }
     }
     
 }

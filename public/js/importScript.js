@@ -7,9 +7,10 @@ $(document).ready(function(){
             $("#file").val(null);
         }else{
             $("#form").submit();
+            showLoading();
         }
     });
-    
+
     $("#sltButton").click(function(){
         $("#file").val(null);
         $("#file").click();

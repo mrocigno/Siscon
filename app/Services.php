@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Services extends Model
 {
+
+    use SoftDeletes;
+
     protected $table = 'services';
 
     /**
@@ -17,7 +21,8 @@ class Services extends Model
         'date_received',
         'identifier',
         'service_type_id',
-        'address',
+        'address_id',
+        'n',
         'company_id',
         'service_description',
         'pg_guia',

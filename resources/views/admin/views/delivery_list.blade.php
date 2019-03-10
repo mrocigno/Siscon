@@ -7,7 +7,7 @@
     <center style="padding: 20px;">
         <div class="center-form max-size">
             <table class="table-list">
-                <tr class="head">
+                <tr class="table-head">
                     <th>Deletar/Editar</th><th>ID</th><th>Remessa</th><th>Número de serviços</th><th>Adicionada em</th><th>&nbsp;</th>
                 </tr>
                 @foreach($deliveries as $delivery)
@@ -17,7 +17,7 @@
                             <a href="editar/{!! $delivery->id !!}"><i class="fas fa-pen-square" style="color: orange"></i></a>
                         </td>
                         <td>{!! $delivery->id !!}</td>
-                        <td>{!! $delivery->name !!}</td>
+                        <td><a href="../servicos/lista-por-remessa/{!! $delivery->id !!}">{!! $delivery->name !!}</a></td>
                         <td>{!! $delivery->num_services !!}</td>
                         <td>{!! $delivery->created_at !!}</td>
                         <td style="width: 30%;"></td>

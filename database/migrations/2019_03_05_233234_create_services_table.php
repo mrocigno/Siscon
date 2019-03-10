@@ -18,7 +18,10 @@ class CreateServicesTable extends Migration
             $table->string('identifier', 30);
             $table->timestamp('date_received')->nullable();
             $table->integer('service_type_id')->unsigned();
-            $table->string('address');
+            $table->integer('address_id')->unsigned();
+            $table->string('n', 10);
+            $table->double('lat');
+            $table->double('lng');
             $table->text('service_description')->nullable();
             $table->string('pg_guia', 10)->nullable();
             $table->string('calculated_pg_guia', 10)->nullable();
@@ -43,6 +46,9 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('distributed_services');
         Schema::drop('services');
+        Schema::drop('address');
+        Schema::drop('status');
     }
 }

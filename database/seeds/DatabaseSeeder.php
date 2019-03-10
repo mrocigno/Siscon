@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call('UsersTableSeeder');
         $this->call('CompaniesTableSeeder');
         $this->call('ServiceTypeSeeder');
+        $this->call('DeliverySeeder');
+        $this->call('StatusSeeder');
 
         Model::reguard();
     }
