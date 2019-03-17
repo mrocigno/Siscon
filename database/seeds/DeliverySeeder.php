@@ -16,7 +16,6 @@ class DeliverySeeder extends Seeder
         Delivery::create(array(
             'company_id'     => 1,
             'name'     => 'Adicionados manualmente',
-            'removable'     => false,
             'num_services' => 0
         ));
     }
