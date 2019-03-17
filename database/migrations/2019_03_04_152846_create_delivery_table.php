@@ -17,7 +17,6 @@ class CreateDeliveryTable extends Migration
             $table->integer('company_id');
             $table->string('name', 100);
             $table->integer('num_services');
-            $table->boolean('removable');
             $table->timestamps();
             $table->softDeletes();
         });

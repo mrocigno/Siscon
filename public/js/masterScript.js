@@ -45,9 +45,31 @@ function showLoading(){
     $("#loading-holder").css("display", "table");
 }
 
+var progressMax;
+var progressValue;
+
+function showProgress(max){
+    progressMax = max;
+    progressValue = 0;
+    $("#black-background").toggleClass("hideClass showClass");
+    $("#progress-holder").css("display", "table");
+}
+
+function plusValueProgress(){
+    progressValue++;
+    let percent = (progressValue * 100) / progressMax;
+    $("#progress-value").css('width', percent + "%");
+    if(percent === 100){
+        closeBlackBackground();
+    }
+}
+
 function closeBlackBackground(){
+    progressMax = 0;
+    progressValue = 0;
     $("#black-background").toggleClass("hideClass showClass");
     $("#msg-holder").css("display", "none");
     $("#loading-holder").css("display", "none");
+    $("#progress-holder").css("display", "none");
     $("#btnYes").unbind();
 }

@@ -53,28 +53,29 @@ Administrar campos
             </table>
         </div>
     </div>
-
-    <div class="col-md-3">
-        <div class="fields">
-            <table>
-                <tr>
-                    <th colspan="2">Empresas</th>
-                </tr>
-                <tr class="add">
-                    <th><i class="fas fa-plus-circle"></i></td>
-                    <td><a href="empresa/add">Adicionar</a></td>
-                </tr>
-                <tr class="edit">
-                    <th><i class="fas fa-pen-square"></i></td>
-                    <td><a href="empresa/lista">Editar</a></td>
-                </tr>
-                <tr class="remove">
-                    <th><i class="fas fa-times-circle"></i></td>
-                    <td><a href="empresa/lista">Remover</a></td>
-                </tr>
-            </table>
+    @if(Auth::user()->user_type_id == 1)
+        <div class="col-md-3">
+            <div class="fields">
+                <table>
+                    <tr>
+                        <th colspan="2">Empresas</th>
+                    </tr>
+                    <tr class="add">
+                        <th><i class="fas fa-plus-circle"></i></td>
+                        <td><a href="empresa/add">Adicionar</a></td>
+                    </tr>
+                    <tr class="edit">
+                        <th><i class="fas fa-pen-square"></i></td>
+                        <td><a href="empresa/lista">Editar</a></td>
+                    </tr>
+                    <tr class="remove">
+                        <th><i class="fas fa-times-circle"></i></td>
+                        <td><a href="empresa/lista">Remover</a></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
+    @endif
     <div class="col-md-3">
         <div class="fields">
             <table>
@@ -117,5 +118,28 @@ Administrar campos
             </table>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="fields">
+            <table>
+                <tr>
+                    <th colspan="2">Usuários</th>
+                </tr>
+                <tr class="add">
+                    <th><i class="fas fa-plus-circle"></i></td>
+                    <td><a href="usuarios/add">Adicionar</a></td>
+                </tr>
+                <tr class="edit">
+                    <th><i class="fas fa-pen-square"></i></td>
+                    <td><a href="usuarios/lista">Editar</a></td>
+                </tr>
+                <tr class="remove">
+                    <th><i class="fas fa-times-circle"></i></td>
+                    <td><a href="usuarios/lista">Remover</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
 @stop

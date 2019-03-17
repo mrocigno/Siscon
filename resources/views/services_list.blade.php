@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Administrar campos
+    Lista de serviços por remessa
 @stop
 
 @section('content')
@@ -18,6 +18,8 @@
                     <th class="elipsis">Data recebido</th>
                     <th class="elipsis">Tipo</th>
                     <th class="elipsis">Endereço</th>
+                    <th class="elipsis">Latitude</th>
+                    <th class="elipsis">Longitude</th>
                     <th class="elipsis">Descrição do serviço</th>
                     <th class="elipsis">Página guia</th>
                     <th class="elipsis">Solicitante</th>
@@ -32,7 +34,9 @@
                         <td class="elipsis">{!! $service->identifier !!}</td>
                         <td class="elipsis">{!! $service->date_received !!}</td>
                         <td class="elipsis">{!! $service->type !!}</td>
-                        <td class="elipsis">{!! $service->address !!}</td>
+                        <td class="elipsis">{!! $service->address . ', ' . $service->n !!}</td>
+                        <td class="elipsis">{!! $service->lat !!}</td>
+                        <td class="elipsis">{!! $service->lng !!}</td>
                         <td class="elipsis">{!! $service->service_description !!}</td>
                         <td class="elipsis">{!! $service->pg_guia !!}</td>
                         <td class="elipsis">{!! $service->name !!}</td>

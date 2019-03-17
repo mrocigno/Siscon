@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
+use Auth, Hash;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Companies;
+use App\UserType;
+use App\User;
 
 class UserController extends Controller
 {
@@ -66,69 +69,55 @@ class UserController extends Controller
         return view('login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+    public function add(){
+        $companies = Companies::orderBy('name', 'asc')->get();
+        $userType = UserType::orderBy('name', 'asc')->where('company_id', '<>' , 1)->get();
+        return view('admin.views.user_add')
+            ->with('companies', $companies)
+            ->with('userType', $userType);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request){
+        $rules = array(
+            'empresa' => 'required',
+            'nome'    => 'required|max:255',
+            'email'    => 'required|unique:users|max:255',
+            'password' => 'max:60|required|confirmed',
+            'tipoDeUsuário' => 'required'
+        );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $messages = array(
+            'required' => "Preencha o campo :attribute",
+            'max'      => 'O :attribute deve ter até :max digitos',
+            'unique' => 'Email já cadastrado',
+            'confirmed' => 'As senha não conferem'
+        );
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $fields = [
+            'empresa' => $request->company,
+            'nome' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+            'tipoDeUsuário' => $request->userType
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        $validator = Validator::make($fields, $rules, $messages);
+        if ($validator->fails()) {
+            return Redirect::to('usuarios/add')
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }else{
+            $data = [
+                'name' => $request->name,
+                'company_id' => $request->company,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'user_type_id' => $request->userType
+            ];
+            $query = User::create($data);
+            return Redirect::to('usuarios/add')
+                ->with('message', 'Usuário adicionado com sucesso');
+        }
     }
 }

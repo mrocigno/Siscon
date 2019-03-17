@@ -27,11 +27,14 @@ Route::group(['prefix' => '/importar', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'ImportController@index'));
     Route::post('', array('uses' => 'ImportController@importPlan'));
     Route::get('/planilha', ['uses' => 'ImportController@showPlan']);
+    Route::get('/formatar-enderecos/{idDelivery}', ['uses' => 'ImportController@formatAddress']);
+    Route::post('/save-formated', array('uses' => 'ImportController@saveFormated'));
     Route::post('/planilha/save', array('uses' => 'ImportController@save'));
 });
 
 Route::group(['prefix' => '/distribuir', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'DistributeController@index'));
+    Route::post('criar-rota', array('uses' => 'DistributeController@createRoute'));
 });
 
 Route::group(['prefix' => '/finalizar', 'middleware' => 'auth'], function () {
@@ -77,6 +80,15 @@ Route::group(['prefix' => 'solicitante', 'middleware' => 'auth'], function () {
     Route::get('/delete/{id}', ['uses' => 'ApplicantsController@destroy']);
     Route::get('/editar/{id}', ['uses' => 'ApplicantsController@edit']);
     Route::post('/update', ['uses' => 'ApplicantsController@update']);
+});
+
+Route::group(['prefix' => 'usuarios', 'middleware' => 'auth'], function () {
+    Route::get('/add', ['uses' => 'UserController@add']);
+    Route::get('/lista', ['uses' => 'UserController@lista']);
+    Route::post('/create', ['uses' => 'UserController@store']);
+    Route::get('/delete/{id}', ['uses' => 'UserController@destroy']);
+    Route::get('/editar/{id}', ['uses' => 'UserController@edit']);
+    Route::post('/update', ['uses' => 'UserController@update']);
 });
 
 Route::group(['prefix' => 'remessa', 'middleware' => 'auth'], function () {

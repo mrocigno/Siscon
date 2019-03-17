@@ -130,7 +130,7 @@ class ImportController extends Controller {
     }
 
     private function saveServices(Request $request){
-//        try{
+        try{
             $results = Excel::load($request->localPath)->get()->toArray();
             $companyId = Auth::user()->company_id;
 
@@ -294,12 +294,99 @@ class ImportController extends Controller {
 
                 Services::create($data);
             }
-            return Redirect::to('/remessa/lista')
-                ->with('name', $request->name);
-//        }catch (\Exception $e){
-//            return Redirect::to('importar')
-//                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
-//        }
+
+            return Redirect::to('importar/formatar-enderecos/'. $delivery->id);
+
+        }catch (\Exception $e){
+            return Redirect::to('importar')
+                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
+        }
     }
-    
+
+    public function formatAddress($idRemessa){
+        $addresses = $this->getAddresses($idRemessa);
+        return view('format_address')
+            ->with('addresses', $addresses)
+            ->with('idRemessa', $idRemessa);
+    }
+
+    public function saveFormated(Request $request){
+        $services = Services::orderBy('services.id', 'asc')
+            ->where('services.company_id', Auth::user()->company_id)
+            ->where('services.lat', "=" ,0)
+            ->where('services.lng', "=", 0)
+            ->where('delivery_id', $request->idRemessa)
+            ->get();
+        $errors = 0;
+        foreach ($services as $service){
+            $_id = $service->id;
+            $rules = [
+                'lat' => 'required',
+                'lng' => 'required',
+            ];
+
+            $fields = [
+                'lat' => $request['lat_' . $_id],
+                'lng' => $request['lng_' . $_id]
+            ];
+
+            $validator = Validator::make($fields, $rules);
+            if ($validator->fails()) {
+                $errors++;
+            }else{
+                $address = Address::findOrFail($service->address_id);
+                $address->formatted_address = $request['faddress_' . $_id];
+                $address->reference_address = $request['raddress_' . $_id];
+                $address->neighborhood = $request['neighborhood_' . $_id];
+                $address->zip_code = $request['zipCode_' . $_id];
+                $address->save();
+
+                $service->lat = $request['lat_' . $_id];
+                $service->lng = $request['lng_' . $_id];
+                $service->save();
+            }
+        }
+        if($errors > 0){
+            return Redirect::to('importar/formatar-enderecos/'. $request->idRemessa);
+        }else{
+            return Redirect::to('/remessa/lista');
+        }
+    }
+
+    public function getAddresses($idRemessa){
+        return Services::orderBy('services.id', 'asc')
+            ->join('address as adr', 'adr.id', '=', 'services.address_id')
+            ->where('services.company_id', Auth::user()->company_id)
+            ->where('services.lat', "=", 0)
+            ->where('services.lng', "=", 0)
+            ->where('delivery_id', $idRemessa)
+            ->get(['services.id as sid', 'services.*', 'adr.*']);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

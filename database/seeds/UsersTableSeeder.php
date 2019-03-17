@@ -17,13 +17,15 @@ class UsersTableSeeder extends Seeder
             'name'     => 'Matheus Rocigno',
             'email'    => 'rocignom@gmail.com',
             'password' => Hash::make('123'),
-            'company_id' => 1
+            'company_id' => 1,
+            'user_type_id' => 1
         ));
         User::create(array(
             'name'     => 'Fernando Albuquerque',
-            'email'    => 'chefe@teste.com',
+            'email'    => 'chefe@chefe.com',
             'password' => Hash::make('123'),
-            'company_id' => 1
+            'company_id' => 1,
+            'user_type_id' => 2
         ));
     }
 }
