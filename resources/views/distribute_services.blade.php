@@ -9,54 +9,20 @@
 @stop
 
 @section('content')
-    <div style="padding: 20px">
+    <div class="gap-center-form" style="">
         <div class="center-form max-size">
             <form name="teste" id="create-route" action="distribuir/criar-rota" method="post">
                 {{ csrf_field() }}
-                <table class="table-list">
-                    <tr class="table-head">
-                        <th class="elipsis"><input type="checkbox"></th>
-                        <th class="elipsis">Identificador</th>
-                        <th class="elipsis">Data recebido</th>
-                        <th class="elipsis">Tipo</th>
-                        <th class="elipsis">Endereço</th>
-                        <th class="elipsis">Latitude</th>
-                        <th class="elipsis">Longitude</th>
-                        <th class="elipsis">Descrição do serviço</th>
-                        <th class="elipsis">Página guia</th>
-                        <th class="elipsis">Solicitante</th>
-                        <th class="elipsis">Polo</th>
-                    </tr>
-                    @foreach($services as $service)
-                        <tr class="
-                            @if($service->lat != 0 && is_null($service->status_id))
-                                ready
-                            @elseif($service->lat == 0 && is_null($service->status_id))
-                                not-ready
-                            @elseif(!is_null($service->status_id))
-                                return
-                            @endif">
-                            <td class="center-text"><input type="checkbox" value="{!! $service->sid !!}" name="ids[]"></td>
-                            <td class="elipsis">{!! $service->identifier !!}</td>
-                            <td class="elipsis">{!! $service->date_received !!}</td>
-                            <td class="elipsis">{!! $service->type !!}</td>
-                            <td class="elipsis">{!! $service->address . ', ' . $service->n !!}</td>
-                            <td class="elipsis">{!! $service->lat !!}</td>
-                            <td class="elipsis">{!! $service->lng !!}</td>
-                            <td class="elipsis">{!! $service->service_description !!}</td>
-                            <td class="elipsis">{!! $service->pg_guia !!}</td>
-                            <td class="elipsis">{!! $service->name !!}</td>
-                            <td class="elipsis">{!! $service->polo !!}</td>
-                        </tr>
-                    @endforeach
-                </table>
+                <div id="table-content">
+                    
+                </div>
                 <input type="text" name="date" id="date" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" hidden>
                 <input type="text" name="userId" id="userId" hidden>
             </form>
         </div>
     </div>
     <div class="info-card">
-        {!! $count !!} serviços encontrados
+         serviços encontrados
     </div>
 @stop
 
@@ -103,19 +69,56 @@
         <tr>
             <td>
                 <center>
-                    <input type="button" id="distribute-next" class="btn btn-success" onclick="submitYesNo('create-route')" value="Confirmar">
+                    <input type="button" id="distribute-next" class="btn" onclick="submitYesNo('create-route')" value="Confirmar">
                 </center>
             </td>
         </tr>
         <tr>
-            <td style="height: 100%">
-                Filters here
+            <td style="height: 100%; vertical-align: top;">
+                <form name="form-filter" id="form-filter">
+                    <table class="max-size">
+                        <tr>
+                            <td colspan="2">Ordernar por:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <select class="form-control" onchange="showLatLng(this);">
+                                    <option value="">-- Selecione --</option>
+                                    <option value="dist">Distância</option>
+                                    <option value="">teste</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="hideClass latLngRow">
+                            <th>
+                                Lat
+                            </th>
+                            <th>
+                                Lng
+                            </th>
+                        </tr>
+                        <tr class="hideClass latLngRow">
+                            <td>
+                                <input type="text" name="lat" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" name="lng" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" class="btn btn-success" style="float: right;" id="filter" name="filter" value="Filtrar" onclick="getTable();">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </td>
         </tr>
     </table>
 
     <script>
         showMenuOptions();
+        getTable();
     </script>
 
 @stop

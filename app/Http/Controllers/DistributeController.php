@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Redirect;
 class DistributeController extends Controller {
 
     public function index(){
+        $users = User::orderBy('name', 'asc')
+            ->where('user_type_id', 4)
+            ->get();
+
+        return view('distribute_services')
+            ->with('users', $users);
+    }
+
+    public function getTable(){
         $services = Services::orderBy('services.id', 'asc')
             ->join('address as adr', 'adr.id', '=', 'services.address_id')
             ->join('polos as po', 'po.id', '=', 'services.polo_id')
@@ -28,15 +37,11 @@ class DistributeController extends Controller {
             ->orWhereNull('ds.status_id')
             ->get(['services.id as sid', 'services.*', 'adr.*', 'po.*', 'ap.*', 'dv.*', 'ds.*', 'st.*']);
 
-        $users = User::orderBy('name', 'asc')
-            ->where('user_type_id', 4)
-            ->get();
-//        echo $services;
-        return view('distribute_services')
+        return view('services.distribute_table')
             ->with('services', $services)
-            ->with('count', count($services))
-            ->with('users', $users);
+            ->with('count', count($services));
     }
+
 
     public function createRoute(Request $request){
         $rules = [

@@ -34,6 +34,7 @@ Route::group(['prefix' => '/importar', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => '/distribuir', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'DistributeController@index'));
+    Route::get('get-table', array('uses' => 'DistributeController@getTable'));
     Route::post('criar-rota', array('uses' => 'DistributeController@createRoute'));
 });
 
