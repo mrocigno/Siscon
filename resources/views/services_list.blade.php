@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="master-content">
+    <div class="gap-center-form master-content">
         <div class="center-form max-size">
             <table class="table-list">
                 <tr class="table-head">

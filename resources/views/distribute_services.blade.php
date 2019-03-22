@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div class="gap-center-form" style="">
+    <div class="gap-center-form">
         <div class="center-form max-size">
             <form name="teste" id="create-route" action="distribuir/criar-rota" method="post">
                 {{ csrf_field() }}
@@ -82,10 +82,10 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <select class="form-control" onchange="showLatLng(this);">
-                                    <option value="">-- Selecione --</option>
-                                    <option value="dist">Distância</option>
-                                    <option value="">teste</option>
+                                <select class="form-control" name="order" onchange="showLatLng(this);">
+                                    <option value="sid">-- Selecione --</option>
+                                    <option value="distance">Distância</option>
+                                    <option value="date_received">Data recebido</option>
                                 </select>
                             </td>
                         </tr>
@@ -103,6 +103,16 @@
                             </td>
                             <td>
                                 <input type="text" name="lng" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                Lista de identificadores
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <textarea name="identifiers" class="form-control" style="height: 100px"></textarea>
                             </td>
                         </tr>
                         <tr>

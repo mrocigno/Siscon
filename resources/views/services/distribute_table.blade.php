@@ -1,3 +1,4 @@
+<span class='errors'>{{ $errors->first('msg') }}</span>
 <table class="table-list">
     <tr class="table-head">
         <th class="elipsis"><input type="checkbox"></th>

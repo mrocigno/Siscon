@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    <div style="padding: 20px">
+    <div class="gap-center-form">
         <div class="center-form max-size">
             <form id="save-formated" action="../save-formated" method="post">
                 {{ csrf_field() }}

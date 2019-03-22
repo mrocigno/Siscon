@@ -3,7 +3,7 @@ function setValue(value, to){
 }
 
 function showLatLng(dom){
-	if($(dom).val() === "dist"){
+	if($(dom).val() === "distance"){
 		$(".latLngRow").toggleClass("hideClass showClassRow");
 	} else {
 		if($(".latLngRow").hasClass("showClassRow")){
@@ -18,11 +18,13 @@ function getTable(){
 	$.ajax({
         type: 'GET',
         url: 'http://localhost/Siscon/distribuir/get-table',
+        data: $("#form-filter").serialize(), 
         success: function (data) {
             $("#table-content").html(data);
             closeBlackBackground();
         },
-        error: function () {
+        error: function (ex) {
+            console.log(ex);
             plusValueProgress();
             closeBlackBackground();
         }
