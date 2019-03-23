@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services;
+use Illuminate\Support\Facades\DB;
 use Validator, Input, Redirect, Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
