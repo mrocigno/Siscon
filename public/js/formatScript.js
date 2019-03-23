@@ -4,7 +4,7 @@ $(document).ready(function(){
         var max = 0;
         for (i = 1; i < rows.length; i++){
             let row = rows[i];
-            let check = $(row).find('> td > .format-check');
+            let check = $(row).find('> td > .check-input');
             let lat = $(row).find('> td > .format-lat');
             let lng = $(row).find('> td > .format-lng');
             if($(check).is(":checked") && $(lat).val() === "" && $(lng).val() === "" ){

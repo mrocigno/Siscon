@@ -9,40 +9,16 @@
         </table>
     </a>
 </div>
-
 <div class="item">
-    <a href='{{ URL::to('/') }}/importar'>
+    <a href='{{ URL::to('/') }}/servicos'>
         <table>
             <tr>
-                <td class="iconMenu"><i class="fas fa-file-excel"></i></td>
-                <td>Importar serviços</td>
+                <td class="iconMenu"><i class="fas fa-file-alt"></i></td>
+                <td>Serviços</td>
             </tr>
         </table>
     </a>
 </div>
-
-<div class="item">
-    <a href="{{ URL::to('/') }}/distribuir">
-        <table>
-            <tr>
-                <td class="iconMenu"><i class="fas fa-share"></i></td>
-                <td>Distribuir serviços</td>
-            </tr>
-        </table>
-    </a>
-</div>
-
-<div class="item">
-    <a href='{{ URL::to('/') }}/finalizar'>
-        <table>
-            <tr>
-                <td class="iconMenu"><i class="fas fa-exchange-alt"></i></td>
-                <td>Finalizar serviços</td>
-            </tr>
-        </table>
-    </a>
-</div>
-
 <div class="item">
     <a href='{{ URL::to('/') }}/administrar-campos'>
         <table>

@@ -28,13 +28,11 @@ Route::group(['prefix' => '/importar', 'middleware' => 'auth'], function () {
     Route::post('', array('uses' => 'ImportController@importPlan'));
     Route::get('/planilha', ['uses' => 'ImportController@showPlan']);
     Route::get('/formatar-enderecos/{idDelivery}', ['uses' => 'ImportController@formatAddress']);
-    Route::post('/save-formated', array('uses' => 'ImportController@saveFormated'));
     Route::post('/planilha/save', array('uses' => 'ImportController@save'));
 });
 
 Route::group(['prefix' => '/distribuir', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'DistributeController@index'));
-    Route::get('get-table', array('uses' => 'DistributeController@getTable'));
     Route::post('criar-rota', array('uses' => 'DistributeController@createRoute'));
 });
 
@@ -100,6 +98,13 @@ Route::group(['prefix' => 'remessa', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
-    Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServices']);
+    Route::get('', ['uses' => 'ServicesController@index']);
+    Route::get('get-table', array('uses' => 'ServicesController@getTable'));
+    Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServicesByDelivery']);
 });
+
+Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function () {
+    Route::post('/save-formated', array('uses' => 'GeolocationController@saveFormated'));
+});
+
 

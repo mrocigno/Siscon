@@ -73,3 +73,7 @@ function closeBlackBackground(){
     $("#progress-holder").css("display", "none");
     $("#btnYes").unbind();
 }
+
+function selectAll(chkMain) {
+    $('.table-list > tbody > tr > td > .check-input').prop('checked', $(chkMain).is(":checked"));
+}

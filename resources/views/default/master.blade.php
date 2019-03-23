@@ -14,10 +14,12 @@
         <p class="msg-text">
             Você tem certeza?
         </p>
-        <div>
-            <input id="btnNo" type="button" class="btn btn-danger" value="Não" style="float: left">
-            <input id="btnYes" type="button" class="btn btn-success" value="Sim" style="float: right">
-        </div>
+        <table class="max-size">
+            <tr>
+                <td><input id="btnNo" type="button" class="btn btn-danger" value="Não" style="width: 100%"></td>
+                <td><input id="btnYes" type="button" class="btn btn-success" value="Sim" style="width: 100%"></td>
+            </tr>
+        </table>
     </div>
 
     <div id="loading-holder" class="center-form" style="display: none">

@@ -1,6 +1,7 @@
 body{
     background-color: #f4f4f5;
-    font-family: Arial;
+    font-family: 'arial', serif;
+    overflow: hidden;
 }
 
 header {
@@ -203,11 +204,12 @@ a, a:link, a:hover {
 
 #msg-holder{
     margin: 100px auto;
-    padding: 10px 30px;
+    /*padding: 10px 30px;*/
 }
 
 .msg-text{
     font-size: 20px;
+    margin: 0 30px 10px;
 }
 
 #loading-holder{
@@ -261,4 +263,118 @@ a, a:link, a:hover {
 
 ::-webkit-scrollbar-thumb {
     background: rgba(141, 37, 43, 0.3);
+}
+
+.check-input{
+    display: none;
+}
+
+.check, .check-white {
+    cursor: pointer;
+    position: relative;
+    margin: auto;
+    width: 15px;
+    height: 15px;
+    -webkit-tap-highlight-color: transparent;
+    transform: translate3d(0, 0, 0);
+}
+.check:before, .check-white:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(34,50,84,0.03);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.check svg, .check-white svg {
+    position: relative;
+    z-index: 1;
+    fill: none;
+    border-radius: 4px;
+    background-color: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: black;
+    stroke-width: 1.5;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+}
+.check svg path, .check-white svg path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 0;
+}
+.check svg polyline, .check-white svg polyline {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 66;
+}
+.check:hover:before, .check-white:hover:before {
+    opacity: 1;
+}
+.check:hover svg, .check-white:hover svg {
+    stroke-width: 5px;
+}
+
+.check-input:checked + .check svg {
+    stroke: black;
+    stroke-width: 5px;
+    background-color: transparent;
+    /*border: 1px solid darkgray;*/
+}
+
+.check-input:checked + .check-white svg {
+    stroke: white;
+    stroke-width: 5px;
+    background-color: transparent;
+    /*border: 1px solid darkgray;*/
+}
+
+.check-input:checked + .check svg path, .check-input:checked + .check-white svg path {
+    stroke-dashoffset: 60;
+    transition: all 0.3s linear;
+}
+.check-input:checked + .check svg polyline, .check-input:checked + .check-white svg polyline {
+    stroke-dashoffset: 42;
+    transition: all 0.2s linear;
+    transition-delay: 0.15s;
+}
+
+.ready{
+    background-color: #d1ffd6;
+}
+
+.delivered{
+    font-weight: bold;
+    color: deepskyblue;
+    background-color: #edf6ff;
+}
+
+.not-ready{
+    background-color: #ffe2e2;
+}
+
+.executed{
+    background-color: #eafff0;
+    font-weight: bold;
+    color: #07aa00;
+}
+
+.not-executed{
+    background-color: #fff3ee;
+    font-weight: bold;
+    color: #aa000d;
+}
+
+.return{
+    background-color: #fff4b9;
+}
+
+.returned{
+    background-color: #fff1d3;
+    font-weight: bold;
+    color: #ffa600;
 }

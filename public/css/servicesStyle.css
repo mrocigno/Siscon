@@ -1,0 +1,20 @@
+#box1 {
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #8d252b
+}
+
+/*#box1:after{*/
+    /*content: 'Servicos';*/
+    /*padding: 0 5px;*/
+    /*width: 80px;*/
+    /*background-color: white;*/
+    /*position: absolute;*/
+    /*font-weight: bold;*/
+    /*color: #8d252b;*/
+    /*top: -5px;*/
+    /*right: 0;*/
+    /*text-align: center;*/
+    /*border: 2px solid #8d252b;*/
+    /*border-radius: 5px;*/
+/*}*/

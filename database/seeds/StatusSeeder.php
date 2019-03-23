@@ -16,18 +16,22 @@ class StatusSeeder extends Seeder
         Status::create([
             'status' => 'Executado',
             'description' => 'Serviço foi executado e finalizado com sucesso'
-        ]);
+        ]);//1
         Status::create([
             'status' => 'Não executado',
             'description' => 'Serviço foi executado mas não foi finalizado, geralmente acompanha um motivo por não ter sido finalizado sem ser repassado'
-        ]);
+        ]);//2
         Status::create([
             'status' => 'Repassse',
             'description' => 'Serviço foi marcado para ser repassado, ele voltará a lista de "Distribuição de serviços"'
-        ]);
+        ]);//3
         Status::create([
             'status' => 'Entregue',
             'description' => 'Serviço já está programado para ser executado'
-        ]);
+        ]);//4
+        Status::create([
+            'status' => 'Repassado',
+            'description' => 'Serviço foi repassado, este status é um pseudo executado'
+        ]);//5
     }
 }

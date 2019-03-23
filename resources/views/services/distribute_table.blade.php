@@ -1,7 +1,15 @@
 <span class='errors'>{{ $errors->first('msg') }}</span>
 <table class="table-list">
     <tr class="table-head">
-        <th class="elipsis"><input type="checkbox"></th>
+        <th>
+            <input type="checkbox" class="check-input" id="check-all" onchange="selectAll(this)">
+            <label for="check-all" class="check-white">
+                <svg width="15px" height="15px" viewBox="0 0 18 18">
+                    <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                    <polyline points="1 9 7 14 15 4"></polyline>
+                </svg>
+            </label>
+        </th>
         <th class="elipsis">Identificador</th>
         <th class="elipsis">Data recebido</th>
         <th class="elipsis">Tipo</th>
@@ -14,15 +22,45 @@
         <th class="elipsis">Polo</th>
     </tr>
     @foreach($services as $service)
-        <tr class="
-            @if($service->lat != 0 && is_null($service->status_id))
-                ready
-            @elseif($service->lat == 0 && is_null($service->status_id))
-                not-ready
-            @elseif(!is_null($service->status_id))
-                return
-            @endif">
-            <td class="center-text"><input type="checkbox" value="{!! $service->sid !!}" name="ids[]"></td>
+        <tr class="<?php
+            if($service->lat != 0 && is_null($service->status_id)){
+                echo 'ready';
+            }elseif($service->lat == 0 && is_null($service->status_id)){
+                echo 'not-ready';
+            }elseif(!is_null($service->status_id)){
+                switch ($service->status_id){
+                    case 1:{
+                        echo 'executed';
+                        break;
+                    }
+                    case 2:{
+                        echo 'not-executed';
+                        break;
+                    }
+                    case 3:{
+                        echo 'return';
+                        break;
+                    }
+                    case 4:{
+                        echo 'delivered';
+                        break;
+                    }
+                    case 5:{
+                        echo 'returned';
+                        break;
+                    }
+                }
+            }
+        ?>">
+            <td class="center-text">
+                <input type="checkbox" value="{!! $service->sid !!}" id="check-{!! $service->sid !!}" name="ids[]" class="check-input">
+                <label for="check-{!! $service->sid !!}" class="check">
+                    <svg width="15px" height="15px" viewBox="0 0 18 18">
+                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                        <polyline points="1 9 7 14 15 4"></polyline>
+                    </svg>
+                </label>
+            </td>
             <td class="elipsis">{!! $service->identifier !!}</td>
             <td class="elipsis">{!! $service->date_received !!}</td>
             <td class="elipsis">{!! $service->type !!}</td>

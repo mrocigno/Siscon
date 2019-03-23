@@ -4,7 +4,7 @@
 @stop
 
 @section('list')
-    <center style="padding: 20px;">
+    <div class="gap-center-form">
         <div class="center-form max-size">
             <table class="table-list">
                 <tr class="table-head">
@@ -25,5 +25,5 @@
                 @endforeach
             </table>
         </div>
-    </center>
+    </div>
 @stop

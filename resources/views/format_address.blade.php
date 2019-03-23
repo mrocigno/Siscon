@@ -1,6 +1,6 @@
 @extends('default.master')
 @section('title')
-    Geo localização
+    Geolocalização
 @stop
 
 @section('stylecustom')
@@ -11,14 +11,19 @@
 @section('content')
     <div class="gap-center-form">
         <div class="center-form max-size">
-            <form id="save-formated" action="../save-formated" method="post">
+            <form id="save-formated" action="{!! URL::to('geolocalizacao') !!}/save-formated" method="post">
                 {{ csrf_field() }}
-
-                <input type="hidden" value="{{ $idRemessa }}" name="idRemessa">
-                <input type="button" id="continue" value="Salvar" onclick="submitYesNo('save-formated');" class="btn btn-success" style="position: fixed; right: 5px; bottom: 5px;  z-index: 10;">
                 <table id="table-format" class="table-list">
                     <tr class="table-head">
-                        <th class="elipsis">&nbsp;&nbsp;&nbsp;<input id="all" type="checkbox">&nbsp;&nbsp;&nbsp; </th>
+                        <th class="elipsis">
+                            <input type="checkbox" class="check-input" id="check-all" onchange="selectAll(this)" checked>
+                            <label for="check-all" class="check-white">
+                                <svg width="15px" height="15px" viewBox="0 0 18 18">
+                                    <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                                    <polyline points="1 9 7 14 15 4"></polyline>
+                                </svg>
+                            </label>
+                        </th>
                         <th>Endereço</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
@@ -31,7 +36,15 @@
                     </tr>
                     @foreach($addresses as $address)
                         <tr data-id="{!! $address->sid !!}">
-                            <td><input type="checkbox" value="{!! $address->sid !!}" checked class="format-check"></td>
+                            <td>
+                                <input type="checkbox" value="{!! $address->sid !!}" id="check-{!! $address->sid !!}" class="check-input" name="ids[]" checked>
+                                <label for="check-{!! $address->sid !!}" class="check">
+                                    <svg width="15px" height="15px" viewBox="0 0 18 18">
+                                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                                        <polyline points="1 9 7 14 15 4"></polyline>
+                                    </svg>
+                                </label>
+                            </td>
                             <td><input name="address_{!! $address->sid !!}" type="text" class="form-control format-address" value="{!! $address->address . ', ' . $address->n !!}" style="min-width: 300px;"></td>
                             <td><input name="lat_{!! $address->sid !!}" type="text" class="form-control format-lat" style="min-width: 100px;"></td>
                             <td><input name="lng_{!! $address->sid !!}" type="text" class="form-control format-lng" style="min-width: 100px;"></td>
@@ -51,14 +64,50 @@
 
 @section('menuOptions')
 
-    <table class="max-size">
-
+    <table class="max-size" style="height: 100%">
+        <tr>
+            <th>
+                Localizar selecionados:
+            </th>
+        </tr>
         <tr>
             <td>
-                <input type="button" id="format-select-btn" value="Formatar selecionados" class="btn btn-warning" style="width: 100%">
+                Localizar pelo endereço
             </td>
         </tr>
-
+        <tr>
+            <td>
+                <center><input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn"></center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Localizar pela referência:
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center><input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn"></center>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 100%;"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="continue" value="Prosseguir sem salvar" onclick="submitYesNo('save-formated');" style="width: 100%" class="btn btn-danger">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="continue" value="Salvar" onclick="submitYesNo('save-formated');" style="width: 100%" class="btn btn-success">
+            </td>
+        </tr>
 
     </table>
 

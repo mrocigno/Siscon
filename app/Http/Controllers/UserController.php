@@ -37,9 +37,9 @@ class UserController extends Controller
         );
         
         $messages = array(
-                'required' => "Preencha o campo :attribute",
-                'min' => 'A senha deve ter ao menos 3 digitos'
-            );
+            'required' => "Preencha o campo :attribute",
+            'min' => 'A senha deve ter ao menos 3 digitos'
+        );
         
         $validator = Validator::make(Input::all(), $rules, $messages);
         if ($validator->fails()) {
@@ -90,7 +90,8 @@ class UserController extends Controller
             'required' => "Preencha o campo :attribute",
             'max'      => 'O :attribute deve ter até :max digitos',
             'unique' => 'Email já cadastrado',
-            'confirmed' => 'As senha não conferem'
+            'confirmed' => 'As senha não conferem',
+            'password.required' => 'Preencha o campo senha'
         );
 
         $fields = [
@@ -115,9 +116,105 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
                 'user_type_id' => $request->userType
             ];
-            $query = User::create($data);
+            User::create($data);
             return Redirect::to('usuarios/add')
                 ->with('message', 'Usuário adicionado com sucesso');
         }
     }
+
+    public function lista(){
+        $query = User::orderBy('users.id','asc')
+            ->join('companies as cp', 'cp.id', '=', 'users.company_id')
+            ->join('user_type as ut', 'ut.id', '=', 'users.user_type_id');
+        if(Auth::user()->user_type_id > 1){
+            $query->where('company_id', Auth::user()->company_id);
+        }
+        $query = $query->get([
+            'users.id as id',
+            'users.name as name',
+            'users.email as email',
+            'cp.name as company_name',
+            'ut.name as user_type'
+        ]);
+
+        return view('admin.views.user_list')->with('users', $query);
+    }
+
+    public function edit($id){
+        $query = User::findOrFail($id);
+        $companies = Companies::orderBy('name', 'asc')->get();
+        $userType = UserType::orderBy('name', 'asc')->where('company_id', '<>' , 1)->get();
+        return view('admin.views.user_edit')
+            ->with('user', $query)
+            ->with('companies', $companies)
+            ->with('userType', $userType);
+    }
+
+    public function update(Request $request){
+        $rules = array(
+            'empresa' => 'required',
+            'nome'    => 'required|max:255',
+            'email'    => 'required|max:255',
+            'senhaAtual' => 'required_with:password|required_with:password_confirmation',
+            'password' => 'max:60|confirmed|required_with:senhaAtual|required_with:password_confirmation',
+            'tipoDeUsuário' => 'required'
+        );
+
+        $messages = array(
+            'required' => "Preencha o campo :attribute",
+            'max'      => 'O :attribute deve ter até :max digitos',
+            'unique' => 'Email já cadastrado',
+            'confirmed' => 'As senha não conferem',
+            'senhaAtual.required_with' => 'Quando preecher nova senha insira também a senha atual',
+            'password.required_with' => 'Quando preecher senha atual insira também a nova senha'
+        );
+
+        $fields = [
+            'empresa' => $request->company,
+            'nome' => $request->name,
+            'email' => $request->email,
+            'senhaAtual' => $request->now_password,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation,
+            'tipoDeUsuário' => $request->userType
+        ];
+
+        $validator = Validator::make($fields, $rules, $messages);
+        if($validator->fails()){
+            return Redirect::to('usuarios/editar/' . $request->id)
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }else{
+            $query = User::findOrFail($request->id);
+            if($query->email != $request->email){
+                $validator = Validator::make($fields, ['email' => 'unique:users'], $messages);
+                if($validator->fails()){
+                    return Redirect::to('usuarios/editar/' . $request->id)
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+                }
+            }
+            if($request->now_password != "" && !Hash::check($request->now_password, $query->password)){
+                return Redirect::to('usuarios/editar/' . $request->id)
+                    ->withErrors(['password' => 'Senha atual incorreta'])
+                    ->withInput($request->input());
+            }
+            $query->company_id = $request->company;
+            $query->name = $request->name;
+            $query->email = $request->email;
+            $query->user_type_id = $request->userType;
+            $query->password = Hash::make($request->password);
+            $query->save();
+            return Redirect::back()
+                ->with('message', 'Usuário editado com sucesso');
+        }
+    }
+
+    public function destroy($id){
+        $query = User::findOrFail($id);
+        $query->delete();
+        return Redirect::to('usuarios/lista')
+            ->with('message', 'Usuário removido com sucesso');
+    }
+
 }

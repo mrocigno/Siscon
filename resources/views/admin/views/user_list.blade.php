@@ -1,29 +1,36 @@
 @extends('admin.default')
 @section('title')
-    Lista de solicitantes
+    Lista de usuários
 @stop
 
 @section('list')
-    <center style="padding: 20px;">
+    <div class="gap-center-form">
         <div class="center-form max-size">
             <table class="table-list">
                 <tr class="table-head">
-                    <th>Deletar/Editar</th><th>ID</th><th>Nome</th><th>Email</th><th>Telefone</th><th>&nbsp;</th>
+                    <th class="elipsis">Deletar/Editar</th>
+                    <th class="elipsis">ID</th>
+                    <th class="elipsis">Nome</th>
+                    <th class="elipsis">Email</th>
+                    <th class="elipsis">Empresa</th>
+                    <th class="elipsis">Tipo de usuário</th>
+                    <th>&nbsp;</th>
                 </tr>
-                @foreach($applicants as $applicant)
+                @foreach($users as $user)
                     <tr>
-                        <td class="center-text">
-                            <a href="delete/{!! $applicant->id !!}"><i class="fas fa-times-circle" style="color: red;"></i></a>&nbsp;&nbsp;
-                            <a href="editar/{!! $applicant->id !!}"><i class="fas fa-pen-square" style="color: orange"></i></a>
+                        <td class="center-text elipsis">
+                            <a href="delete/{!! $user->id !!}"><i class="fas fa-times-circle" style="color: red;"></i></a>&nbsp;&nbsp;
+                            <a href="editar/{!! $user->id !!}"><i class="fas fa-pen-square" style="color: orange"></i></a>
                         </td>
-                        <td>{!! $applicant->id !!}</td>
-                        <td>{!! $applicant->name !!}</td>
-                        <td>{!! $applicant->email !!}</td>
-                        <td>{!! $applicant->telefone !!}</td>
-                        <td style="width: 50%;"></td>
+                        <td class="elipsis">{!! $user->id !!}</td>
+                        <td class="elipsis">{!! $user->name !!}</td>
+                        <td class="elipsis">{!! $user->email !!}</td>
+                        <td class="elipsis">{!! $user->company_name !!}</td>
+                        <td class="elipsis">{!! $user->user_type !!}</td>
+                        <td class="elipsis" style="width: 50%;"></td>
                     </tr>
                 @endforeach
             </table>
         </div>
-    </center>
+    </div>
 @stop

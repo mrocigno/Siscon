@@ -1,20 +1,26 @@
 @extends('admin.default')
 @section('title')
-    Editar solicitante
+    Editar usuário
 @stop
 
 @section('add')
     <center>
         <div class="center-form" style="margin-top: 20px;">
-            <p class="@if(session()->has('message')) success @else errors @endif">
+            <span class="@if(session()->has('message')) success @else errors @endif">
                 {{ session()->get('message') }}
-                {{ $errors->first('nome') }} 
+                {{ $errors->first('nome') }}
                 @if($errors->has('nome'))<br/>@endif
-                {{ $errors->first('email') }} 
+                {{ $errors->first('email') }}
                 @if($errors->has('email'))<br/>@endif
-                {{ $errors->first('telefone') }} 
-                @if($errors->has('telefone'))<br/>@endif
-            </p>
+                {{ $errors->first('password') }}
+                @if($errors->has('password'))<br/>@endif
+                {{ $errors->first('empresa') }}
+                @if($errors->has('empresa'))<br/>@endif
+                {{ $errors->first('tipoDeUsuário') }}
+                @if($errors->has('tipoDeUsuário'))<br/>@endif
+                {{ $errors->first('senhaAtual') }}
+                @if($errors->has('senhaAtual'))<br/>@endif
+            </span>
             <form action="../update" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <table>
@@ -23,7 +29,24 @@
                             Id:
                         </th>
                         <td>
-                            <input type="text" name="id" class="form-control" readonly value="{!! $applicant->id !!}"/>
+                            <input type="text" name="id" class="form-control" readonly value="{!! $user->id !!}"/>
+                        </td>
+                    </tr>
+                    <tr @if(Auth::user()->user_type_id != 1) class="hideClass" @endif>
+                        <th>
+                            Empresa:
+                        </th>
+                        <td>
+                            <select name="company" class="form-control">
+                                <option value="">-- Selecione --</option>
+                                @foreach($companies as $company)
+                                    <option value="{!! $company->id !!}"
+                                        @if($company->id == $user->company_id)
+                                            selected
+                                        @endif
+                                    >{!! $company->name !!}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -31,7 +54,7 @@
                             Nome:
                         </th>
                         <td>
-                            <input type="text" name="name" class="form-control" value="{!! $applicant->name !!}"/>
+                            <input type="text" name="name" class="form-control" value="{!! $user->name !!}"/>
                         </td>
                     </tr>
                     <tr>
@@ -39,21 +62,61 @@
                             Email:
                         </th>
                         <td>
-                            <input type="email" name="email" class="form-control" value="{!! $applicant->email !!}"/>
+                            <input type="email" name="email" class="form-control" value="{!! $user->email !!}"/>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Telefone:
+                            Tipo de usuário:
                         </th>
                         <td>
-                            <input type="text" name="telefone" class="form-control" value="{!! $applicant->telefone !!}"/>
+                            <select name="userType" class="form-control">
+                                <option value="">-- Selecione --</option>
+                                @foreach($userType as $type)
+                                    <option value="{!! $type->id !!}" @if($type->id == $user->user_type_id) selected @endif>{!! $type->name !!}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <a href="../lista"><input type="button" name="cancel" class="btn btn-danger" value="Voltar" style="float: left"/></a>
-                            <input type="submit" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
+                        <th colspan="2" style="text-align: center">
+                            --------------- Alterar senha ---------------
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Senha atual:
+                        </th>
+                        <td>
+                            <input type="password" name="now_password" class="form-control" value="{{ old('now_password') }}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding: 0px">
+                            <table class="max-size">
+                                <tr>
+                                    <th>
+                                        Nova senha:
+                                    </th>
+                                    <th>
+                                        Confirme a nova senha:
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="password" name="password" class="form-control" value="{{ old('password') }}"/>
+                                    </td>
+                                    <td>
+                                        <input type="password" name="password_confirmation" class="form-control"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="../lista"><input type="button" name="cancel" class="btn btn-danger" value="Voltar" style="float: left"/></a>
+                                        <input type="submit" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
