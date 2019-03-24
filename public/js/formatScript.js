@@ -124,3 +124,21 @@ function formatAddress(address) {
     });
     return formated.trim();
 }
+
+function confirmSubmit(){
+    let rows = $('#table-format > tbody > tr');
+    for (i = 1; i < rows.length; i++) {
+        let row = rows[i];
+        let strAddress = $(row).find('> td > .format-address').val();
+        let strLat = $(row).find('> td > .format-lat').val();
+        let strLng = $(row).find('> td > .format-lng').val();
+        let strFAddress = $(row).find('> td > .format-faddress').val();
+        let strRAddress = $(row).find('> td > .format-raddress').val();
+        let strNeighborhood = $(row).find('> td > .format-neighborhood').val();
+        let strCity = $(row).find('> td > .format-city').val();
+        let strUf = $(row).find('> td > .format-uf').val();
+        let strZipCode = $(row).find('> td > .format-zipCode').val();
+        $(row).find('> td > .formatted-values').val(strAddress + "1%C" + strLat + "1%C" + strLng + "1%C" + strFAddress + "1%C" + strRAddress + "1%C" + strNeighborhood + "1%C" + strCity + "1%C" + strUf + "1%C" + strZipCode);
+    }
+   submitYesNo('save-formated');
+}

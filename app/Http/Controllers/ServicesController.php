@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ServiceType;
+use App\Status;
 use Illuminate\Http\Request;
 use App\Services;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +14,11 @@ use App\Http\Controllers\Controller;
 class ServicesController extends Controller{
 
     public function index(){
-        return view('services');
+        $statuses = Status::query()->get();
+        $types = ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
+        return view('services')
+            ->with('statuses', $statuses)
+            ->with('types', $types);
     }
 
     public function listServicesByDelivery($id){
@@ -34,13 +40,18 @@ class ServicesController extends Controller{
         $order = $data['order'];
         $select = [
             'services.id as sid',
-            'services.*',
-            'adr.*',
-            'po.*',
-            'ap.*',
-            'dv.*',
-            'ds.*',
-            'st.*'
+            'services.identifier',
+            'services.date_received',
+            'st.type',
+            'adr.address',
+            'services.n',
+            'services.lat',
+            'services.lng',
+            'services.service_description',
+            'services.pg_guia',
+            'ap.name as applicant',
+            'po.polo',
+            'dv.name as delivery',
         ];
 
         if($data['order'] == 'distance'){
@@ -52,8 +63,9 @@ class ServicesController extends Controller{
             }
         }
 
-        $services = Services::select($select)
-            ->orderBy($order, 'asc')
+        $services = Services::query()
+            ->select($select)
+            ->orderBy($order, $data["direction"])
             ->join('address as adr', 'adr.id', '=', 'services.address_id')
             ->join('polos as po', 'po.id', '=', 'services.polo_id')
             ->join('service_type as st', 'st.id', '=', 'services.service_type_id')
@@ -65,13 +77,42 @@ class ServicesController extends Controller{
         switch ($data['_type']){
             case 'toDistribute': {
                 $services
-                    ->whereNotIn('ds.status_id', ['1', '2', '4'])
-                    ->orWhereNull('ds.status_id');
+                    ->where(function($query){
+                        $query->whereIn('ds.status_id', ['3']);
+                        $query->orWhereNull('ds.status_id');
+                    });
                 break;
             }
 
             case 'showAll': {
                 break;
+            }
+        }
+
+        if(isset($data['type']) && $data['type'] != ""){
+            $services->where('service_type_id', $data['type']);
+        }
+
+        if(isset($data['status']) && $data['status'] != ""){
+            switch ($data['status']){
+                case 6:{
+                    $services
+                        ->whereNull('ds.status_id')
+                        ->where('services.lat', '<>',  '0')
+                        ->where('services.lng', '<>',  '0');
+                    break;
+                }
+                case 7:{
+                    $services
+                        ->whereNull('ds.status_id')
+                        ->where('services.lat',  '0')
+                        ->where('services.lng',  '0');
+                    break;
+                }
+                default: {
+                    $services->where('status_id', $data['status']);
+                    break;
+                }
             }
         }
 

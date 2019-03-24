@@ -24,6 +24,8 @@ class Services extends Model
         'address_id',
         'n',
         'company_id',
+        'lat',
+        'lng',
         'service_description',
         'pg_guia',
         'calculated_pg_guia',

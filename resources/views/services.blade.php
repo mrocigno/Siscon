@@ -27,11 +27,11 @@
             <td>
                 <div id="box1">
                     <div class="item">
-                        <a href='{{ URL::to('/') }}/importar'>
+                        <a href='{{ URL::to('/') }}/adicionar'>
                             <table>
                                 <tr>
                                     <td class="iconMenu"><i class="fas fa-file-excel"></i></td>
-                                    <td>Importar</td>
+                                    <td>Adicionar</td>
                                 </tr>
                             </table>
                         </a>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="item">
-                        <a href='{{ URL::to('/servicos/') }}/geolocalizar'>
+                        <a href='{{ URL::to('/') }}/geolocalizacao'>
                             <table>
                                 <tr>
                                     <td class="iconMenu"><i class="fas fa-map-marker-alt"></i></td>

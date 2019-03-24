@@ -1,7 +1,6 @@
 body{
     background-color: #f4f4f5;
     font-family: 'arial', serif;
-    overflow: hidden;
 }
 
 header {
@@ -184,6 +183,10 @@ a, a:link, a:hover {
     text-align: center;
 }
 
+.table-without-padding, .table-without-padding th, .table-without-padding td{
+    padding: 0;
+}
+
 .elipsis {
     white-space: nowrap;
     overflow: hidden;
@@ -202,12 +205,12 @@ a, a:link, a:hover {
     z-index: 20;
 }
 
-#msg-holder{
+#msg-holder, #alert-holder{
     margin: 100px auto;
     /*padding: 10px 30px;*/
 }
 
-.msg-text{
+.msg-text, #alert-text{
     font-size: 20px;
     margin: 0 30px 10px;
 }
@@ -235,7 +238,7 @@ a, a:link, a:hover {
     position: fixed;
     top: calc(50% - 20px);
     left: calc(50% - 20px);
-    border-left: 2px solid black;
+    /*border-left: 2px solid black;*/
     border-right: 2px solid black;
     border-top: 2px solid black;
 }
@@ -266,7 +269,7 @@ a, a:link, a:hover {
 }
 
 .check-input{
-    display: none;
+    /*display: none;*/
 }
 
 .check, .check-white {

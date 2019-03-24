@@ -12,13 +12,13 @@
 @section('content')
     <div class="gap-center-form">
         <div class="center-form max-size">
-            <form name="teste" id="create-route" action="distribuir/criar-rota" method="post">
+            <form name="create-route" id="create-route" action="distribuir/criar-rota" method="post">
                 {{ csrf_field() }}
                 <div id="table-content">
                     
                 </div>
-                <input type="text" name="date" id="date" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" hidden>
-                <input type="text" name="userId" id="userId" hidden>
+                <input type="text" name="date" id="formDate" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" hidden>
+                <input type="text" name="userId" id="formUser" hidden>
             </form>
         </div>
     </div>
@@ -32,6 +32,9 @@
     <table class="max-size" style="height: 100%;">
         <tr>
             <td style="text-align: center">
+                <span class="success">
+                    {{ session()->get('message') }}
+                </span>
                 <span class="errors">
                     {{ $errors->first('usuário') }}
                     @if($errors->has('usuário'))<br/>@endif
@@ -49,7 +52,7 @@
         </tr>
         <tr>
             <td>
-                <select name="for" class="form-control" onchange="setValue($(this).val(), 'userId')">
+                <select id="for" class="form-control" onchange="setValue($(this).val(), 'userId')">
                     <option value="">-- Selecione --</option>
                     @foreach($users as $user)
                         <option value="{!! $user->id !!}">{!! $user->name !!}</option>
@@ -64,13 +67,13 @@
         </tr>
         <tr>
             <td>
-                <input type="date" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" class="form-control" onchange="setValue($(this).val(), 'date')">
+                <input type="date" id="date" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" class="form-control" onchange="setValue($(this).val(), 'date')">
             </td>
         </tr>
         <tr>
             <td>
                 <center>
-                    <input type="button" id="distribute-next" class="btn" onclick="submitYesNo('create-route')" value="Confirmar">
+                    <input type="button" id="distribute-next" class="btn" onclick="confirmDistribute()" value="Confirmar">
                 </center>
             </td>
         </tr>

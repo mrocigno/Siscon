@@ -28,3 +28,61 @@ $(document).ready(function(){
 function clean(field){
     $(field).val("");
 }
+
+function getLatLng() {
+    var errors = 0;
+    let address = $("#address");
+    let n = $("#n");
+    let neighborhood = $("#neighborhood");
+    let city = $("#city");
+    let uf = $("#uf");
+    let zipCode = $("#zip_code");
+    let lat = $("#lat");
+    let lng = $("#lng");
+
+    if($(address).val() === ""){
+        errors++;
+        $(address).addClass('is-invalid');
+    }else{
+        $(address).removeClass('is-invalid');
+    }
+
+    if($(n).val() === ""){
+        errors++;
+        $(n).addClass('is-invalid');
+    }else{
+        $(n).removeClass('is-invalid');
+    }
+
+    if($(city).val() === ""){
+        errors++;
+        $(city).addClass('is-invalid');
+    }else{
+        $(city).removeClass('is-invalid');
+    }
+
+    if($(uf).val() === ""){
+        errors++;
+        $(uf).addClass('is-invalid');
+    }else{
+        $(uf).removeClass('is-invalid');
+    }
+
+    if(errors > 0){
+        return;
+    }
+
+    let strAddress = $(address).val() + ", " + n.val();
+    let strNeighborhood = $(neighborhood).val();
+    let strCity = $(city).val();
+    let strUf = $(uf).val();
+
+    console.log(strAddress);
+
+
+    let url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAgBnb9DGepdpJunK2Dxe2YgMkjLbGv30I&address=';
+    url += formatAddress(strAddress) + " " +
+        (strNeighborhood === ""? "" : "- " + strNeighborhood) +
+        strCity + " - " + strUf + ", Brasil";
+    searchAddress(url, null, neighborhood, zipCode, lat, lng);
+}

@@ -32,7 +32,7 @@ class DistributeController extends Controller {
         ];
 
         $messages = [
-            'required' => "Selecione um :attribute"
+            'required' => "Selecione pelo menos 1 :attribute"
         ];
 
         $fields = [
@@ -49,6 +49,11 @@ class DistributeController extends Controller {
         }else{
             if($request->ids != null){
                 foreach ($request->ids as $id){
+                    $query = DistributedServices::query()->where('service_id', $id)->where('status_id', 3)->first();
+                    if($query != null && $query->count()){
+                        $query->status_id = 5;
+                        $query->save();
+                    }
                     $data = [
                         'service_id' => $id,
                         'distributed_date' => $request->date,
@@ -57,7 +62,9 @@ class DistributeController extends Controller {
                     ];
                     DistributedServices::create($data);
                 }
-
+                $user = User::query()->findOrFail($request->userId);
+                return Redirect::back()
+                    ->with('message', count($request->ids) . ' serviços adicionados para ' . $user->name . ' no dia ' . $request->date);
             }
         }
 

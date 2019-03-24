@@ -10,6 +10,16 @@
 </head>
 <body>
 <div id="black-background" class="hideClass">
+
+    <div id="alert-holder" class="center-form" style="display: none">
+        <p id="alert-text">
+            Você tem certeza?
+        </p>
+        <div>
+            <input id="btnOk" type="button" class="btn btn-success" value="OK" style="width: 100%">
+        </div>
+    </div>
+
     <div id="msg-holder" class="center-form" style="display: none">
         <p class="msg-text">
             Você tem certeza?

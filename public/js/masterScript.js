@@ -12,8 +12,11 @@ $(document).ready(function() {
         closeBlackBackground();
     });
 
+    $("#btnOk").click(function () {
+        closeBlackBackground();
+    });
+
     $("a").click(function () {
-        console.log("sdasd");
         showLoading();
     });
 });
@@ -38,6 +41,12 @@ function confirmBox(callback){
         closeBlackBackground();
         callback();
     });
+}
+
+function customAlert(msg){
+    $("#black-background").toggleClass("hideClass showClass");
+    $("#alert-holder").css("display", "table");
+    $("#alert-text").html(msg);
 }
 
 function showLoading(){
@@ -69,6 +78,7 @@ function closeBlackBackground(){
     progressValue = 0;
     $("#black-background").toggleClass("hideClass showClass");
     $("#msg-holder").css("display", "none");
+    $("#alert-holder").css("display", "none");
     $("#loading-holder").css("display", "none");
     $("#progress-holder").css("display", "none");
     $("#btnYes").unbind();

@@ -23,12 +23,13 @@ Route::group(['prefix' => '/inicio', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'InitController@index'));
 });
 
-Route::group(['prefix' => '/importar', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/adicionar', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'ImportController@index'));
     Route::post('', array('uses' => 'ImportController@importPlan'));
     Route::get('/planilha', ['uses' => 'ImportController@showPlan']);
     Route::get('/formatar-enderecos/{idDelivery}', ['uses' => 'ImportController@formatAddress']);
     Route::post('/planilha/save', array('uses' => 'ImportController@save'));
+    Route::post('/salvar-manual', array('uses' => 'ImportController@saveManually'));
 });
 
 Route::group(['prefix' => '/distribuir', 'middleware' => 'auth'], function () {
@@ -104,6 +105,7 @@ Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function () {
+    Route::get('', ['uses' => 'GeolocationController@index']);
     Route::post('/save-formated', array('uses' => 'GeolocationController@saveFormated'));
 });
 

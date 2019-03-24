@@ -17,12 +17,6 @@
                     <tr class="table-head">
                         <th class="elipsis">
                             <input type="checkbox" class="check-input" id="check-all" onchange="selectAll(this)" checked>
-                            <label for="check-all" class="check-white">
-                                <svg width="15px" height="15px" viewBox="0 0 18 18">
-                                    <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-                                    <polyline points="1 9 7 14 15 4"></polyline>
-                                </svg>
-                            </label>
                         </th>
                         <th>Endereço</th>
                         <th>Latitude</th>
@@ -38,22 +32,17 @@
                         <tr data-id="{!! $address->sid !!}">
                             <td>
                                 <input type="checkbox" value="{!! $address->sid !!}" id="check-{!! $address->sid !!}" class="check-input" name="ids[]" checked>
-                                <label for="check-{!! $address->sid !!}" class="check">
-                                    <svg width="15px" height="15px" viewBox="0 0 18 18">
-                                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-                                        <polyline points="1 9 7 14 15 4"></polyline>
-                                    </svg>
-                                </label>
                             </td>
-                            <td><input name="address_{!! $address->sid !!}" type="text" class="form-control format-address" value="{!! $address->address . ', ' . $address->n !!}" style="min-width: 300px;"></td>
-                            <td><input name="lat_{!! $address->sid !!}" type="text" class="form-control format-lat" style="min-width: 100px;"></td>
-                            <td><input name="lng_{!! $address->sid !!}" type="text" class="form-control format-lng" style="min-width: 100px;"></td>
-                            <td><input name="faddress_{!! $address->sid !!}" type="text" class="form-control format-faddress" value="{!! $address->formatted_address !!}" style="min-width: 300px;"></td>
-                            <td><input name="raddress_{!! $address->sid !!}" type="text" class="form-control format-raddress" value="{!! $address->reference_address !!}" style="min-width: 300px;"></td>
-                            <td><input name="neighborhood_{!! $address->sid !!}" type="text" class="form-control format-neighborhood" value="{!! $address->neighborhood !!}" style="min-width: 150px;"></td>
-                            <td><input name="city_{!! $address->sid !!}" type="text" class="form-control format-city" value="{!! $address->city !!}" style="min-width: 150px;"></td>
-                            <td><input name="uf_{!! $address->sid !!}" type="text" class="form-control format-uf" value="{!! $address->uf !!}" style="min-width: 50px;"></td>
-                            <td><input name="zipCode_{!! $address->sid !!}" type="text" class="form-control format-zipCode" value="{!! $address->zip_code !!}" style="min-width: 150px;"></td>
+                            <td><input type="text" class="form-control format-address" value="{!! $address->address . ', ' . $address->n !!}" style="min-width: 300px;"></td>
+                            <td><input type="text" class="form-control format-lat" style="min-width: 100px;"></td>
+                            <td><input type="text" class="form-control format-lng" style="min-width: 100px;"></td>
+                            <td><input type="text" class="form-control format-faddress" value="{!! $address->formatted_address !!}" style="min-width: 300px;"></td>
+                            <td><input type="text" class="form-control format-raddress" value="{!! $address->reference_address !!}" style="min-width: 300px;"></td>
+                            <td><input type="text" class="form-control format-neighborhood" value="{!! $address->neighborhood !!}" style="min-width: 150px;"></td>
+                            <td><input type="text" class="form-control format-city" value="{!! $address->city !!}" style="min-width: 150px;"></td>
+                            <td><input type="text" class="form-control format-uf" value="{!! $address->uf !!}" style="min-width: 50px;"></td>
+                            <td><input type="text" class="form-control format-zipCode" value="{!! $address->zip_code !!}" style="min-width: 150px;"></td>
+                            <td class="hideClass"><input name="values_{!! $address->sid !!}" class="formatted-values"></td>
                         </tr>
                     @endforeach
                 </table>
@@ -66,18 +55,13 @@
 
     <table class="max-size" style="height: 100%">
         <tr>
-            <th>
-                Localizar selecionados:
-            </th>
-        </tr>
-        <tr>
             <td>
                 Localizar pelo endereço
             </td>
         </tr>
         <tr>
             <td>
-                <center><input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn"></center>
+                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn">
             </td>
         </tr>
         <tr>
@@ -92,7 +76,7 @@
         </tr>
         <tr>
             <td>
-                <center><input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn"></center>
+                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn">
             </td>
         </tr>
         <tr>
@@ -100,12 +84,12 @@
         </tr>
         <tr>
             <td>
-                <input type="button" id="continue" value="Prosseguir sem salvar" onclick="submitYesNo('save-formated');" style="width: 100%" class="btn btn-danger">
+                {{--<input type="button" id="continue" value="Prosseguir sem salvar" onclick="submitYesNo('save-formated');" style="width: 100%" class="btn btn-danger">--}}
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" id="continue" value="Salvar" onclick="submitYesNo('save-formated');" style="width: 100%" class="btn btn-success">
+                <input type="button" id="continue" value="Salvar" onclick="confirmSubmit();" style="width: 100%;" class="btn btn-success">
             </td>
         </tr>
 

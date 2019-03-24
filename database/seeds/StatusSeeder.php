@@ -33,5 +33,13 @@ class StatusSeeder extends Seeder
             'status' => 'Repassado',
             'description' => 'Serviço foi repassado, este status é um pseudo executado'
         ]);//5
+        Status::create([
+            'status' => 'Pronto',
+            'description' => 'Serviço pronto para ser distribuido'
+        ]);//6
+        Status::create([
+            'status' => 'Sem coordenadas',
+            'description' => 'Serviço pronto para ser distribuido, porém está sem coordenadas'
+        ]);//7
     }
 }

@@ -19,7 +19,13 @@ use App\Http\Controllers\Controller;
 class ImportController extends Controller {
     
     public function index(){
-        return view('import_services');
+        $serviceTypes = ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
+        $applicants = Applicants::query()->where('company_id', Auth::user()->company_id)->get();
+        $polos = Polo::query()->where('company_id', Auth::user()->company_id)->get();
+        return view('add_services')
+            ->with('serviceTypes', $serviceTypes)
+            ->with('applicants', $applicants)
+            ->with('polos', $polos);
     }
     
     public function importPlan(Request $request, ImageRepository $repository){
@@ -40,7 +46,7 @@ class ImportController extends Controller {
             return Redirect::back();
         }else{
             $tempFile = $repository->saveTempFile($request->file);
-            return Redirect::to('importar/planilha')
+            return Redirect::to('adicionar/planilha')
                 ->with('localPath', $tempFile['localPath'])
                 ->with('name', $request->file->getClientOriginalName());
         }
@@ -72,7 +78,84 @@ class ImportController extends Controller {
                 ->with('serviceType', $serviceType);
         }catch (\Exception $e){
             return Redirect::back()
-                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
+                ->with('xlsxMessage', 'Erro ao abrir planilha: ' . $e->getMessage());
+        }
+    }
+
+    public function saveManually(Request $request){
+        $rules = [
+            'solicitante' => 'required',
+            'data' => 'required',
+            'tipo' => 'required',
+            'polo' => 'required',
+            'endereco' => 'required',
+            'n' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required',
+            'cep' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
+        ];
+
+        $messages = [
+            'required' => 'Preencha o campo :attribute'
+        ];
+
+        $fileds = [
+            'solicitante' => $request->applicant,
+            'data' => $request->date_received,
+            'tipo' => $request->service_type,
+            'polo' => $request->polo,
+            'endereco' => $request->address,
+            'n' => $request->n,
+            'cidade' => $request->city,
+            'uf' => $request->uf,
+            'cep' => $request->zip_code,
+            'latitude' => $request->lat,
+            'longitude' => $request->lng,
+        ];
+
+        $validator = Validator::make($fileds, $rules, $messages);
+        if($validator->fails()){
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }else{
+            $data = [
+                'address' => $request->address,
+                'n' => $request->n,
+                'neighborhood' => $request->neighborhood,
+                'city' => $request->city,
+                'uf' => $request->uf,
+                'zip_code' => $request->zip_code,
+            ];
+
+            $address = Address::where('address', $request->address)->first();
+            if (!$address)
+                $address = Address::create($data);
+
+            $delivery = Delivery::query()
+                ->where('company_id', Auth::user()->company_id)
+                ->where('name', 'Adicionados manualmente')
+                ->first();
+            $data = [
+                'company_id' => Auth::user()->company_id,
+                'identifier' => $request->identifier,
+                'date_received' => $request->date_received,
+                'service_type_id' => $request->service_type,
+                'address_id' => $address->id,
+                'n' => $request->n,
+                'lat' => $request->lat,
+                'lng' => $request->lng,
+                'service_description' => $request->description,
+                'applicant_id' => $request->applicant,
+                'polo_id' => $request->polo,
+                'delivery_id' => $delivery->id,
+            ];
+//            var_dump($data);
+            Services::create($data);
+            return Redirect::back()
+                ->with('message', 'Serviço adicionado com sucesso');
         }
     }
 
@@ -295,19 +378,18 @@ class ImportController extends Controller {
                 Services::create($data);
             }
 
-            return Redirect::to('importar/formatar-enderecos/'. $delivery->id);
+            return Redirect::to('adicionar/formatar-enderecos/'. $delivery->id);
 
         }catch (\Exception $e){
-            return Redirect::to('importar')
-                ->with('message', 'Erro ao abrir planilha: ' . $e->getMessage());
+            return Redirect::to('adicionar')
+                ->with('xlsxMessage', 'Erro ao abrir planilha: ' . $e->getMessage());
         }
     }
 
     public function formatAddress($idRemessa){
         $addresses = $this->getAddresses($idRemessa);
         return view('format_address')
-            ->with('addresses', $addresses)
-            ->with('idRemessa', $idRemessa);
+            ->with('addresses', $addresses);
     }
 
     public function getAddresses($idRemessa){
@@ -317,7 +399,19 @@ class ImportController extends Controller {
             ->where('services.lat', "=", 0)
             ->where('services.lng', "=", 0)
             ->where('delivery_id', $idRemessa)
-            ->get(['services.id as sid', 'services.*', 'adr.*']);
+            ->get([
+                'services.id as sid',
+                'services.n as n',
+                'adr.address as address',
+                'services.lat as lat',
+                'services.lng as lng',
+                'adr.formatted_address as formatted_address',
+                'adr.reference_address as reference_address',
+                'adr.neighborhood as neighborhood',
+                'adr.city as city',
+                'adr.uf as uf',
+                'adr.zip_code as zip_code',
+            ]);
     }
 
 }
