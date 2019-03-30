@@ -10,6 +10,7 @@
                 {{--</svg>--}}
             {{--</label>--}}
         </th>
+        <th class="elipsis">Id</th>
         <th class="elipsis">Identificador</th>
         <th class="elipsis">Data recebido</th>
         <th class="elipsis">Tipo</th>
@@ -52,7 +53,7 @@
                     }
                 }
             }
-        ?>">
+        ?> clickable">
             <td class="center-text">
                 <input type="checkbox" value="{!! $service->sid !!}" id="check-{!! $service->sid !!}" name="ids[]" class="check-input">
                 {{--<label for="check-{!! $service->sid !!}" class="check">--}}
@@ -62,6 +63,7 @@
                     {{--</svg>--}}
                 {{--</label>--}}
             </td>
+            <td class="elipsis">{!! $service->sid !!}</td>
             <td class="elipsis">{!! $service->identifier !!}</td>
             <td class="elipsis">{!! $service->date_received !!}</td>
             <td class="elipsis">{!! $service->type !!}</td>

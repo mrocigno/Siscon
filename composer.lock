@@ -495,12 +495,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "0a342db3a10cb31862e83d550f67c2d087825467"
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0a342db3a10cb31862e83d550f67c2d087825467",
-                "reference": "0a342db3a10cb31862e83d550f67c2d087825467",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
                 "shasum": ""
             },
             "require": {
@@ -571,7 +571,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-02-14T07:18:57+00:00"
+            "time": "2019-03-30T13:22:34+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -1687,7 +1687,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -2216,23 +2216,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "16ca33ecc67a625de250f476531dfe5de4c32ff2"
+                "reference": "a2c590166b2133a4633738648b6b064edae0814a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/16ca33ecc67a625de250f476531dfe5de4c32ff2",
-                "reference": "16ca33ecc67a625de250f476531dfe5de4c32ff2",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/a2c590166b2133a4633738648b6b064edae0814a",
+                "reference": "a2c590166b2133a4633738648b6b064edae0814a",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^5.0",
+                "doctrine/coding-standard": "^6.0",
                 "ext-pdo": "*",
                 "ext-phar": "*",
                 "phpbench/phpbench": "^0.13",
-                "phpstan/phpstan-shim": "^0.9.2",
+                "phpstan/phpstan-phpunit": "^0.11",
+                "phpstan/phpstan-shim": "^0.11",
                 "phpunit/phpunit": "^7.0"
             },
             "type": "library",
@@ -2263,7 +2264,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2019-02-20T06:21:04+00:00"
+            "time": "2019-03-17T17:37:11+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -2271,12 +2272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "76b1c25e614c5e09adeb62f1b953536697a41a4b"
+                "reference": "a8340d982874b3c203f5400dd41428e4d030fa25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/76b1c25e614c5e09adeb62f1b953536697a41a4b",
-                "reference": "76b1c25e614c5e09adeb62f1b953536697a41a4b",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/a8340d982874b3c203f5400dd41428e4d030fa25",
+                "reference": "a8340d982874b3c203f5400dd41428e4d030fa25",
                 "shasum": ""
             },
             "require": {
@@ -2313,7 +2314,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2019-01-09T06:29:58+00:00"
+            "time": "2019-03-29T17:43:29+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -2372,12 +2373,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8"
+                "reference": "9a2306a335dbb827401a199e68e10c1937e9d068"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/be9bf28d8e57d67883cba9fcadfcff8caab667f8",
-                "reference": "be9bf28d8e57d67883cba9fcadfcff8caab667f8",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/9a2306a335dbb827401a199e68e10c1937e9d068",
+                "reference": "9a2306a335dbb827401a199e68e10c1937e9d068",
                 "shasum": ""
             },
             "require": {
@@ -2429,7 +2430,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2019-02-12T16:07:13+00:00"
+            "time": "2019-03-08T09:21:57+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

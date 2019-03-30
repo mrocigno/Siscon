@@ -45,39 +45,56 @@
             </td>
         </tr>
         <tr>
-            <th>
-                @if(isset($statuses))
+            @if(isset($statuses))
+                <th>
                     Status:
-                @endif
-            </th>
-            <th>
-                @if(isset($types))
+                </th>
+            @endif
+            @if(isset($types))
+                <th>
                     Tipo:
-                @endif
-            </th>
+                </th>
+            @endif
         </tr>
         <tr>
-            <td>
-                @if(isset($statuses))
-                <select name="status" class="form-control">
-                    <option value="">-- Selecione --</option>
-                    @foreach($statuses as $status)
-                        <option value="{!! $status->id !!}">{!! $status->status !!}</option>
-                    @endforeach
-                </select>
-                @endif
-            </td>
-            <td>
-                @if(isset($types))
-                <select name="type" class="form-control">
-                    <option value="">-- Selecione --</option>
-                    @foreach($types as $type)
-                        <option value="{!! $type->id !!}">{!! $type->type !!}</option>
-                    @endforeach
-                </select>
-                @endif
-            </td>
+            @if(isset($statuses))
+                <td>
+                    <select name="status" class="form-control">
+                        <option value="">-- Selecione --</option>
+                        @foreach($statuses as $status)
+                            <option value="{!! $status->id !!}">{!! $status->status !!}</option>
+                        @endforeach
+                    </select>
+                </td>
+            @endif
+            @if(isset($types))
+                <td>
+                    <select name="type" class="form-control">
+                        <option value="">-- Selecione --</option>
+                        @foreach($types as $type)
+                            <option value="{!! $type->id !!}">{!! $type->type !!}</option>
+                        @endforeach
+                    </select>
+                </td>
+            @endif
         </tr>
+        @if(isset($externalUsers))
+            <tr>
+                <th>
+                    Usuário:
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <select name="type" class="form-control">
+                        <option value="">-- Selecione --</option>
+                        @foreach($externalUsers as $externalUser)
+                            <option value="{!! $externalUser->id !!}">{!! $externalUser->name !!}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+        @endif
         <tr>
             <th colspan="2">
                 Lista de identificadores:

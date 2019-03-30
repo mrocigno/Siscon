@@ -12,10 +12,10 @@ class ImageRepository{
 
             $extension = $image->getClientOriginalExtension();
             
-            $fileName = time() . random_int(100, 999) .'.' . $extension; 
+            $fileName = time() . random_int(100, 999) . '.' . $extension;
             $destinationPath = public_path('img/logos/'.$id.'/');
-            $url = __DIR__ .'/img/logos/'.$id.'/'.$fileName;
-            $fullPath = $destinationPath.$fileName;
+//            $url = __DIR__ .'/img/logos/'.$id.'/'.$fileName;
+//            $fullPath = $destinationPath.$fileName;
             if (!file_exists($destinationPath)) {
                 File::makeDirectory($destinationPath, 0775);
             }
@@ -24,6 +24,21 @@ class ImageRepository{
             return URL::asset('public/img/logos/' . $id . '/' . $fileName);
         }
         
+    }
+
+    public function saveB64($path, $b64){
+        $b64 = explode(",", $b64);
+        $image = $b64[1];
+        $extension = str_replace(";base64", "", explode("/", $b64[0])[1]);
+        $image = str_replace(' ', '+', $image);
+        $destinationPath = public_path($path);
+        if (!file_exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0775);
+        }
+        $fileName = time() . random_int(100, 999) . '.' . $extension;
+
+        File::put($destinationPath . $fileName, base64_decode($image));
+        return URL::asset("public/$path$fileName");
     }
     
     public function saveTempFile($tmpFile){

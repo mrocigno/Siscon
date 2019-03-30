@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ServiceType;
 use App\Status;
+use App\User;
 use Illuminate\Http\Request;
 use App\Services;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +17,11 @@ class ServicesController extends Controller{
     public function index(){
         $statuses = Status::query()->get();
         $types = ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
+        $externalUsers = User::query()->where('user_type_id', '4')->where('company_id', Auth::user()->company_id)->get();
         return view('services')
             ->with('statuses', $statuses)
-            ->with('types', $types);
+            ->with('types', $types)
+            ->with('externalUsers', $externalUsers);
     }
 
     public function listServicesByDelivery($id){
@@ -51,6 +54,7 @@ class ServicesController extends Controller{
             'services.pg_guia',
             'ap.name as applicant',
             'po.polo',
+            'ds.status_id',
             'dv.name as delivery',
         ];
 
@@ -76,6 +80,7 @@ class ServicesController extends Controller{
 
         switch ($data['_type']){
             case 'toDistribute': {
+                $view = view('services.distribute_table');
                 $services
                     ->where(function($query){
                         $query->whereIn('ds.status_id', ['3']);
@@ -84,7 +89,15 @@ class ServicesController extends Controller{
                 break;
             }
 
+            case 'toFinalize': {
+                $view = view('services.finalize_table');
+                $services
+                    ->where('ds.status_id', '4');
+                break;
+            }
+
             case 'showAll': {
+                $view = view('services.distribute_table');
                 break;
             }
         }
@@ -124,8 +137,7 @@ class ServicesController extends Controller{
 
         $services = $services->get();
 
-        return view('services.distribute_table')
-            ->with('services', $services)
+        return $view->with('services', $services)
             ->with('count', count($services))
             ->withErrors($errors);
     }

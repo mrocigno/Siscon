@@ -33,9 +33,7 @@
     </div>
 
     <div id="loading-holder" class="center-form" style="display: none">
-        <div id="loading-spin" class="fa-spin">
-
-        </div>
+        @include('default.assets.load_spin')
     </div>
 
     <div id="progress-holder" class="center-form" style="display: none">

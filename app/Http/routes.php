@@ -109,4 +109,10 @@ Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function ()
     Route::post('/save-formated', array('uses' => 'GeolocationController@saveFormated'));
 });
 
+Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+    Route::post('/save-b64', array('uses' => 'WSController@storeImg'));
+});
+
+
+
 
