@@ -12,9 +12,9 @@ th, td{
   padding: 5px;
 }
 
-.font-lato{
-  font-family: 'Lato';
-}
+/*.font-lato{*/
+/*  font-family: 'Noto Sans' ;*/
+/*}*/
 
 .errors{
     font-weight: bold;

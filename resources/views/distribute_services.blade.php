@@ -22,9 +22,6 @@
             </form>
         </div>
     </div>
-    <div class="info-card">
-         serviços encontrados
-    </div>
 @stop
 
 @section('menuOptions')
@@ -73,7 +70,7 @@
         <tr>
             <td>
                 <center>
-                    <input type="button" id="distribute-next" class="btn" onclick="confirmDistribute()" value="Confirmar">
+                    <input type="button" id="distribute-next" class="btn btn-secondary" onclick="confirmDistribute()" value="Confirmar">
                 </center>
             </td>
         </tr>

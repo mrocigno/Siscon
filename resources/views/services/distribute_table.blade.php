@@ -24,38 +24,9 @@
         <th class="elipsis">Remessa</th>
     </tr>
     @foreach($services as $service)
-        <tr class="<?php
-            if($service->lat != 0 && is_null($service->status_id)){
-                echo 'ready';
-            }elseif($service->lat == 0 && is_null($service->status_id)){
-                echo 'not-ready';
-            }elseif(!is_null($service->status_id)){
-                switch ($service->status_id){
-                    case 1:{
-                        echo 'executed';
-                        break;
-                    }
-                    case 2:{
-                        echo 'not-executed';
-                        break;
-                    }
-                    case 3:{
-                        echo 'return';
-                        break;
-                    }
-                    case 4:{
-                        echo 'delivered';
-                        break;
-                    }
-                    case 5:{
-                        echo 'returned';
-                        break;
-                    }
-                }
-            }
-        ?> clickable">
+        <tr class="<?php echo \App\Utils\StatusUltil::getStatus($service->status_id, true)['class'] ?> clickable">
             <td class="center-text">
-                <input type="checkbox" value="{!! $service->sid !!}" id="check-{!! $service->sid !!}" name="ids[]" class="check-input">
+                <input type="checkbox" value="{!! $service->sid !!}" id="check-{!! $service->sid !!}" name="ids[]" class="check-input" style="z-index: 20">
                 {{--<label for="check-{!! $service->sid !!}" class="check">--}}
                     {{--<svg width="15px" height="15px" viewBox="0 0 18 18">--}}
                         {{--<path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>--}}
@@ -63,7 +34,7 @@
                     {{--</svg>--}}
                 {{--</label>--}}
             </td>
-            <td class="elipsis">{!! $service->sid !!}</td>
+            <td class="elipsis"><a href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
             <td class="elipsis">{!! $service->identifier !!}</td>
             <td class="elipsis">{!! $service->date_received !!}</td>
             <td class="elipsis">{!! $service->type !!}</td>

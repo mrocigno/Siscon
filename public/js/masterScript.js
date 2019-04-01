@@ -1,4 +1,4 @@
-var toggleVar = "col-md-12 col-md-10";
+var toggleVar = "headerMax headerPlusDrawer";
 
 $(document).ready(function() {
 
@@ -22,8 +22,8 @@ $(document).ready(function() {
 });
 
 function showMenuOptions(){
-    toggleVar = "col-md-10 col-md-8";
-    $("#headerCol").attr("class", "col-md-10")
+    toggleVar = "headerPlusDrawer headerPlusDrawerAndOptions";
+    $("#headerCol").attr("class", "headerPlusDrawer")
     $("#menuOptions").toggleClass("hideClass showClass");
 }
 

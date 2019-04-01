@@ -71,7 +71,7 @@
  * v0.8.1 (2018-11-07) rename simplexlsx.php to SimpleXLSX.php, rename parse_error to parseError fix _columnIndex, add ->toHTML(), GNU to MIT license
  * v0.7.13 (2018-06-18) get sheet indexes bug fix
  * v0.7.12 (2018-06-17) $worksheet_id to $worksheetIndex, sheet numeration started 0
- * v0.7.11 (2018-04-25) rowsEx(), added row index "r" to cell info
+ * v0.7.11 (2018-04-25) rowsEx(), added col index "r" to cell info
  * v0.7.10 (2018-04-21) fixed getCell, returns NULL if not exits
  * v0.7.9 (2018-01-15) fixed sheetNames() (namespaced or not namespaced attr)
  * v0.7.8 (2018-01-15) remove namespace prefixes (hardcoded)
@@ -85,7 +85,7 @@
  * v0.6.11 (2016-07-27) fixed timestamp()
  * v0.6.10 (2016-06-10) fixed search entries (UPPERCASE)
  * v0.6.9 (2015-04-12) $xlsx->datetimeFormat to force dates out
- * v0.6.8 (2013-10-13) fixed dimension() where 1 row only, fixed rowsEx() empty cells indexes (Daniel Stastka)
+ * v0.6.8 (2013-10-13) fixed dimension() where 1 col only, fixed rowsEx() empty cells indexes (Daniel Stastka)
  * v0.6.7 (2013-08-10) fixed unzip (mac), added $debug param to _constructor to display errors
  * v0.6.6 (2013-06-03) +entryExists(),
  * v0.6.5 (2013-03-18) fixed sheetName()

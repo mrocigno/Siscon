@@ -1,7 +1,8 @@
 #box1 {
     overflow: hidden;
     border-radius: 10px;
-    border: 2px solid #8d252b
+    border: 1px solid lightgray;
+    box-shadow: 1px 2px 5px lightgray;
 }
 
 /*#box1:after{*/
@@ -11,10 +12,10 @@
     /*background-color: white;*/
     /*position: absolute;*/
     /*font-weight: bold;*/
-    /*color: #8d252b;*/
+    /*color: #222d4c;*/
     /*top: -5px;*/
     /*right: 0;*/
     /*text-align: center;*/
-    /*border: 2px solid #8d252b;*/
+    /*border: 2px solid #222d4c;*/
     /*border-radius: 5px;*/
 /*}*/

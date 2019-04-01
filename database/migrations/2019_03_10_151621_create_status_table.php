@@ -18,6 +18,11 @@ class CreateStatusTable extends Migration
             $table->text('description');
             $table->timestamps();
         });
+
+        Schema::table('services', function (Blueprint $table){
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
+        });
     }
 
     /**

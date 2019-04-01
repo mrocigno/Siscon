@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\Applicants;
+use App\DistributedServices;
+use App\Polo;
 use App\ServiceType;
 use App\Status;
 use App\User;
+use App\Utils\StatusUltil;
 use Illuminate\Http\Request;
 use App\Services;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +27,24 @@ class ServicesController extends Controller{
             ->with('statuses', $statuses)
             ->with('types', $types)
             ->with('externalUsers', $externalUsers);
+    }
+
+    public function details($id){
+        $service =      Services::query()->findOrFail($id);
+        $address =      Address::query()->findOrFail($service->address_id);
+        $types =        ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
+        $applicants =   Applicants::query()->where('company_id', Auth::user()->company_id)->get();
+        $polos =        Polo::query()->where('company_id', Auth::user()->company_id)->get();
+        $ds =           DistributedServices::query()->where('service_id', $service->id)->first();
+        $status =       StatusUltil::getStatus($service->status_id);
+        return view('service_details')
+            ->with('applicants', $applicants)
+            ->with('polos', $polos)
+            ->with('address', $address)
+            ->with('types', $types)
+            ->with('status', $status)
+            ->with('ds', $ds)
+            ->with('service', $service);
     }
 
     public function listServicesByDelivery($id){
@@ -54,7 +77,7 @@ class ServicesController extends Controller{
             'services.pg_guia',
             'ap.name as applicant',
             'po.polo',
-            'ds.status_id',
+            'services.status_id',
             'dv.name as delivery',
         ];
 
@@ -68,7 +91,6 @@ class ServicesController extends Controller{
         }
 
         $services = Services::query()
-            ->select($select)
             ->orderBy($order, $data["direction"])
             ->join('address as adr', 'adr.id', '=', 'services.address_id')
             ->join('polos as po', 'po.id', '=', 'services.polo_id')
@@ -82,17 +104,14 @@ class ServicesController extends Controller{
             case 'toDistribute': {
                 $view = view('services.distribute_table');
                 $services
-                    ->where(function($query){
-                        $query->whereIn('ds.status_id', ['3']);
-                        $query->orWhereNull('ds.status_id');
-                    });
+                    ->whereIn('services.status_id', [3, 5, 6]);
                 break;
             }
 
             case 'toFinalize': {
+                array_push($select, 'ds.id as did');
                 $view = view('services.finalize_table');
-                $services
-                    ->where('ds.status_id', '4');
+                $services->where('services.status_id', '4');
                 break;
             }
 
@@ -107,26 +126,7 @@ class ServicesController extends Controller{
         }
 
         if(isset($data['status']) && $data['status'] != ""){
-            switch ($data['status']){
-                case 6:{
-                    $services
-                        ->whereNull('ds.status_id')
-                        ->where('services.lat', '<>',  '0')
-                        ->where('services.lng', '<>',  '0');
-                    break;
-                }
-                case 7:{
-                    $services
-                        ->whereNull('ds.status_id')
-                        ->where('services.lat',  '0')
-                        ->where('services.lng',  '0');
-                    break;
-                }
-                default: {
-                    $services->where('status_id', $data['status']);
-                    break;
-                }
-            }
+            $services->where('status_id', $data['status']);
         }
 
         if($data['identifiers'] != ""){
@@ -135,7 +135,7 @@ class ServicesController extends Controller{
             $services->whereIn('services.identifier', $identifiers);
         }
 
-        $services = $services->get();
+        $services = $services->get($select);
 
         return $view->with('services', $services)
             ->with('count', count($services))

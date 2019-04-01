@@ -100,7 +100,8 @@ Route::group(['prefix' => 'remessa', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
     Route::get('', ['uses' => 'ServicesController@index']);
-    Route::get('get-table', array('uses' => 'ServicesController@getTable'));
+    Route::get('/get-table', array('uses' => 'ServicesController@getTable'));
+    Route::get('/{id}', ['uses' => 'ServicesController@details']);
     Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServicesByDelivery']);
 });
 
@@ -109,8 +110,8 @@ Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function ()
     Route::post('/save-formated', array('uses' => 'GeolocationController@saveFormated'));
 });
 
-Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
-    Route::post('/save-b64', array('uses' => 'WSController@storeImg'));
+Route::group(['prefix' => 'api'], function () {
+    Route::post('/end-service', array('uses' => 'FinalizeController@endService'));
 });
 
 

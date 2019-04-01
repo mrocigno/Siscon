@@ -1,6 +1,6 @@
 body{
     background-color: #f4f4f5;
-    font-family: 'arial', serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 header {
@@ -9,8 +9,9 @@ header {
     top: 0;
     right: 0;
     left: 0;
-    background-color: #8d252b;
-    color: white;
+    background-color: white;
+    color: black;
+    border-bottom: 2px solid #222d4c;
     font-weight: bold;
     z-index: 10;
 }
@@ -31,6 +32,7 @@ header table {
 }
 
 #content-user{
+    z-index: 50;
     display: none;
     position: absolute;
     right: 0;
@@ -40,7 +42,8 @@ header table {
 }
 
 #header-user:hover{
-    background-color: #8d3e3e;
+    background-color: #222d4c;
+    color: white;
 }
 
 #header-user:hover #content-user{
@@ -67,20 +70,32 @@ header table {
     overflow: auto;
     margin: 0px;
     padding: 0;
-    background-color: white;
-    border-right: 1px solid #8d252b;
+    background-color: #f0f2f5;
+    border-right: 1px solid #222d4c;
     height: 100vh;
     width: 100%;
-    box-shadow: 0px 0px 10px #8d252b;
+    box-shadow: 0px 0px 10px #222d4c;
 }
 
 #menuOptions{
     overflow: auto;
     background-color: white;
-    border-left: 1px solid #8d252b;
+    border-left: 1px solid #222d4c;
     height: 100vh;
     width: 100%;
-    box-shadow: 0px 0px 10px #8d252b;
+    box-shadow: 0px 0px 10px #222d4c;
+}
+
+.headerMax{
+    width: 100%;
+}
+
+.headerPlusDrawer{
+    width: calc(100% - 225px);
+}
+
+.headerPlusDrawerAndOptions{
+    width: calc(100% - 450px);
 }
 
 a, a:link, a:hover {
@@ -100,12 +115,12 @@ a, a:link, a:hover {
     padding-right: 5px;
     font-weight: bold;
     cursor: pointer;
-    color: #8d252b;
+    color: black;
     min-height: 40px;
 }
 
 .item:hover {
-    background-color: #8d252b;
+    background-color: #222d4c;
     color: white;
 }
 
@@ -171,12 +186,12 @@ a, a:link, a:hover {
 }
 
 .table-head {
-    background-color: #8d3e3e;
+    background-color: #222d4c;
     color: white;
 }
 
 .table-list tr {
-    border-bottom: 1px solid lightgray;
+    /*border-bottom: 1px solid lightgray;*/
 }
 
 .table-list th, .table-list td {
@@ -191,6 +206,7 @@ a, a:link, a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 500px;
 }
 
 .master-content {
@@ -265,7 +281,7 @@ a, a:link, a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(141, 37, 43, 0.3);
+    background: rgba(34, 45, 76, 0.3);
 }
 
 .check-input{
@@ -347,7 +363,9 @@ a, a:link, a:hover {
 }
 
 .ready{
-    background-color: #d1ffd6;
+    background-color: white;
+    /*color: #0ea01d;*/
+    /*font-weight: bold;*/
 }
 
 .delivered{
@@ -357,7 +375,9 @@ a, a:link, a:hover {
 }
 
 .not-ready{
-    background-color: #ffe2e2;
+    background-color: white;
+    color: #a01415;
+    font-weight: bold;
 }
 
 .executed{
@@ -386,12 +406,16 @@ a, a:link, a:hover {
     cursor: pointer;
 }
 
+.clickable:hover{
+    -webkit-filter: brightness(95%);
+}
+
 .img-container{
     position: relative;
     display: table;
     float: left;
     border: 2px solid black;
-    margin-right: 5px;
+    margin: 5px 0 5px 5px;
 }
 
 .loding-img-container{
@@ -401,4 +425,34 @@ a, a:link, a:hover {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.55);
+}
+
+
+.div-table{
+    display: table;
+}
+
+.div-table-row{
+    display: table-row;
+    border-bottom: 1px solid lightgray;
+}
+
+.div-table-th{
+    display: table-cell;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.div-table-td{
+    display: table-cell;
+    text-align: center;
+    padding: 5px;
+}
+
+select[readonly] {
+    background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
+    pointer-events: none;
+    touch-action: none;
 }

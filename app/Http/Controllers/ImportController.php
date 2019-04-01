@@ -151,6 +151,7 @@ class ImportController extends Controller {
                 'applicant_id' => $request->applicant,
                 'polo_id' => $request->polo,
                 'delivery_id' => $delivery->id,
+                'status_id' => 5,
             ];
 //            var_dump($data);
             Services::create($data);
@@ -372,7 +373,8 @@ class ImportController extends Controller {
                     'pg_guia' => $pgGuia,
                     'delivery_id' => $delivery->id,
                     'applicant_id' => $applicant,
-                    'polo_id' => $polo
+                    'polo_id' => $polo,
+                    'status_id' => 6
                 ];
 
                 Services::create($data);

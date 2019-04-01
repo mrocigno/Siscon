@@ -10,7 +10,7 @@
             {{--</svg>--}}
             {{--</label>--}}
         </th>
-        <th class="elipsis">Id</th>
+        <th class="elipsis">Id de distribuição</th>
         <th class="elipsis">Identificador</th>
         <th class="elipsis">Data recebido</th>
         <th class="elipsis">Tipo</th>
@@ -24,40 +24,11 @@
         <th class="elipsis">Remessa</th>
     </tr>
     @foreach($services as $service)
-        <tr class="<?php
-        if($service->lat != 0 && is_null($service->status_id)){
-            echo 'ready';
-        }elseif($service->lat == 0 && is_null($service->status_id)){
-            echo 'not-ready';
-        }elseif(!is_null($service->status_id)){
-            switch ($service->status_id){
-                case 1:{
-                    echo 'executed';
-                    break;
-                }
-                case 2:{
-                    echo 'not-executed';
-                    break;
-                }
-                case 3:{
-                    echo 'return';
-                    break;
-                }
-                case 4:{
-                    echo 'delivered';
-                    break;
-                }
-                case 5:{
-                    echo 'returned';
-                    break;
-                }
-            }
-        }
-        ?> clickable">
+        <tr id="row-{!! $service->did !!}" class="{!! \App\Utils\StatusUltil::getStatus($service->status_id, true)['class'] !!}">
             <td class="center-text">
-                <input class="btn btn-primary finalize-btn" type="button" value="Finalizar" onclick="finalize({!! $service->sid !!})">
+                <input class="btn btn-primary finalize-btn" type="button" value="Finalizar" onclick="finalize({!! $service->did !!})">
             </td>
-            <td class="elipsis">{!! $service->sid !!}</td>
+            <td class="elipsis">{!! $service->did !!}</td>
             <td class="elipsis">{!! $service->identifier !!}</td>
             <td class="elipsis">{!! $service->date_received !!}</td>
             <td class="elipsis">{!! $service->type !!}</td>
@@ -71,7 +42,7 @@
             <td class="elipsis">{!! $service->delivery !!}</td>
         </tr>
         <tr class="img-content">
-            <td colspan="13" style="text-align: left; vertical-align: middle" id="col-{!! $service->sid !!}">
+            <td colspan="13" style="text-align: left; padding: 0; box-shadow: inset 0px 0px 18px 0px rgba(0,0,0,0.75);" id="col-{!! $service->did !!}">
 
             </td>
         </tr>

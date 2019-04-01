@@ -31,7 +31,8 @@ class Services extends Model
         'calculated_pg_guia',
         'delivery_id',
         'applicant_id',
-        'polo_id'
+        'polo_id',
+        'status_id'
     ];
 
     /**

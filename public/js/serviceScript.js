@@ -27,11 +27,11 @@ function getTable(){
     });
 }
 
-function storeImg(b64, randId, sid){
+function endService(b64, randId, sid, row){
     console.log("img=" + b64);
     $.ajax({
         type: 'POST',
-        url: 'api/save-b64',
+        url: 'api/end-service',
         data: {
             img: b64,
             id: sid
@@ -39,6 +39,9 @@ function storeImg(b64, randId, sid){
         success: function (data) {
             console.log(data);
             $("#" + randId).remove();
+            $("#" + row).toggleClass('delivered executed');
+            $("#" + row + " > td > input").toggleClass('btn-primary btn-success').val("Adicionar mais");
+
         },
         error: function (ex) {
             console.log(ex);
@@ -47,12 +50,17 @@ function storeImg(b64, randId, sid){
     });
 }
 
-var row;
-var sid;
+let col, row, sid;
 function finalize(id) {
     $("#hidden-input-file").click();
-    row = "col-" + id;
+    col = "col-" + id;
+    row = "row-" + id;
     sid = id;
+}
+
+function rowClick(dom){
+    let id = $(dom).parent().attr('data-id');
+    window.location = "inicio";
 }
 
 $(document).ready(function () {
@@ -63,7 +71,6 @@ $(document).ready(function () {
             let extPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
             if (typeof extPermitidas.find(function(ext){ return file.name.split('.').pop() === ext; }) == 'undefined') {
                 customAlert("Você deve selecionar</br>apenas imagens");
-                console.log("asdsasd");
             }else{
                 var reader = new FileReader();
                 // Set the image once loaded into file reader
@@ -97,7 +104,7 @@ $(document).ready(function () {
 
                         dataurl = canvas.toDataURL(file.type);
                         let randId = "load-" + Math.floor(Math.random() * 1000);
-                        $("#" + row).append("" +
+                        $("#" + col).append("" +
                             "<div class=\"img-container\">\n" +
                             "     <img src='"+ dataurl +"'/>" +
                             "     <div id='"+ randId +"' class=\"loding-img-container\">\n" +
@@ -107,7 +114,7 @@ $(document).ready(function () {
                             "     </div>\n" +
                             "</div>");
 
-                        storeImg(dataurl, randId, sid);
+                        endService(dataurl, randId, sid, row);
                         $("#hidden-input-file").val(null);
                     }
                     img.src = e.target.result;

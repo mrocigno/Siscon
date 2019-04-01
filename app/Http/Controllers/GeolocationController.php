@@ -63,6 +63,7 @@ class GeolocationController extends Controller{
 
                 $service->lat = $data[1];
                 $service->lng = $data[2];
+                $service->status_id = 5;
                 $service->save();
             }
         }

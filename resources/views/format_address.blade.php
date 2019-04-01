@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td>
-                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn">
+                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn btn-secondary">
             </td>
         </tr>
         <tr>
@@ -76,7 +76,7 @@
         </tr>
         <tr>
             <td>
-                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn">
+                <input type="button" id="format-select-btn" value="Localizar" style="width: 100%;" class="btn btn-secondary">
             </td>
         </tr>
         <tr>

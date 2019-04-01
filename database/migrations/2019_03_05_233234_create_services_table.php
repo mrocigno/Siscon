@@ -36,6 +36,7 @@ class CreateServicesTable extends Migration
             $table->foreign('delivery_id')->references('id')->on('delivery');
             $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->foreign('polo_id')->references('id')->on('polos');
+
         });
     }
 

@@ -46,13 +46,13 @@
 
 </div>
 <div class="row" style="padding: 0px; margin: 0px;">
-    <div id="menuDrawer" class="col-md-2 hideClass">
+    <div id="menuDrawer" class="hideClass" style="width: 225px; float: left">
         @include('default.drawer')
     </div>
-    <div id="headerCol" class="col-md-12" style="padding: 0px; margin: 0px;">
+    <div id="headerCol" class="headerMax" style="padding: 0px; margin: 0px; float: left">
         <div>
             <header>
-                <table class="max-size">
+                <table class="max-size" style="position: relative">
                     <tr>
                         <td id="menuBtn">
                             <i id="iconMenu" class="fas fa-bars"></i>
@@ -76,7 +76,7 @@
             @yield('content')
         </div>
     </div>
-    <div id="menuOptions" class="col-md-2 hideClass" style="padding: 0px; margin: 0px;">
+    <div id="menuOptions" class="hideClass" style="padding: 0px; margin: 0px; width: 225px; float: left">
         @yield('menuOptions')
     </div>
 </div>

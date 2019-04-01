@@ -49,16 +49,24 @@ class DistributeController extends Controller {
         }else{
             if($request->ids != null){
                 foreach ($request->ids as $id){
-                    $query = DistributedServices::query()->where('service_id', $id)->where('status_id', 3)->first();
-                    if($query != null && $query->count()){
-                        $query->status_id = 5;
-                        $query->save();
-                    }
+                    $service = Services::query()->findOrFail($id);
+                    $service->status_id = 4;
+                    $service->save();
+
+/**      Avaliar ser vai precisar deletar o ja criado se for repasse*/
+//                    $query = DistributedServices::query()
+//                        ->join('services as s', 's.id', '=', 'distributed_services.service_id')
+//                        ->where('service_id', $id)
+//                        ->where('s.status_id', 3)
+//                        ->first();
+//                    if($query != null && $query->count()){
+//                       c
+//                       c
+//                    }
                     $data = [
                         'service_id' => $id,
                         'distributed_date' => $request->date,
-                        'user_id' => $request->userId,
-                        'status_id' => 4,
+                        'user_id' => $request->userId
                     ];
                     DistributedServices::create($data);
                 }
