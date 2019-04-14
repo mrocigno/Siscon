@@ -1,11 +1,12 @@
-var toggleVar = "headerMax headerPlusDrawer";
+var toggleVar = "headerPlusDrawer headerMax";
 
 $(document).ready(function() {
 
     $("#menuBtn").click(function(){
-        $("#menuDrawer").toggleClass("hideClass showClass");
+        $("#menuDrawer").toggleClass("showClass hideClass");
         $("#headerCol").toggleClass(toggleVar);
-        $("#iconMenu").toggleClass("fa-bars fa-arrow-left")
+        $("#iconMenu").toggleClass("fa-arrow-left fa-bars");
+        document.cookie = "show=true"
     });
 
     $("#btnNo").click(function () {
@@ -22,8 +23,8 @@ $(document).ready(function() {
 });
 
 function showMenuOptions(){
-    toggleVar = "headerPlusDrawer headerPlusDrawerAndOptions";
-    $("#headerCol").attr("class", "headerPlusDrawer")
+    toggleVar = "headerPlusDrawerAndOptions headerPlusDrawer";
+    $("#headerCol").attr("class", "headerPlusDrawerAndOptions")
     $("#menuOptions").toggleClass("hideClass showClass");
 }
 

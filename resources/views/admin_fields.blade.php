@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-Administrar campos
+    Administração
 @stop
 
 @section('content')

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Applicants;
+use App\Delivery;
 use App\DistributedServices;
+use App\FinalizedServices;
+use App\Photos;
 use App\Polo;
 use App\ServiceType;
 use App\Status;
@@ -30,13 +33,24 @@ class ServicesController extends Controller{
     }
 
     public function details($id){
-        $service =      Services::query()->findOrFail($id);
+        $service =      Services::query()->where('company_id', Auth::user()->company_id)->where('id', $id)->firstOrFail();
         $address =      Address::query()->findOrFail($service->address_id);
         $types =        ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
         $applicants =   Applicants::query()->where('company_id', Auth::user()->company_id)->get();
         $polos =        Polo::query()->where('company_id', Auth::user()->company_id)->get();
-        $ds =           DistributedServices::query()->where('service_id', $service->id)->first();
         $status =       StatusUltil::getStatus($service->status_id);
+        $users =        User::query()->where('company_id', Auth::user()->company_id)->where('user_type_id', 4)->get();
+        $delivery =     Delivery::query()->findOrFail($service->delivery_id);
+
+        $fs = null;
+        $photos = null;
+        $ds = DistributedServices::query()->where('service_id', $service->id)->first();
+        if($ds){
+            $fs = FinalizedServices::query()->where('distributed_service_id', $ds->id)->first();
+            if($fs){
+                $photos = Photos::query()->where('finalized_service_id', $fs->id)->get();
+            }
+        }
         return view('service_details')
             ->with('applicants', $applicants)
             ->with('polos', $polos)
@@ -44,7 +58,63 @@ class ServicesController extends Controller{
             ->with('types', $types)
             ->with('status', $status)
             ->with('ds', $ds)
+            ->with('fs', $fs)
+            ->with('photos', $photos)
+            ->with('delivery', $delivery)
+            ->with('users', $users)
             ->with('service', $service);
+    }
+
+    public function update(Request $request){
+
+        $serviceFields = [
+            'identifier' => $request->identifier,
+            'date_received' => $request->date_received,
+            'service_type_id' => $request->service_type_id,
+            'n' => $request->n,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+            'service_description' => $request->service_description,
+            'applicant_id' => $request->applicant_id,
+            'polo_id' => $request->polo_id
+        ];
+
+        $addressFields = [
+            'address' => $request->address,
+            'neighborhood' => $request->neighborhood,
+            'city' => $request->city,
+            'uf' => $request->uf,
+        ];
+
+        $rules = [
+            'date_received' => 'required',
+            'service_type_id' => 'required',
+            'n' => 'required',
+            'applicant_id' => 'required',
+            'polo_id' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'uf' => 'required'
+        ];
+
+        $validator = Validator::make(array_merge($serviceFields, $addressFields), $rules);
+        if(!$validator->fails()){
+            if($request->addressEdt){
+                $adress = Address::query()->with('address', $request->address)->firstOrCreate($addressFields);
+                $serviceFields['address_id'] = $adress->id;
+            }
+            $service = Services::query()->findOrFail($request->id);
+            $service->update($serviceFields);
+            return redirect()->back()
+                ->with('message', 'Serviço editado com sucesso')
+                ->withInput(Input::all());
+        } else {
+            return redirect()->back()
+                ->withErrors($validator->errors())
+                ->with('editing', true)
+                ->withInput(Input::all());
+        }
+
     }
 
     public function listServicesByDelivery($id){

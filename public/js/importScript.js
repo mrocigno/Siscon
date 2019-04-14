@@ -29,7 +29,7 @@ function clean(field){
     $(field).val("");
 }
 
-function getLatLng() {
+function getLatLng(callback) {
     var errors = 0;
     let address = $("#address");
     let n = $("#n");
@@ -84,5 +84,5 @@ function getLatLng() {
     url += formatAddress(strAddress) + " " +
         (strNeighborhood === ""? "" : "- " + strNeighborhood) +
         strCity + " - " + strUf + ", Brasil";
-    searchAddress(url, null, neighborhood, zipCode, lat, lng);
+    searchAddress(url, null, neighborhood, zipCode, lat, lng, callback);
 }

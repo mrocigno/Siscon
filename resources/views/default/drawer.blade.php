@@ -63,7 +63,7 @@
         <table>
             <tr>
                 <td class="iconMenu"><i class="fas fa-book"></i></td>
-                <td>Administrar campos</td>
+                <td>Administração</td>
             </tr>
         </table>
     </a>

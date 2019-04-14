@@ -42,9 +42,7 @@
             <td class="elipsis">{!! $service->delivery !!}</td>
         </tr>
         <tr class="img-content">
-            <td colspan="13" style="text-align: left; padding: 0; box-shadow: inset 0px 0px 18px 0px rgba(0,0,0,0.75);" id="col-{!! $service->did !!}">
-
-            </td>
+            <td colspan="13" style="text-align: left; padding: 0; box-shadow: inset 0 0 8px 0 rgba(0,0,0,0.75);" id="col-{!! $service->did !!}"></td>
         </tr>
     @endforeach
 </table>

@@ -46,19 +46,19 @@
 
 </div>
 <div class="row" style="padding: 0px; margin: 0px;">
-    <div id="menuDrawer" class="hideClass" style="width: 225px; float: left">
+    <div id="menuDrawer" class="showClass" style="width: 225px; float: left">
         @include('default.drawer')
     </div>
-    <div id="headerCol" class="headerMax" style="padding: 0px; margin: 0px; float: left">
+    <div id="headerCol" class="headerPlusDrawer" style="padding: 0px; margin: 0px; float: left">
         <div>
             <header>
                 <table class="max-size" style="position: relative">
                     <tr>
                         <td id="menuBtn">
-                            <i id="iconMenu" class="fas fa-bars"></i>
+                            <i id="iconMenu" class="fas fa-arrow-left"></i>
                         </td>
                         <td>
-                            @yield('title')
+                            @yield('title') {!! \Illuminate\Support\Facades\Cookie::get('show') !!}
                         </td>
                         <td style="padding: 0">
                             <div id="header-user">

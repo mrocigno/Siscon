@@ -27,7 +27,7 @@ function getTable(){
     });
 }
 
-function endService(b64, randId, sid, row){
+function endService(b64, randId, sid, row, col){
     console.log("img=" + b64);
     $.ajax({
         type: 'POST',
@@ -39,9 +39,9 @@ function endService(b64, randId, sid, row){
         success: function (data) {
             console.log(data);
             $("#" + randId).remove();
-            $("#" + row).toggleClass('delivered executed');
-            $("#" + row + " > td > input").toggleClass('btn-primary btn-success').val("Adicionar mais");
-
+            $("#" + row).attr('class', 'executed');
+            $("#" + row + " > td > input").attr('class', 'btn btn-primary btn-success').val("Adicionar mais");
+            $("#" + col).css('background-color', '#d4e6d9');
         },
         error: function (ex) {
             console.log(ex);
@@ -114,7 +114,7 @@ $(document).ready(function () {
                             "     </div>\n" +
                             "</div>");
 
-                        endService(dataurl, randId, sid, row);
+                        endService(dataurl, randId, sid, row, col);
                         $("#hidden-input-file").val(null);
                     }
                     img.src = e.target.result;

@@ -103,6 +103,7 @@ Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
     Route::get('/get-table', array('uses' => 'ServicesController@getTable'));
     Route::get('/{id}', ['uses' => 'ServicesController@details']);
     Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServicesByDelivery']);
+    Route::post('/update', ['uses' => 'ServicesController@update']);
 });
 
 Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function () {
@@ -112,6 +113,7 @@ Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function ()
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('/end-service', array('uses' => 'FinalizeController@endService'));
+    Route::post('/save-address', array('uses' => 'WSController@saveAddress'));
 });
 
 

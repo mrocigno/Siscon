@@ -45,7 +45,7 @@ $(document).ready(function(){
     });
 });
 
-function searchAddress(url, faddress, neighborhood, zipCode, lat, lng){
+function searchAddress(url, faddress, neighborhood, zipCode, lat, lng, callback){
     $.ajax({
         type: 'GET',
         url: url,
@@ -67,6 +67,7 @@ function searchAddress(url, faddress, neighborhood, zipCode, lat, lng){
                         $(zipCode).val(component.long_name);
                     }
                 }
+                callback();
             } else {
                 console.log("não encontrado");
             }
