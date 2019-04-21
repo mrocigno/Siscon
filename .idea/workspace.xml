@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8d59318-8f7f-4c92-b09d-ad87b2bf48b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/default/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/default/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/service_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/service_details.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,101 +17,60 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ServicesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2941">
-              <caret line="173" column="18" selection-start-line="173" selection-start-column="18" selection-end-line="173" selection-end-column="18" />
-              <folding>
-                <element signature="e#40#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/map.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="67" lean-forward="true" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+            <state relative-caret-position="562">
+              <caret line="45" column="67" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/serviceScript.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/default/drawer.blade.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/default/master.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="256">
+              <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/default/head.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/service_details.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="105" selection-start-line="1" selection-start-column="105" selection-end-line="1" selection-end-column="105" />
+            <state relative-caret-position="102">
+              <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/services/distribute_table.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/default/user.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="221">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/formatScript.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1594">
-              <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/detailsScript.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/mapsScript.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin_fields.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-              </folding>
+              <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/importScript.js">
+        <entry file="file://$PROJECT_DIR$/resources/views/inicio.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/default/filters_service.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
+            <state>
+              <caret selection-end-line="11" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -150,6 +109,7 @@
       <find>Lato</find>
       <find>black-bac</find>
       <find>eli</find>
+      <find>--}}</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -166,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GeolocationController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_05_233234_create_services_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_10_151621_create_status_table.php" />
@@ -183,13 +142,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/WSController.php" />
         <option value="$PROJECT_DIR$/app/Utils/StatusUltil.php" />
         <option value="$PROJECT_DIR$/app/ModelsVO/PrintVO.php" />
-        <option value="$PROJECT_DIR$/resources/views/default/drawer.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/finalize_services.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_10_151622_create_distributed_services_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DistributeController.php" />
         <option value="$PROJECT_DIR$/app/DistributedServices.php" />
-        <option value="$PROJECT_DIR$/resources/views/default/master.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FinalizeController.php" />
         <option value="$PROJECT_DIR$/resources/views/service_report.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/services/finalize_table.blade.php" />
@@ -209,14 +166,17 @@
         <option value="$PROJECT_DIR$/public/js/masterScript.js" />
         <option value="$PROJECT_DIR$/public/css/masterStyle.css" />
         <option value="$PROJECT_DIR$/public/js/mapsScript.js" />
-        <option value="$PROJECT_DIR$/resources/views/service_details.blade.php" />
         <option value="$PROJECT_DIR$/public/js/detailsScript.js" />
         <option value="$PROJECT_DIR$/resources/views/default/filters_service.blade.php" />
         <option value="$PROJECT_DIR$/public/js/serviceScript.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ServicesController.php" />
         <option value="$PROJECT_DIR$/resources/views/services/distribute_table.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/map.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/default/head.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/default/drawer.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/map.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/default/user.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/default/master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/service_details.blade.php" />
       </list>
     </option>
   </component>
@@ -435,21 +395,7 @@
       <workItem from="1555157664976" duration="21092000" />
       <workItem from="1555208082638" duration="754000" />
       <workItem from="1555767206315" duration="38647000" />
-      <workItem from="1555862865039" duration="19509000" />
-    </task>
-    <task id="LOCAL-00062" summary="teste">
-      <created>1551805846382</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1551805846382</updated>
-    </task>
-    <task id="LOCAL-00063" summary="teste">
-      <created>1551806168426</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1551806168426</updated>
+      <workItem from="1555862865039" duration="21677000" />
     </task>
     <task id="LOCAL-00064" summary="teste">
       <created>1551806208826</created>
@@ -780,11 +726,25 @@
       <option name="project" value="LOCAL" />
       <updated>1555882596797</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="icon">
+      <created>1555883207983</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1555883207983</updated>
+    </task>
+    <task id="LOCAL-00112" summary="map style">
+      <created>1555884687545</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1555884687545</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281887000" />
+    <option name="totallyTimeSpent" value="284055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -831,26 +791,11 @@
     <MESSAGE value="update in .htaccess" />
     <MESSAGE value="map added" />
     <MESSAGE value="fix map call" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix map call" />
+    <MESSAGE value="icon" />
+    <MESSAGE value="map style" />
+    <option name="LAST_COMMIT_MESSAGE" value="map style" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/add_services.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/inicio.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1085,13 +1030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/default/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/masterStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -1103,20 +1041,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/default/drawer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="63" column="76" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/service_details.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="326" column="78" selection-start-line="326" selection-start-column="78" selection-end-line="326" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -1194,13 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/map.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="67" lean-forward="true" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/serviceScript.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1214,8 +1131,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/default/head.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="105" selection-start-line="1" selection-start-column="105" selection-end-line="1" selection-end-column="105" />
+        <state relative-caret-position="170">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/inicio.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin_fields.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/map.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="45" column="67" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/default/drawer.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/default/user.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/default/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/service_details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
         </state>
       </provider>
     </entry>

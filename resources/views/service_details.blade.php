@@ -4,12 +4,12 @@
 @stop
 
 @section('stylecustom')
+    <script src="{{ URL::asset('public/js/mapsScript.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhd1XSpoJ1YlosDmycLN4KfeL3LbvqXGE&callback=initMap" async defer></script>
     <link rel="stylesheet" href="{{ URL::asset('public/css/servicesStyle.css') }}"/>
     <script src="{{ URL::asset('public/js/detailsScript.js') }}"></script>
     <script src="{{ URL::asset('public/js/importScript.js') }}"></script>
     <script src="{{ URL::asset('public/js/formatScript.js') }}"></script>
-    <script src="{{ URL::asset('public/js/mapsScript.js') }}"></script>
 @stop
 
 @section('content')
