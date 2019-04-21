@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta property="og:image" itemprop="image" content="http://sis-con.esy.es/public/img/icon.png">
 <meta name="viewport" content="width=device-width">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
