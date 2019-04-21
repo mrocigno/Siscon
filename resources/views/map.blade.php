@@ -2,8 +2,8 @@
     <head>
         <title>Mapa</title>
         @include('default.head')
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhd1XSpoJ1YlosDmycLN4KfeL3LbvqXGE&callback=initMap" async defer></script>
         <script src="{{ URL::asset('public/js/mapsScript.js') }}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhd1XSpoJ1YlosDmycLN4KfeL3LbvqXGE&callback=initMap" async defer></script>
     </head>
     <body>
         <div id="map_img" style="width: 100%; height: 100vh"></div>
