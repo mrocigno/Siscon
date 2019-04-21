@@ -172,7 +172,7 @@ class ServicesController extends Controller{
                 $order = 'sid';
                 $errors['msg'] = "Para ordenar por Distancia informe uma latitude e uma longitude";
             }else{
-                array_push($select, DB::raw('(acos(sin('.$data['lat'].') * sin(services.lat) + cos('.$data['lat'].') * cos(services.lat) * cos(services.lng - ('.$data['lng'].'))) * 6371) as distance'));
+                array_push($select, DB::raw('(6371 * acos(Cos(Radians('.$data['lat'].')) * Cos(Radians(services.lat)) * Cos(Radians('.$data['lng'].') - Radians(services.lng)) + Sin(Radians('.$data['lat'].')) * Sin(Radians(services.lat)))) as distance'));
             }
         }
 
@@ -207,6 +207,10 @@ class ServicesController extends Controller{
                 $view = view('services.distribute_table');
                 break;
             }
+        }
+
+        if( $data['lat'] != "" && $data['lng'] != "" && $data['limit'] != ""){
+            $services->where(DB::raw('(6371 * acos(Cos(Radians('.$data['lat'].')) * Cos(Radians(services.lat)) * Cos(Radians('.$data['lng'].') - Radians(services.lng)) + Sin(Radians('.$data['lat'].')) * Sin(Radians(services.lat))))'), '<=', $data['limit']);
         }
 
         if(isset($data['type']) && $data['type'] != ""){
@@ -291,6 +295,24 @@ class ServicesController extends Controller{
 
         return view('service_report')
             ->with('prints', $print);
+    }
+
+    public function map(Request $request){
+        $coordinates = Services::query()
+            ->whereIn('services.id', $request->ids)
+            ->join('service_type as type', 'services.service_type_id', '=', 'type.id')
+            ->join('address as adr', 'services.address_id', '=', 'adr.id')
+            ->get([
+                'services.id',
+                'service_description',
+                'type',
+                'address',
+                'n',
+                'lat',
+                'lng'
+            ]);
+        return view('map')
+            ->with('coordinates', $coordinates);
     }
 
 }

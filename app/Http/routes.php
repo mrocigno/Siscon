@@ -113,6 +113,10 @@ Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function ()
     Route::post('/save-formated', array('uses' => 'GeolocationController@saveFormated'));
 });
 
+Route::group(['prefix' => 'mapa'], function () {
+    Route::get('/servicos', array('uses' => 'ServicesController@map'));
+});
+
 Route::group(['prefix' => 'api'], function () {
     Route::post('/end-service', array('uses' => 'FinalizeController@endService'));
     Route::post('/save-address', array('uses' => 'WSController@saveAddress'));

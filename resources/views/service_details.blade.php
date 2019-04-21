@@ -4,10 +4,12 @@
 @stop
 
 @section('stylecustom')
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhd1XSpoJ1YlosDmycLN4KfeL3LbvqXGE&callback=initMap" async defer></script>
     <link rel="stylesheet" href="{{ URL::asset('public/css/servicesStyle.css') }}"/>
     <script src="{{ URL::asset('public/js/detailsScript.js') }}"></script>
     <script src="{{ URL::asset('public/js/importScript.js') }}"></script>
     <script src="{{ URL::asset('public/js/formatScript.js') }}"></script>
+    <script src="{{ URL::asset('public/js/mapsScript.js') }}"></script>
 @stop
 
 @section('content')
@@ -327,11 +329,7 @@
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <a href="https://www.google.com.br/maps/place/{!! $service->lat !!},{!! $service->lng !!}">
-                                    <img id="map_img"
-                                         style="width: calc(100% + 30px); margin: 5px -15px -15px -15px; border-top: 1px solid lightgray;"
-                                         src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C{!! $service->lat !!},{!! $service->lng !!}&key=AIzaSyDhd1XSpoJ1YlosDmycLN4KfeL3LbvqXGE">
-                                </a>
+                                <div id="map_img" style="width: calc(100% + 30px); margin: 5px -15px -15px -15px; height: 500px; border-top: 1px solid lightgray;"></div>
                             </td>
                         </tr>
                     </table>
@@ -339,6 +337,10 @@
             </div>
         </form>
     </div>
+    <script>
+        placeMarker({!! $service->id !!},{!! $service->lat !!}, {!! $service->lng !!}, "{!! $address->address . ', ' . $service->n !!}", null);
+        // placeMarker( -23.550929, -46.627250, "Titulo");
+    </script>
     @if(session()->get('message'))
         <script>
             customAlert("{!! session()->get('message') !!}");

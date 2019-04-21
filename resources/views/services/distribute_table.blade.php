@@ -47,6 +47,7 @@
                 <td class="elipsis">{!! $service->applicant !!}</td>
                 <td class="elipsis">{!! $service->polo !!}</td>
                 <td class="elipsis">{!! $service->delivery !!}</td>
+{{--                <td class="elipsis">{!! $service->distance !!}</td>--}}
             </tr>
         @endforeach
     @else

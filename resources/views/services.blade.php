@@ -36,6 +36,16 @@
                             </table>
                         </span>
                     </div>
+                    <div class="item">
+                        <span onclick="generateMap()">
+                            <table>
+                                <tr>
+                                    <td class="iconMenu"><i class="fas fa-map-marked-alt"></i></td>
+                                    <td>Gerar mapa</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>

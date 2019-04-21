@@ -38,10 +38,20 @@
         </tr>
         <tr class="hideClass latLngRow">
             <td>
-                <input type="text" name="lat" class="form-control">
+                <input type="text" name="lat" id="filter-lat" class="form-control">
             </td>
             <td>
-                <input type="text" name="lng" class="form-control">
+                <input type="text" name="lng" id="filter-lng" class="form-control">
+            </td>
+        </tr>
+        <tr class="hideClass latLngRow">
+            <th colspan="2">
+                Limite (km)
+            </th>
+        </tr>
+        <tr class="hideClass latLngRow">
+            <td colspan="2">
+                <input type="number" name="limit" value="2" class="form-control"/>
             </td>
         </tr>
         <tr>

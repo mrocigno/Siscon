@@ -2,6 +2,8 @@ function showLatLng(dom){
     if($(dom).val() === "distance"){
         $(".latLngRow").toggleClass("hideClass showClassRow");
     } else {
+        $("#filter-lat").val("");
+        $("#filter-lng").val("");
         if($(".latLngRow").hasClass("showClassRow")){
             $(".latLngRow").toggleClass("hideClass showClassRow");
         }
@@ -52,11 +54,57 @@ function printServices(){
     for(i = 0; i < rows.length; i++){
         let row = rows[i];
         if($(row).prop('checked')){
-            $("#form").attr('action', 'servicos/imprimir').submit();
+            $("#form").attr('action', 'servicos/imprimir').attr('method', 'post').submit();
             return;
         }
     }
     customAlert("Selecione ao menos 1 serviço");
+}
+
+function generateMap(){
+    let rows = $('.table-list > tbody > tr > td > .check-input');
+    for(i = 0; i < rows.length; i++){
+        let row = rows[i];
+        if($(row).prop('checked')){
+
+            rebrandly($("#form").serialize(), function (url) {
+                inputAlert("Url do mapa gerado", function (urlShort) {
+                    window.open(urlShort, '_blank');
+                }, url);
+            });
+            return;
+        }
+    }
+    customAlert("Selecione ao menos 1 serviço");
+}
+
+function rebrandly(ids, callback){
+    showProgress(3);
+    let linkRequest = {
+        destination: `http://sis-con.esy.es/mapa/servicos?${ids}`,
+        domain: { fullName: "rebrand.ly" }
+    }
+    plusValueProgress();
+    let requestHeaders = {
+        "Content-Type": "application/json",
+        "apikey": "248cf1cf408b4ff486fb4660355a355e"
+    }
+    plusValueProgress();
+    $.ajax({
+        url: "https://api.rebrandly.com/v1/links",
+        type: "post",
+        data: JSON.stringify(linkRequest),
+        headers: requestHeaders,
+        dataType: "json",
+        success: (link) => {
+            plusValueProgress();
+            callback(`https://${link.shortUrl}`);
+        },
+        error: (error, data) => {
+            plusValueProgress();
+            callback(linkRequest.destination);
+        }
+    });
 }
 
 $(document).ready(function () {

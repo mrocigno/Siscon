@@ -55,11 +55,12 @@ function customAlert(msg){
     $("#alert-text").html(msg);
 }
 
-function inputAlert(msg, callback) {
+function inputAlert(msg, callback, value) {
     $("#black-background").toggleClass("hideClass showClass");
     $("#input-holder").css("display", "table");
     $("#input-msg").html(msg);
     $("#input-value").focus();
+    $("#input-value").val(value);
     $("#btnContinue").click(function () {
         if($("#input-value").val() === ""){
             $("#input-value").toggleClass('is-invalid');
