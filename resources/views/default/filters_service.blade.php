@@ -80,13 +80,23 @@
         </tr>
         @if(isset($externalUsers))
             <tr>
+                <th colspan="2">
+                    Data executado:
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="date" name="executed_date" class="form-control"/>
+                </td>
+            </tr>
+            <tr>
                 <th>
                     Usuário:
                 </th>
             </tr>
             <tr>
                 <td colspan="2">
-                    <select name="type" class="form-control">
+                    <select name="user" class="form-control">
                         <option value="">-- Selecione --</option>
                         @foreach($externalUsers as $externalUser)
                             <option value="{!! $externalUser->id !!}">{!! $externalUser->name !!}</option>

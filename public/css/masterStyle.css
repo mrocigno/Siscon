@@ -221,9 +221,15 @@ a, a:link, a:hover {
     z-index: 20;
 }
 
-#msg-holder, #alert-holder{
+#msg-holder, #alert-holder, #input-holder{
     margin: 100px auto;
     /*padding: 10px 30px;*/
+}
+
+#input-value{
+    margin: 0 5px;
+    width: calc(100% - 10px);
+    /*border: 1px solid;*/
 }
 
 .msg-text, #alert-text{
@@ -455,4 +461,18 @@ select[readonly] {
     background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
     pointer-events: none;
     touch-action: none;
+}
+
+.print-area{
+    padding: 20px;
+    background: white;
+    width: 994px;
+    min-height: 1429px;
+    margin: 20px auto;
+    box-shadow: 5px 5px 5px lightgray;
+}
+@media print {
+    .print-area{
+        page-break-before: always;
+    }
 }

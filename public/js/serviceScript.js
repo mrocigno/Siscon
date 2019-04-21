@@ -27,40 +27,36 @@ function getTable(){
     });
 }
 
-function endService(b64, randId, sid, row, col){
-    console.log("img=" + b64);
-    $.ajax({
-        type: 'POST',
-        url: 'api/end-service',
-        data: {
-            img: b64,
-            id: sid
-        },
-        success: function (data) {
-            console.log(data);
-            $("#" + randId).remove();
-            $("#" + row).attr('class', 'executed');
-            $("#" + row + " > td > input").attr('class', 'btn btn-primary btn-success').val("Adicionar mais");
-            $("#" + col).css('background-color', '#d4e6d9');
-        },
-        error: function (ex) {
-            console.log(ex);
-            $("#" + randId + " > div").html("<b style='margin-top: 10px'>Erro ao fazer upload da imagem</b>");
-        }
-    });
-}
-
-let col, row, sid;
-function finalize(id) {
+let sid;
+function finalizeExecuted(id) {
     $("#hidden-input-file").click();
-    col = "col-" + id;
-    row = "row-" + id;
     sid = id;
 }
 
-function rowClick(dom){
-    let id = $(dom).parent().attr('data-id');
-    window.location = "inicio";
+function finalizeNotExecuted(id){
+    inputAlert("Motivo por não executar", function (value) {
+        sid = id;
+        $("#row-" + id + " > td > .btn-danger").html("<i class='fas fa-spin fa-spinner'></i>");
+        endService(null, sid, 2, value, null);
+    });
+}
+
+function finalizeReturn(id) {
+    sid = id;
+    $("#row-" + id + " > td > .btn-warning").html("<i class='fas fa-spin fa-spinner'></i>");
+    endService(null, sid, 3, null, null);
+}
+
+function printServices(){
+    let rows = $('.table-list > tbody > tr > td > .check-input');
+    for(i = 0; i < rows.length; i++){
+        let row = rows[i];
+        if($(row).prop('checked')){
+            $("#form").attr('action', 'servicos/imprimir').submit();
+            return;
+        }
+    }
+    customAlert("Selecione ao menos 1 serviço");
 }
 
 $(document).ready(function () {
@@ -104,7 +100,7 @@ $(document).ready(function () {
 
                         dataurl = canvas.toDataURL(file.type);
                         let randId = "load-" + Math.floor(Math.random() * 1000);
-                        $("#" + col).append("" +
+                        $("#col-" + sid).append("" +
                             "<div class=\"img-container\">\n" +
                             "     <img src='"+ dataurl +"'/>" +
                             "     <div id='"+ randId +"' class=\"loding-img-container\">\n" +
@@ -114,7 +110,7 @@ $(document).ready(function () {
                             "     </div>\n" +
                             "</div>");
 
-                        endService(dataurl, randId, sid, row, col);
+                        endService(dataurl, sid, 1, null, randId);
                         $("#hidden-input-file").val(null);
                     }
                     img.src = e.target.result;
@@ -124,3 +120,45 @@ $(document).ready(function () {
         }
     });
 });
+
+function endService(b64, sid, status, observation, randId){
+    console.log("img=" + b64);
+    $.ajax({
+        type: 'POST',
+        url: 'api/end-service',
+        data: {
+            img: b64,
+            id: sid,
+            status: status,
+            observation: observation
+        },
+        success: function (data) {
+            console.log(data);
+            switch (status) {
+                case 1:{
+                    $("#" + randId).remove();
+                    $("#row-" + sid).attr('class', 'executed');
+                    $("#row-" + sid + " > td > .btn-primary").attr('class', 'btn btn-primary btn-success').html("<i class='fas fa-plus'></i>");
+                    $("#col-" + sid).css('background-color', '#d4e6d9');
+                    break;
+                }
+
+                case 2:{
+                    $("#row-" + sid).attr('class', 'not-executed');
+                    $("#row-" + sid + " > td > .btn-danger").html("<i class='fas fa-times'></i>");
+                    break;
+                }
+
+                case 3:{
+                    $("#row-" + sid).attr('class', 'return');
+                    $("#row-" + sid + " > td > .btn-warning").html("<i class='fas fa-undo'></i>");
+                    break
+                }
+            }
+        },
+        error: function (ex) {
+            console.log(ex);
+            $("#" + randId + " > div").html("<b style='margin-top: 10px'>Erro ao fazer upload da imagem</b>");
+        }
+    });
+}

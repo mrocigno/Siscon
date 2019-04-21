@@ -11,12 +11,12 @@
 
 @section('content')
     <div class="gap-center-form">
-        <div class="center-form max-size">
+        <form id="form" method="post" target="_blank" class="center-form max-size">
             {{ csrf_field() }}
             <div id="table-content">
 
             </div>
-        </div>
+        </form>
     </div>
 @stop
 
@@ -27,47 +27,14 @@
             <td>
                 <div id="box1">
                     <div class="item">
-                        <a href='{{ URL::to('/') }}/adicionar'>
+                        <span onclick="printServices()">
                             <table>
                                 <tr>
-                                    <td class="iconMenu"><i class="fas fa-file-excel"></i></td>
-                                    <td>Adicionar</td>
+                                    <td class="iconMenu"><i class="fas fa-print"></i></td>
+                                    <td>Imprimir</td>
                                 </tr>
                             </table>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <a href="{{ URL::to('/') }}/distribuir">
-                            <table>
-                                <tr>
-                                    <td class="iconMenu"><i class="fas fa-share"></i></td>
-                                    <td>Distribuir</td>
-                                </tr>
-                            </table>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <a href='{{ URL::to('/') }}/finalizar'>
-                            <table>
-                                <tr>
-                                    <td class="iconMenu"><i class="fas fa-exchange-alt"></i></td>
-                                    <td>Finalizar</td>
-                                </tr>
-                            </table>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <a href='{{ URL::to('/') }}/geolocalizacao'>
-                            <table>
-                                <tr>
-                                    <td class="iconMenu"><i class="fas fa-map-marker-alt"></i></td>
-                                    <td>Geolocalizar</td>
-                                </tr>
-                            </table>
-                        </a>
+                        </span>
                     </div>
                 </div>
             </td>
@@ -78,7 +45,7 @@
             </td>
         </tr>
     </table>
-
+    <div id="teste"></div>
     <script>
         showMenuOptions();
         getTable();

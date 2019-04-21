@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ServiceType;
 use Illuminate\Http\Request;
 use Auth, Validator, DB, Input;
 use App\Services;
@@ -18,9 +19,14 @@ class DistributeController extends Controller {
     public function index(){
         $users = User::orderBy('name', 'asc')
             ->where('user_type_id', 4)
+            ->where('company_id', Auth::user()->company_id)
             ->get();
+        $statuses = Status::query()->get();
+        $types = ServiceType::query()->where('company_id', Auth::user()->company_id)->get();
 
         return view('distribute_services')
+            ->with('statuses', $statuses)
+            ->with('types', $types)
             ->with('users', $users);
     }
 
@@ -53,20 +59,11 @@ class DistributeController extends Controller {
                     $service->status_id = 4;
                     $service->save();
 
-/**      Avaliar ser vai precisar deletar o ja criado se for repasse*/
-//                    $query = DistributedServices::query()
-//                        ->join('services as s', 's.id', '=', 'distributed_services.service_id')
-//                        ->where('service_id', $id)
-//                        ->where('s.status_id', 3)
-//                        ->first();
-//                    if($query != null && $query->count()){
-//                       c
-//                       c
-//                    }
                     $data = [
                         'service_id' => $id,
                         'distributed_date' => $request->date,
-                        'user_id' => $request->userId
+                        'user_id' => $request->userId,
+                        'status_id' => 4
                     ];
                     DistributedServices::create($data);
                 }

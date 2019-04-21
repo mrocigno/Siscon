@@ -14,10 +14,11 @@
     <div class="gap-center-form">
         <form class="row" action="update" id="update" method="POST">
             {!! csrf_field() !!}
-            <input type="hidden" id="return" name="return"
-                   value="{!! (old('return') != null? old('return') : URL::previous()) !!}">
-            <input type="hidden" id="status_id" name="status_id"
-                   value="{!! (old('status_id') != null? old('status_id') : $status['id']) !!}">
+            <input type="hidden" id="return" name="return" value="{!! (old('return') != null? old('return') : URL::previous()) !!}">
+            <input type="hidden" id="status_id" name="status_id" value="{!! (old('status_id') != null? old('status_id') : $status['id']) !!}">
+            @if(isset($ds->id))
+                <input type="hidden" id="dist_id" name="dist_id" value="{!! $ds->id !!}">
+            @endif
             <div class="col-md-4">
                 <div class="center-form max-size" style="padding: 10px">
                     <table class="max-size">
@@ -143,6 +144,97 @@
                         </tr>
                     </table>
                 </div>
+
+                <div class="center-form max-size" style="margin: 10px 0; padding: 10px">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="imprimir/{!! $service->id !!}" class="btn btn-secondary" style="color: white; width: 100%;"><i class="fas fa-print"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imprimir</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="teste.com" class="btn btn-danger" style="color: white; width: 100%;"><i class="fas fa-times"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remover</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="center-form max-size {!! $status['class'] !!}" style="padding: 10px">
+                    <table class="max-size">
+                        <tr>
+                            <th colspan="2" style="text-align: center;">
+                                <span style=" font-size: 150px">{!! $status['icon'] !!}</span>
+                                <br>
+                                {!! $status['description'] !!}
+                            </th>
+                        </tr>
+                        @if($ds != null)
+                            <tr>
+                                <td><br></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    @if($status['class'] == 'executed')
+                                        Executado por:
+                                    @else
+                                        Programado para:
+                                    @endif
+                                </th>
+                                <td>
+                                    <select name="user_id" id="user_id"
+                                            class="form-control @if($errors->has('user_id')) is-invalid @endif"
+                                            readonly>
+                                        <option value="">-- Selecione --</option>
+                                        @foreach($users as $user)
+                                            <option value="{!! $user->id !!}"
+                                                    @if((session()->get('editing')? old('user_id') : $ds->user_id) == $user->id) selected @endif>{!! $user->name !!}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    No dia:
+                                </th>
+                                <td>
+                                    <input name="distributed_date" id="distributed_date" class="form-control  @if($errors->has('distributed_date')) is-invalid @endif"
+                                           value="<?php $data = date_create((session()->get('editing') ? old('distributed_date') : $ds->distributed_date)); echo date_format($data, 'Y-m-d'); ?>"
+                                           type="date" readonly>
+                                </td>
+                            </tr>
+                        @endif
+                    </table>
+                </div>
+
+                @if($fs != null)
+                    <div class="center-form max-size {!! $status['class'] !!}" style="padding: 10px; margin-top: 10px">
+                        <table class="max-size">
+                            <tr>
+                                <th>
+                                    Observações:
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <textarea name="observation" class="form-control" readonly>{{ ($fs->observation == null? "Sem observações" : $fs->observation) }}</textarea>
+                                </td>
+                            </tr>
+                            @if($photos->count() > 0)
+                                <tr>
+                                    <th style="vertical-align: top">
+                                        Fotos:
+                                    </th>
+                                </tr>
+                                @foreach($photos as $photo)
+                                    <tr>
+                                        <td>
+                                            <img style="border: 1px solid black" src="{!! $photo->link !!}" width="100%">
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </table>
+                    </div>
+                @endif
+
             </div>
             <div class="col-md-4">
                 <div class="center-form max-size" style="padding: 10px">
@@ -244,84 +336,6 @@
                         </tr>
                     </table>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="center-form max-size {!! $status['class'] !!}" style="padding: 10px">
-                    <table class="max-size">
-                        <tr>
-                            <th colspan="2" style="text-align: center;">
-                                <span style=" font-size: 150px">{!! $status['icon'] !!}</span>
-                                <br>
-                                {!! $status['description'] !!}
-                            </th>
-                        </tr>
-                        @if($ds != null)
-                            <tr>
-                                <td><br></td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    @if($status['class'] == 'executed')
-                                        Executado por:
-                                    @else
-                                        Programado para:
-                                    @endif
-                                </th>
-                                <td>
-                                    <select name="user_id" id="user_id"
-                                            class="form-control @if($errors->has('user_id')) is-invalid @endif"
-                                            readonly>
-                                        <option value="">-- Selecione --</option>
-                                        @foreach($users as $user)
-                                            <option value="{!! $user->id !!}"
-                                                    @if((session()->get('editing')? old('user_id') : $ds->user_id) == $user->id) selected @endif>{!! $user->name !!}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    No dia:
-                                </th>
-                                <td>
-                                    <input name="distributed_date" id="distributed_date" class="form-control"
-                                           value="<?php $data = date_create((session()->get('editing') ? old('distributed_date') : $ds->distributed_date)); echo date_format($data, 'Y-m-d'); ?>"
-                                           type="date" readonly>
-                                </td>
-                            </tr>
-                        @endif
-                    </table>
-                </div>
-
-                @if($fs != null)
-                    <div class="center-form max-size {!! $status['class'] !!}" style="padding: 10px; margin-top: 10px">
-                        <table class="max-size">
-                            <tr>
-                                <th>
-                                    Observações:
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <textarea name="observation" class="form-control" readonly>{{ ($fs->observation == null? "Sem observações" : $fs->observation) }}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="vertical-align: top">
-                                    Fotos:
-                                </th>
-                            </tr>
-                            @foreach($photos as $photo)
-                                <tr>
-                                    <td>
-                                        <img style="border: 1px solid black" src="{!! $photo->link !!}" width="100%">
-                                    </td>
-                                </tr>    
-                            @endforeach
-                        </table>
-                    </div>    
-                @endif
-
             </div>
         </form>
     </div>

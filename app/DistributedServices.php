@@ -16,6 +16,7 @@ class DistributedServices extends Model
         'distributed_date',
         'user_id',
         'sequence',
+        'status_id'
     ];
 
     protected $hidden = [

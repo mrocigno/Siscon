@@ -1,4 +1,4 @@
-<img src="{{ URL::asset('public/img/logo.png') }}" id="logo"/>
+<img src="{{ \Illuminate\Support\Facades\Cookie::get("logo") }}" id="logo"/>
 <div class="item">
     <a href='{{ URL::to('/') }}/inicio'>
         <table>
@@ -51,6 +51,18 @@
                     <tr>
                         <td class="iconMenu"><i class="fas fa-exchange-alt"></i></td>
                         <td>Finalizar</td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+    </li>
+    <li>
+        <div class="item">
+            <a href='{{ URL::to('/') }}/geolocalizacao'>
+                <table>
+                    <tr>
+                        <td class="iconMenu"><i class="fas fa-map-marker-alt"></i></td>
+                        <td>Geolocalizar</td>
                     </tr>
                 </table>
             </a>

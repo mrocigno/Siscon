@@ -13,14 +13,11 @@
     <input type="file" multiple id="hidden-input-file" hidden>
     <div class="gap-center-form">
         <div class="center-form max-size">
-            <form name="create-route" id="create-route" action="distribuir/criar-rota" method="post">
-                {{ csrf_field() }}
-                <div id="table-content">
+            <div id="table-content">
 
-                </div>
-                <input type="text" name="date" id="formDate" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" hidden>
-                <input type="text" name="userId" id="formUser" hidden>
-            </form>
+            </div>
+            <input type="text" name="date" id="formDate" value="<?php $data = date_create(); echo date_format($data, 'Y-m-d'); ?>" hidden>
+            <input type="text" name="userId" id="formUser" hidden>
         </div>
     </div>
 @stop

@@ -18,7 +18,7 @@ $(document).ready(function () {
         $("#polo_id").attr('readonly', readOnly);
         $("#service_type_id").attr('readonly', readOnly);
 
-        if($("#status_id").val() != 1){
+        if($("#status_id").val() > 2){
             $("#user_id").attr('readonly', readOnly);
             $("#distributed_date").attr('readonly', readOnly);
         }

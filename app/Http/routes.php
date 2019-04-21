@@ -104,6 +104,8 @@ Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
     Route::get('/{id}', ['uses' => 'ServicesController@details']);
     Route::get('/lista-por-remessa/{id}', ['uses' => 'ServicesController@listServicesByDelivery']);
     Route::post('/update', ['uses' => 'ServicesController@update']);
+    Route::get('/imprimir/{id}', ['uses' => 'ServicesController@printOne']);
+    Route::post('/imprimir', ['uses' => 'ServicesController@printMany']);
 });
 
 Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function () {

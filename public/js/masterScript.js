@@ -13,6 +13,10 @@ $(document).ready(function() {
         closeBlackBackground();
     });
 
+    $("#btnCancel").click(function () {
+        closeBlackBackground();
+    });
+
     $("#btnOk").click(function () {
         closeBlackBackground();
     });
@@ -50,6 +54,24 @@ function customAlert(msg){
     $("#alert-text").html(msg);
 }
 
+function inputAlert(msg, callback) {
+    $("#black-background").toggleClass("hideClass showClass");
+    $("#input-holder").css("display", "table");
+    $("#input-msg").html(msg);
+    $("#input-value").focus();
+    $("#btnContinue").click(function () {
+        if($("#input-value").val() === ""){
+            $("#input-value").toggleClass('is-invalid');
+        } else {
+            closeBlackBackground();
+            callback($("#input-value").val());
+            if($("#input-value").val("").hasClass('is-invalid')){
+                $("#input-value").toggleClass(' is-invalid')
+            }
+        }
+    });
+}
+
 function showLoading(){
     $("#black-background").toggleClass("hideClass showClass");
     $("#loading-holder").css("display", "table");
@@ -79,10 +101,12 @@ function closeBlackBackground(){
     progressValue = 0;
     $("#black-background").toggleClass("hideClass showClass");
     $("#msg-holder").css("display", "none");
+    $("#input-holder").css("display", "none");
     $("#alert-holder").css("display", "none");
     $("#loading-holder").css("display", "none");
     $("#progress-holder").css("display", "none");
     $("#btnYes").unbind();
+    $("#btnContinue").unbind();
 }
 
 function selectAll(chkMain) {

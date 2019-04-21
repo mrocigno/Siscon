@@ -18,11 +18,13 @@ class CreateDistributedServicesTable extends Migration
             $table->timestamp('distributed_date');
             $table->integer('user_id')->unsigned();
             $table->integer('sequence');
+            $table->integer('status_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('service_id')->references('id')->on('services');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('status_id')->references('id')->on('status');
         });
     }
 

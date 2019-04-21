@@ -7,6 +7,7 @@ use App\Applicants;
 use App\Delivery;
 use App\DistributedServices;
 use App\FinalizedServices;
+use App\ModelsVO\PrintVO;
 use App\Photos;
 use App\Polo;
 use App\ServiceType;
@@ -44,7 +45,10 @@ class ServicesController extends Controller{
 
         $fs = null;
         $photos = null;
-        $ds = DistributedServices::query()->where('service_id', $service->id)->first();
+        $ds = DistributedServices::query()
+            ->where('service_id', $service->id)
+            ->where('status_id' , '<>', 3)
+            ->first();
         if($ds){
             $fs = FinalizedServices::query()->where('distributed_service_id', $ds->id)->first();
             if($fs){
@@ -86,6 +90,12 @@ class ServicesController extends Controller{
             'uf' => $request->uf,
         ];
 
+        $distributeFields = [
+            'status_id' => $request->status_id,
+            'user_id' => $request->user_id,
+            'distributed_date' => $request->distributed_date
+        ];
+
         $rules = [
             'date_received' => 'required',
             'service_type_id' => 'required',
@@ -94,10 +104,12 @@ class ServicesController extends Controller{
             'polo_id' => 'required',
             'address' => 'required',
             'city' => 'required',
-            'uf' => 'required'
+            'uf' => 'required',
+            'distributed_date' => 'required_if:status_id,==,4',
+            'user_id' => 'required_if:status_id,==,4'
         ];
 
-        $validator = Validator::make(array_merge($serviceFields, $addressFields), $rules);
+        $validator = Validator::make(array_merge($serviceFields, $addressFields, $distributeFields), $rules);
         if(!$validator->fails()){
             if($request->addressEdt){
                 $adress = Address::query()->with('address', $request->address)->firstOrCreate($addressFields);
@@ -105,6 +117,10 @@ class ServicesController extends Controller{
             }
             $service = Services::query()->findOrFail($request->id);
             $service->update($serviceFields);
+            if($request->status_id == 4){
+                $ds = DistributedServices::query()->findOrFail($request->dist_id);
+                $ds->update($distributeFields);
+            }
             return redirect()->back()
                 ->with('message', 'Serviço editado com sucesso')
                 ->withInput(Input::all());
@@ -162,6 +178,7 @@ class ServicesController extends Controller{
 
         $services = Services::query()
             ->orderBy($order, $data["direction"])
+            ->groupBy('services.id')
             ->join('address as adr', 'adr.id', '=', 'services.address_id')
             ->join('polos as po', 'po.id', '=', 'services.polo_id')
             ->join('service_type as st', 'st.id', '=', 'services.service_type_id')
@@ -182,6 +199,7 @@ class ServicesController extends Controller{
                 array_push($select, 'ds.id as did');
                 $view = view('services.finalize_table');
                 $services->where('services.status_id', '4');
+                $services->where('ds.status_id', '4');
                 break;
             }
 
@@ -199,6 +217,14 @@ class ServicesController extends Controller{
             $services->where('status_id', $data['status']);
         }
 
+        if(isset($data['user']) && $data['user'] != ""){
+            $services->where('ds.user_id', $data['user']);
+        }
+
+        if(isset($data['executed_date']) && $data['executed_date'] != ""){
+            $services->where('ds.distributed_date', $data['executed_date']);
+        }
+
         if($data['identifiers'] != ""){
             $identifiers = explode("\n", $data['identifiers']);
             $identifiers = array_map('trim',$identifiers);
@@ -210,6 +236,61 @@ class ServicesController extends Controller{
         return $view->with('services', $services)
             ->with('count', count($services))
             ->withErrors($errors);
+    }
+
+    private function getPrintQuery(){
+        return Services::query()
+            ->groupBy('services.id')
+            ->select([
+                'services.id as sid',
+                'services.status_id',
+                'services.identifier',
+                'services.service_description as description',
+                'services.n',
+                'adr.address',
+                'type.type',
+                'ds.id as did',
+                'fs.id as fid',
+                'fs.more_fields_json as json',
+                'fs.observation as observation'
+            ])
+            ->join('address as adr', 'adr.id', '=', 'services.address_id')
+            ->join('service_type as type', 'type.id', '=', 'services.service_type_id')
+            ->leftJoin('distributed_services as ds', 'ds.service_id', '=', 'services.id')
+            ->leftJoin('finalized_services as fs', 'fs.distributed_service_id', '=', 'ds.id')
+            ->whereIn('ds.status_id', [1, 2]);
+    }
+
+    public function printOne($id){
+        $print = [];
+        $service = $this->getPrintQuery()
+            ->where('services.id', $id)
+            ->first();
+        if($service){
+            $status = StatusUltil::getStatus($service->status_id);
+            $photos = Photos::query()->where('finalized_service_id', $service->fid)->get();
+            $print = [
+                new PrintVO($service, $status, $photos)
+            ];
+        }
+
+        return view('service_report')
+            ->with('prints', $print);
+    }
+
+    public function printMany(Request $resquest){
+        $services = $this->getPrintQuery()
+            ->whereIn('services.id', $resquest->ids)
+            ->get();
+        $print = [];
+        foreach ($services as $service){
+            $status = StatusUltil::getStatus($service->status_id);
+            $photos = Photos::query()->where('finalized_service_id', $service->fid)->get();
+            array_push($print, new PrintVO($service, $status, $photos));
+        }
+
+        return view('service_report')
+            ->with('prints', $print);
     }
 
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Auth, Hash;
+use Auth, Hash, Config, Cookie;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Companies;
@@ -53,6 +53,9 @@ class UserController extends Controller
                 );
             
             if(Auth::attempt($data)){
+                $time = 1440; //Config::get('session.lifetime');
+                $company = Companies::query()->findOrFail(Auth::user()->company_id);
+                Cookie::queue("logo", $company->logo, $time);
                 return Redirect::to('inicio');
             }else{
                 $dataErr = array('email' => 'Login/Senha incorretos');
@@ -127,7 +130,7 @@ class UserController extends Controller
             ->join('companies as cp', 'cp.id', '=', 'users.company_id')
             ->join('user_type as ut', 'ut.id', '=', 'users.user_type_id');
         if(Auth::user()->user_type_id > 1){
-            $query->where('company_id', Auth::user()->company_id);
+            $query->where('users.company_id', Auth::user()->company_id);
         }
         $query = $query->get([
             'users.id as id',
