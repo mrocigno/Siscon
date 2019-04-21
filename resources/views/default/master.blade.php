@@ -58,7 +58,8 @@
 </div>
 <div class="row" style="padding: 0px; margin: 0px;">
     <div id="menuDrawer" class="showClass" style="width: 225px; float: left">
-        @include('default.drawer')
+        <img src="@if(\Illuminate\Support\Facades\Cookie::get("logo") == "") http://sis-con.esy.es/public/img/logo.png @else {{ \Illuminate\Support\Facades\Cookie::get("logo") }} @endif" id="logo"/>
+        @yield('drawer', View::make('default.drawer'))
     </div>
     <div id="headerCol" class="headerPlusDrawer" style="padding: 0px; margin: 0px; float: left">
         <div>
@@ -69,7 +70,7 @@
                             <i id="iconMenu" class="fas fa-arrow-left"></i>
                         </td>
                         <td>
-                            @yield('title') {!! \Illuminate\Support\Facades\Cookie::get('show') !!}
+                            @yield('title')
                         </td>
                         <td style="padding: 0">
                             <div id="header-user">

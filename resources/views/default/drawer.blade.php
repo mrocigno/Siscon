@@ -1,4 +1,3 @@
-<img src="{{ \Illuminate\Support\Facades\Cookie::get("logo") }}" id="logo"/>
 <div class="item">
     <a href='{{ URL::to('/') }}/inicio'>
         <table>
