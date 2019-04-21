@@ -33,6 +33,7 @@ function showMenuOptions(){
 }
 
 function submitYesNo(form){
+    $("#btnYes").focus();
     confirmBox(function () {
         $("#" + form).submit();
         showLoading();

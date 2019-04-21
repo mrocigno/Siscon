@@ -15,7 +15,7 @@
                 {{ $errors->first('telefone') }} 
                 @if($errors->has('telefone'))<br/>@endif
             </p>
-            <form action="../update" method="POST" enctype="multipart/form-data">
+            <form action="../update" id="form" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <table>
                     <tr>
@@ -53,7 +53,7 @@
                     <tr>
                         <td colspan="2">
                             <a href="../lista"><input type="button" name="cancel" class="btn btn-danger" value="Voltar" style="float: left"/></a>
-                            <input type="submit" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
+                            <input type="button" onclick="submitYesNo('form')" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
                         </td>
                     </tr>
                 </table>

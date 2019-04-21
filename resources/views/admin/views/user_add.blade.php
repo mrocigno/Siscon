@@ -19,7 +19,7 @@
                 {{ $errors->first('tipoDeUsuário') }}
                 @if($errors->has('tipoDeUsuário'))<br/>@endif
             </span>
-            <form action="create" method="POST" enctype="multipart/form-data">
+            <form action="create" id="form" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <table>
                     <tr @if(Auth::user()->user_type_id != 1) class="hideClass" @endif>
@@ -96,7 +96,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <a href="../administrar-campos"><input type="button" name="cancel" class="btn btn-danger" value="Voltar" style="float: left"/></a>
-                                        <input type="submit" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
+                                        <input type="button" onclick="submitYesNo('form')" name="ok" class="btn btn-success" value="Salvar" style="float: right"/>
                                     </td>
                                 </tr>
                             </table>

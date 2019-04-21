@@ -32,7 +32,7 @@
                     <button class="btn btn-danger" type="button" onclick="finalizeNotExecuted({!! $service->did !!})" style="padding: 5px 5px; width: 30px"><i class='fas fa-times'></i></button>
                     <button class="btn btn-warning" type="button" onclick="finalizeReturn({!! $service->did !!})" style="padding: 5px 5px; width: 30px"><i class='fas fa-undo'></i></button>
                 </td>
-                <td class="elipsis"><a href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
+                <td class="elipsis"><a target="_blank" href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
                 <td class="elipsis">{!! $service->did !!}</td>
                 <td class="elipsis">{!! $service->identifier !!}</td>
                 <td class="elipsis">{!! $service->date_received !!}</td>

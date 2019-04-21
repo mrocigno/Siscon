@@ -35,7 +35,7 @@
                         {{--</svg>--}}
                     {{--</label>--}}
                 </td>
-                <td class="elipsis"><a href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
+                <td class="elipsis"><a target="_blank" href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
                 <td class="elipsis">{!! $service->identifier !!}</td>
                 <td class="elipsis">{!! $service->date_received !!}</td>
                 <td class="elipsis">{!! $service->type !!}</td>
