@@ -110,3 +110,19 @@ function addMapLegend(index, address) {
         </table>`
     );
 }
+
+$(document).ready(function () {
+    console.log(map);
+    if(map == null){
+        showMap();
+    }
+});
+
+function showMap() {
+    setTimeout(function () {
+        if(map == null){
+            showMap();
+            initMap();
+        }
+    }, 1000)
+}

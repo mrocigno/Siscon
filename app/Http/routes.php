@@ -91,6 +91,15 @@ Route::group(['prefix' => 'usuarios', 'middleware' => 'auth'], function () {
     Route::post('/update', ['uses' => 'UserController@update']);
 });
 
+Route::group(['prefix' => 'relatorios', 'middleware' => 'auth'], function () {
+    Route::get('/add', ['uses' => 'ReportController@add']);
+    Route::get('/lista', ['uses' => 'ReportController@lista']);
+    Route::post('/create', ['uses' => 'ReportController@store']);
+    Route::get('/delete/{id}', ['uses' => 'ReportController@destroy']);
+    Route::get('/editar/{id}', ['uses' => 'ReportController@edit']);
+    Route::post('/update', ['uses' => 'ReportController@update']);
+});
+
 Route::group(['prefix' => 'remessa', 'middleware' => 'auth'], function () {
     Route::get('/lista', ['uses' => 'DeliveryController@lista']);
     Route::get('/delete/{id}', ['uses' => 'DeliveryController@destroy']);

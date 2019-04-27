@@ -141,5 +141,27 @@
         </div>
     </div>
 
+    <div class="col-md-3">
+        <div class="fields">
+            <table>
+                <tr>
+                    <th colspan="2">Relatórios</th>
+                </tr>
+                <tr class="add">
+                    <th><i class="fas fa-plus-circle"></i></td>
+                    <td><a href="relatorios/add">Adicionar</a></td>
+                </tr>
+                <tr class="edit">
+                    <th><i class="fas fa-pen-square"></i></td>
+                    <td><a href="usuarios/lista">Editar</a></td>
+                </tr>
+                <tr class="remove">
+                    <th><i class="fas fa-times-circle"></i></td>
+                    <td><a href="usuarios/lista">Remover</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
 @stop

@@ -47,7 +47,7 @@ class ServicesController extends Controller{
         $photos = null;
         $ds = DistributedServices::query()
             ->where('service_id', $service->id)
-            ->where('status_id' , '<>', 3)
+            ->where('status_id' , '=', $service->status_id)
             ->first();
         if($ds){
             $fs = FinalizedServices::query()->where('distributed_service_id', $ds->id)->first();
@@ -250,19 +250,23 @@ class ServicesController extends Controller{
                 'services.status_id',
                 'services.identifier',
                 'services.service_description as description',
-                'services.n',
-                'adr.address',
+                DB::raw("concat(adr.address, ', ' , services.n) as address"),
                 'type.type',
-                'ds.id as did',
+                'users.name as user_name',
+                'app.name as applicant',
                 'fs.id as fid',
                 'fs.more_fields_json as json',
                 'fs.observation as observation'
             ])
             ->join('address as adr', 'adr.id', '=', 'services.address_id')
             ->join('service_type as type', 'type.id', '=', 'services.service_type_id')
-            ->leftJoin('distributed_services as ds', 'ds.service_id', '=', 'services.id')
-            ->leftJoin('finalized_services as fs', 'fs.distributed_service_id', '=', 'ds.id')
-            ->whereIn('ds.status_id', [1, 2]);
+            ->join('applicants as app', 'app.id', '=', 'services.applicant_id')
+            ->leftJoin('distributed_services as ds', function ($join){
+                $join->on('services.id', '=', 'ds.service_id');
+                $join->on('services.status_id', '=', 'ds.status_id');
+            })
+            ->join('users', 'users.id', '=', 'ds.user_id')
+            ->leftJoin('finalized_services as fs', 'fs.distributed_service_id', '=', 'ds.id');
     }
 
     public function printOne($id){
