@@ -260,4 +260,12 @@ class ServicesController extends Controller{
             ->with('coordinates', $coordinates);
     }
 
+    public function printOne($id){
+        $request = new Request();
+        $request->replace(['ids' => [$id]]);
+        $reportController = new ReportController();
+
+        return $reportController->printMany($request);
+    }
+
 }

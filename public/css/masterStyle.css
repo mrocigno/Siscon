@@ -483,3 +483,57 @@ select[readonly] {
         page-break-before: always;
     }
 }
+
+.cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7{
+    fill:#212c4a;
+    fill-opacity: 0;
+    stroke: #222d4c;
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 700;
+}
+
+.cls-2{
+    animation: svgAnimate 3s forwards ;
+}
+
+.cls-1{
+    animation: svgAnimate 3.1s forwards;
+}
+
+.cls-3{
+    animation: svgAnimate 3.2s forwards;
+}
+
+.cls-4{
+    animation: svgAnimate 3.3s forwards;
+}
+
+.cls-5{
+    animation: svgAnimate 3.4s forwards;
+}
+
+.cls-6{
+    animation: svgAnimate 3.5s forwards;
+}
+
+.cls-7{
+    animation: svgAnimate 3.6s forwards;
+}
+
+
+
+@keyframes svgAnimate {
+
+    0%{
+        stroke-dasharray: 700;
+    }
+
+    80%{
+        fill-opacity: 0;
+    }
+    100%{
+        stroke-dasharray: 500;
+        fill-opacity: 1;
+    }
+
+}

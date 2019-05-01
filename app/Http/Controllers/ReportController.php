@@ -61,7 +61,7 @@ class ReportController extends Controller{
                 'fields_json' => json_encode($json)
             ]);
             return redirect('relatorios/lista')
-                ->with('sucesso', 'Relatório adicionado com sucesso. ID: ' . $query->id);
+                ->with('success', 'Relatório adicionado com sucesso. ID: ' . $query->id);
         }
     }
     
@@ -76,7 +76,34 @@ class ReportController extends Controller{
     }
     
     public function update(){
+        $inputs = Input::all();
+        $companyId = Auth::user()->company_id;
+        $serviceType = $inputs['service_type'];
 
+        $json = [];
+        foreach ($inputs['show'] as $row){
+            array_push($json, [
+                'name' => $inputs["name_$row"],
+                'value' => $inputs["value_$row"],
+                'type' => $inputs["type_$row"],
+                'default' => isset($inputs["check_$row"])? true : false,
+                'show' => true,
+                'order' => intval($inputs["order_$row"])
+            ]);
+        }
+        usort($json, function ($a, $b){
+            return ($a['order'] < $b['order']? -1 : ($a['order'] > $b['order']? 1 : 0));
+        });
+
+        $query = Reports::query()->findOrFail($inputs['id']);
+        $query->update([
+            'service_type_id' => $serviceType,
+            'company_id' => $companyId,
+            'fields_json' => json_encode($json)
+        ]);
+
+        return redirect('relatorios/lista')
+            ->with('success', 'Relatório editado com sucesso');
     }
 
     public function lista(){
@@ -133,7 +160,6 @@ class ReportController extends Controller{
             ->whereIn('services.id', $requests->ids)
 //            ->toSql();
             ->get();
-//        echo $services;
 
 
         $print = [];

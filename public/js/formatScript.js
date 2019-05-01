@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 
                 let url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAgBnb9DGepdpJunK2Dxe2YgMkjLbGv30I&address=';
-                // if(strFAddress === ""){
+                if(strFAddress === ""){
                     if(strRAddress === ""){
                         url += formatAddress(strAddress) + " " +
                             (strNeighborhood === ""? "" : "- " + strNeighborhood) +
@@ -32,9 +32,11 @@ $(document).ready(function(){
                             (strNeighborhood === ""? "" : "- " + strNeighborhood) +
                             strCity + " - " + strUf + ", Brasil";
                     }
-                // }else{
-                //     url += strFAddress;
-                // }
+                }else{
+                    url += strFAddress  + " " +
+                        (strNeighborhood === ""? "" : "- " + strNeighborhood) +
+                        strCity + " - " + strUf + ", Brasil";
+                }
                 console.log(url);
                 searchAddress(url, faddress, neighborhood, zipCode, lat, lng)
             }
@@ -51,11 +53,11 @@ function searchAddress(url, faddress, neighborhood, zipCode, lat, lng, callback)
         url: url,
         dataType: 'json',
         success: function (data) {
+            console.log(data);
             plusValueProgress();
             let results = data.results;
             let components = results[0].address_components;
             if(results.length > 0){
-                $(faddress).val(results[0].formatted_address);
                 $(lat).val(results[0].geometry.location.lat);
                 $(lng).val(results[0].geometry.location.lng);
                 for(i = 0; i < components.length; i++){
@@ -65,6 +67,9 @@ function searchAddress(url, faddress, neighborhood, zipCode, lat, lng, callback)
                     }
                     if($.inArray("postal_code", component.types) !== -1){
                         $(zipCode).val(component.long_name);
+                    }
+                    if($.inArray("route", component.types) !== -1){
+                        $(faddress).val(component.long_name);
                     }
                 }
                 callback();

@@ -21,6 +21,7 @@ Route::get('/logout', array('uses' => 'UserController@logout'));
 
 Route::group(['prefix' => '/inicio', 'middleware' => 'auth'], function () {
     Route::get('', array('uses' => 'InitController@index'));
+    Route::get('/user-prod/{month}/{year}', array('uses' => 'InitController@getReportByUsers'));
 });
 
 Route::group(['prefix' => '/adicionar', 'middleware' => 'auth'], function () {

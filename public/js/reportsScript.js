@@ -5,9 +5,9 @@ $(document).ready(function () {
 
     $("#add").click(function () {
         if($("#fromBD").prop("checked")){
-            addNewField($("#fields option:selected").html(), "{"+ $("#fields").val() +"}");
+            addNewField($("#fields option:selected").html(), "{"+ $("#fields").val() +"}", 0);
         } else {
-            addNewField("", "");
+            addNewField("", "", 0);
         }
         refreshReportView();
     });

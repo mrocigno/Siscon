@@ -93,8 +93,9 @@
         </tr>
         <tr>
             <td style="height: 100%; vertical-align: top;">
-                <form id="form" action="create" method="post">
+                <form id="form" action="../update" method="post">
                     {!! csrf_field() !!}
+                    <input type="hidden" value="{!! $report->id !!}" name="id">
                     <label for="service_type">Tipo do serviço</label>
                     <select class="form-control" name="service_type" id="service_type">
                         <option value="">-- Selecione --</option>
