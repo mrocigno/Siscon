@@ -55,11 +55,12 @@
             <div style="display: table; margin: 10px auto; ">
                 <button class="btn btn-primary" id="printer"><i class="fas fa-print"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imprimir</button>
             </div>
-            @foreach($prints as $print)
+            @foreach($prints as $key => $print)
             <?php
                 $status = $print->getStatus();
                 $service = $print->getService();
                 $photos = $print->getPhotos();
+                $structure = json_decode($print->getStructure()->fields_json);
             ?>
             <div class="print-area">
                 <table class="max-size">
@@ -82,56 +83,70 @@
                             <h1>{!! $service->type !!}</h1>
                         </th>
                     </tr>
-                    <tr>
-                        <th>
-                            Identificador:
-                        </th>
-                        <td style="width: 100%">
-                            {!! $service->identifier !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="elipsis">
-                            Serviço:
-                        </th>
-                        <td style="width: 100%">
-                            {!! $service->description !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="elipsis">
-                            Endereço:
-                        </th>
-                        <td style="width: 100%">
-                            {!! $service->address !!}, {!! $service->n !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="2" class="elipsis" style="vertical-align: top">
-                            Fotos:
-                        </th>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="row">
-                                <table class="max-size">
-                                    <tr>
+                </table>
+                <table class="max-size">
+                    @foreach($structure as $json)
+                        <?php
+                            if(isset($service[preg_replace('/^\{|\}$/','', $json->value)])){
+                                $value = $service[preg_replace('/^\{|\}$/','', $json->value)];
+                            }else{
+                                if(!preg_match('/^\{|\}$/', $json->value)){
+                                    $value = $json->value;
+                                } else {
+                                    $value = '--';
+                                }
+                            }
+                        ?>
+                        <tr>
+                            <th class="elipsis">
+                                {!! $json->name !!}:
+                            </th>
+                            <td style="width: 100%">
+                                @if($json->type == 1)
+                                    <input type="text" value="{!! $value !!}" class="form-control">
+                                @elseif($json->type == 2)
+                                    <input id="field_{!! $value . $key !!}" style="display: none" class="check-input" type="checkbox" @if($json->default) checked @endif>
+                                    <label for="field_{!! $value . $key !!}" class="check">
+                                        <svg width="15px" height="15px" viewBox="0 0 18 18">
+                                            <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                                            <polyline points="1 9 7 14 15 4"></polyline>
+                                        </svg>
+                                    </label>
+                                    <label for="field_{!! $value . $key !!}" style="padding: 0; margin: 0">{!! $value !!}</label>
+                                @else
+                                    {!! $value !!}
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    @if(count($photos) > 0)
+                        <tr>
+                            <th colspan="2" class="elipsis" style="vertical-align: top">
+                                Fotos:
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="row">
+                                    <table class="max-size">
+                                        <tr>
+                                            <?php $i = 0; ?>
+                                            @foreach($photos as $photo)
+                                                <td style="vertical-align: top">
+                                                    <img style="width: 100%" src="{!! $photo->link !!}">
+                                                </td>
+                                                @if(++$i == 3)
+                                        </tr>
                                         <?php $i = 0; ?>
-                                        @foreach($photos as $photo)
-                                            <td style="vertical-align: top">
-                                                <img style="width: 100%" src="{!! $photo->link !!}">
-                                            </td>
-                                            @if(++$i == 3)
-                                    </tr>
-                                    <?php $i = 0; ?>
-                                    <tr>
-                                        @endif
-                                        @endforeach
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
+                                        <tr>
+                                            @endif
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    @endif
                 </table>
             </div>
         @endforeach

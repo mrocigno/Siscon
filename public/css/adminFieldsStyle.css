@@ -40,25 +40,24 @@
   width: 30px;
 }
 
-#boxes{
-  vertical-align: top;
-}
 
 .box-fields{
-  width: calc(100% - 10px);
-  margin: 5px 5px 10px 5px;
+  width:100%;
+  margin: 10px 0px;
   border-radius: 5px;
   overflow: hidden;
+  background-color: white;
   box-shadow: 1px 1px 2px 2px lightgray;
+  cursor: grab;
+  list-style-type:none;
 }
 
 .cell-reorder{
   text-align: center;
   width: 34px;
-  cursor: grab;
 }
 
-.cell-reorder:active{
+.box-fields:active{
   cursor: grabbing;
 }
 

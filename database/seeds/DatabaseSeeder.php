@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ServiceTypeSeeder');
         $this->call('DeliverySeeder');
         $this->call('StatusSeeder');
+        $this->call('ReportSeeder');
 
         Model::reguard();
     }

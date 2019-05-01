@@ -5,6 +5,7 @@
 
 @section('stylecustom')
     <link rel="stylesheet" href="{{ URL::asset('public/css/adminFieldsStyle.css') }}"/>
+    @yield('header_custom')
 @stop
 
 @section('content')

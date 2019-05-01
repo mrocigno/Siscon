@@ -1,6 +1,6 @@
 @extends('admin.default')
 @section('title')
-    Adicionar layout de folha de impressão
+    Editar layout de folha de impressão
 @stop
 
 @section('header_custom')
@@ -116,7 +116,15 @@
         </tr>
     </table>
     <script>
+        <?php
+            $fields = json_decode($report->fields_json);
+            foreach ($fields as $field){
+                echo 'addNewField("'. $field->name .'", "'. $field->value .'", "'. $field->type .'");';
+            }
+        ?>
         showMenuOptions();
         refreshReportView();
+        $("#service_type").val({!! $report->service_type_id !!});
+        changeTitle();
     </script>
 @stop

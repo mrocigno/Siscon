@@ -8,6 +8,7 @@ class PrintVO {
     private $service;
     private $status;
     private $photos;
+    private $structure;
 
     /**
      * PrintVO constructor.
@@ -15,11 +16,12 @@ class PrintVO {
      * @param $status
      * @param $photos
      */
-    public function __construct($service, $status, $photos)
+    public function __construct($service, $status, $photos, $structure)
     {
         $this->service = $service;
         $this->status = $status;
         $this->photos = $photos;
+        $this->structure = $structure;
     }
 
 
@@ -71,6 +73,20 @@ class PrintVO {
         $this->photos = $photos;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStructure()
+    {
+        return $this->structure;
+    }
 
+    /**
+     * @param mixed $structure
+     */
+    public function setStructure($structure)
+    {
+        $this->structure = $structure;
+    }
 
 }

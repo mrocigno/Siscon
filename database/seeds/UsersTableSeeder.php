@@ -22,9 +22,9 @@ class UsersTableSeeder extends Seeder
         ));
         User::create(array(
             'name'     => 'Fernando Albuquerque',
-            'email'    => 'chefe@chefe.com',
+            'email'    => 'fernandoh@planal.com.br',
             'password' => Hash::make('123'),
-            'company_id' => 1,
+            'company_id' => 2,
             'user_type_id' => 2
         ));
     }

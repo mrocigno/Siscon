@@ -153,11 +153,11 @@
                 </tr>
                 <tr class="edit">
                     <th><i class="fas fa-pen-square"></i></td>
-                    <td><a href="usuarios/lista">Editar</a></td>
+                    <td><a href="relatorios/lista">Editar</a></td>
                 </tr>
                 <tr class="remove">
                     <th><i class="fas fa-times-circle"></i></td>
-                    <td><a href="usuarios/lista">Remover</a></td>
+                    <td><a href="relatorios/lista">Remover</a></td>
                 </tr>
             </table>
         </div>

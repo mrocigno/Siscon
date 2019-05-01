@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\ServiceType;
 
 class ServiceTypeSeeder extends Seeder
 {
@@ -12,5 +13,9 @@ class ServiceTypeSeeder extends Seeder
     public function run()
     {
         DB::table('service_type')->delete();
+        ServiceType::create([
+            'type' => 'default',
+            'company_id' => 1
+        ]);
     }
 }

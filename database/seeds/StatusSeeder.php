@@ -19,7 +19,7 @@ class StatusSeeder extends Seeder
         ]);//1
         Status::create([
             'status' => 'Não executado',
-            'description' => 'Serviço foi executado mas não foi finalizado, geralmente acompanha um motivo por não ter sido finalizado sem ser repassado'
+            'description' => 'Serviço foi finalizado mas não executado, geralmente acompanha um motivo por não ter sido finalizado sem ser repassado'
         ]);//2
         Status::create([
             'status' => 'Repassse',
