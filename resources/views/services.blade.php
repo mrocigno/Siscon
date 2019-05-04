@@ -46,6 +46,16 @@
                             </table>
                         </span>
                     </div>
+                    <div class="item">
+                        <span onclick="exportXlsx()">
+                            <table>
+                                <tr>
+                                    <td class="iconMenu"><i class="fas fa-file-excel"></i></td>
+                                    <td>Exportar XLSX</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>

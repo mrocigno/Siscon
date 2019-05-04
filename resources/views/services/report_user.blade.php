@@ -1,7 +1,4 @@
-<div class="center-form max-size">
-    <div style="background-color: black; color: white; padding: 20px;">
-        Por dia
-    </div>
+
     @foreach($query as $row)
         <div>
             <div style="background-color: #B0BEC5; padding: 5px 20px">
@@ -17,7 +14,9 @@
             </div>
 
             @foreach($row['data'] as $data)
-                <div style="display: flex; position: relative">
+                <div style="display: flex; position: relative; background-color: white"
+                     class="clickable"
+                     onclick="location.href = 'servicos?user={!! $row['row']->user_id !!}&status={!! $data->status_id !!}&executed_date={!! $row['row']->distributed_date !!}'" >
                     <i style="transform: rotate(90deg); float: left; margin: 5px 15px 5px 30px" class="fas fa-level-up-alt"></i>
                     <div style="float: left; width: 150px; text-align: center; margin-right: 15px" class="<?php echo \App\Utils\StatusUltil::getStatus($data->status_id, true)['class']; ?>">
                         {!! $data->status !!}
@@ -27,4 +26,4 @@
             @endforeach
         </div>
     @endforeach
-</div>
+

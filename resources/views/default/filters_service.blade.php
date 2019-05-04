@@ -72,7 +72,7 @@
                     <select name="status" class="form-control">
                         <option value="">-- Selecione --</option>
                         @foreach($statuses as $status)
-                            <option value="{!! $status->id !!}">{!! $status->status !!}</option>
+                            <option value="{!! $status->id !!}" @if(app('request')->input('status') == $status->id) selected @endif>{!! $status->status !!}</option>
                         @endforeach
                     </select>
                 </td>
@@ -82,7 +82,7 @@
                     <select name="type" class="form-control">
                         <option value="">-- Selecione --</option>
                         @foreach($types as $type)
-                            <option value="{!! $type->id !!}">{!! $type->type !!}</option>
+                            <option value="{!! $type->id !!}" @if(app('request')->input('type') == $type->id) selected @endif>{!! $type->type !!}</option>
                         @endforeach
                     </select>
                 </td>
@@ -96,7 +96,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="date" name="executed_date" class="form-control"/>
+                    <input type="date" name="executed_date" class="form-control" value="{{ app('request')->input('executed_date') }}"/>
                 </td>
             </tr>
             <tr>
@@ -109,7 +109,7 @@
                     <select name="user" class="form-control">
                         <option value="">-- Selecione --</option>
                         @foreach($externalUsers as $externalUser)
-                            <option value="{!! $externalUser->id !!}">{!! $externalUser->name !!}</option>
+                            <option value="{!! $externalUser->id !!}" @if(app('request')->input('user') == $externalUser->id) selected @endif>{!! $externalUser->name !!}</option>
                         @endforeach
                     </select>
                 </td>

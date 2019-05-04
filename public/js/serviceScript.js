@@ -78,6 +78,18 @@ function generateMap(){
     customAlert("Selecione ao menos 1 serviço");
 }
 
+function exportXlsx() {
+    let rows = $('.table-list > tbody > tr > td > .check-input');
+    for(i = 0; i < rows.length; i++){
+        let row = rows[i];
+        if($(row).prop('checked')){
+            $("#form").attr('action', 'servicos/exportar').attr('method', 'post').submit();
+            return;
+        }
+    }
+    customAlert("Selecione ao menos 1 serviço");
+}
+
 function rebrandly(ids, callback){
     showProgress(3);
     let linkRequest = {

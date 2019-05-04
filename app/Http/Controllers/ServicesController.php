@@ -17,7 +17,7 @@ use App\Utils\StatusUltil;
 use Illuminate\Http\Request;
 use App\Services;
 use Illuminate\Support\Facades\DB;
-use Validator, Input, Redirect, Auth;
+use Validator, Input, Redirect, Auth, Excel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -218,7 +218,7 @@ class ServicesController extends Controller{
         }
 
         if(isset($data['status']) && $data['status'] != ""){
-            $services->where('status_id', $data['status']);
+            $services->where('services.status_id', $data['status']);
         }
 
         if(isset($data['user']) && $data['user'] != ""){
@@ -266,6 +266,54 @@ class ServicesController extends Controller{
         $reportController = new ReportController();
 
         return $reportController->printMany($request);
+    }
+
+    public function exportXlsx(Request $request){
+        $services = Services::query()
+            ->whereIn('services.id', $request->ids)
+            ->join('address as adr', 'adr.id', '=', 'services.address_id')
+            ->leftJoin('distributed_services as ds', function ($join){
+                $join->on('services.id', '=', 'ds.service_id');
+                $join->on('services.status_id', '=', 'ds.status_id');
+            })
+            ->leftJoin('users as user', 'user.id', '=', 'ds.user_id')
+            ->leftJoin('finalized_services as fs', 'fs.distributed_service_id', '=', 'ds.id')
+            ->get([
+                'services.id as Siscon_ID',
+                'identifier as Identificador',
+                'date_received as Data_Recebido',
+                'adr.address as Logradouro',
+                'n as Num',
+                'lat as Latitude',
+                'lng as Longitude',
+                'service_description as Descrição_do_serviço',
+                'pg_guia as Pagina_do_guia',
+                'user.name as Entregue_para',
+                'ds.distributed_date as Entregue_em',
+                'fs.id as id_fin',
+                'fs.observation as Observações_de_execução',
+                DB::raw('\'\' as Fotos'),
+                'fs.created_at as Finalizado_em',
+                'services.created_at as Criado_em',
+            ]);
+
+        foreach ($services as $service){
+            if($service->id_fin){
+                $photos = Photos::query()
+                    ->where('finalized_service_id', $service->id_fin)
+                    ->get();
+
+                foreach ($photos as $photo){
+                    $service->Fotos .= $photo->link . " \n";
+                }
+            }
+        }
+
+        Excel::create('Servicos', function($excel) use ($services) {
+            $excel->sheet('Plan 1', function($sheet) use ($services) {
+                $sheet->fromArray($services);
+            });
+        })->export('xlsx');
     }
 
 }

@@ -19,9 +19,9 @@ Route::get ('/login', array('uses' => 'UserController@index'));
 Route::post('/login', array('uses' => 'UserController@attemptLogin'));
 Route::get('/logout', array('uses' => 'UserController@logout'));
 
-Route::group(['prefix' => '/inicio', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/inicio'], function () {
     Route::get('', array('uses' => 'InitController@index'));
-    Route::get('/user-prod/{month}/{year}', array('uses' => 'InitController@getReportByUsers'));
+    Route::get('/user-prod', array('uses' => 'InitController@getReportByUsers'));
 });
 
 Route::group(['prefix' => '/adicionar', 'middleware' => 'auth'], function () {
@@ -116,6 +116,7 @@ Route::group(['prefix' => 'servicos', 'middleware' => 'auth'], function () {
     Route::post('/update', ['uses' => 'ServicesController@update']);
     Route::get('/imprimir/{id}', ['uses' => 'ServicesController@printOne']);
     Route::post('/imprimir', ['uses' => 'ReportController@printMany']);
+    Route::post('/exportar', ['uses' => 'ServicesController@exportXlsx']);
 });
 
 Route::group(['prefix' => 'geolocalizacao', 'middleware' => 'auth'], function () {

@@ -1,5 +1,5 @@
 <span class='errors'>{{ $errors->first('msg') }}</span>
-<table class="table-list">
+<table class="table-list" id="services-table">
     <tr class="table-head">
         <th>
             <input type="checkbox" class="check-input" id="check-all" onchange="selectAll(this)">
