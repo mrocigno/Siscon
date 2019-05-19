@@ -130,6 +130,7 @@ Route::group(['prefix' => 'mapa'], function () {
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('/end-service', array('uses' => 'FinalizeController@endService'));
+    Route::post('/end-service-plan', array('uses' => 'FinalizeController@finalizeByPlan'));
     Route::post('/save-address', array('uses' => 'WSController@saveAddress'));
 });
 

@@ -1,7 +1,7 @@
 <span class='errors'>{{ $errors->first('msg') }}</span>
-<table class="table-list" id="services-table">
-    <tr class="table-head">
-        <th>
+<div class="table-list div-table" id="services-table" style="position: relative">
+    <label class="table-head div-table-row">
+        <div class="div-table-th">
             <input type="checkbox" class="check-input" id="check-all" onchange="selectAll(this)">
             {{--<label for="check-all" class="check-white">--}}
                 {{--<svg width="15px" height="15px" viewBox="0 0 18 18">--}}
@@ -9,24 +9,24 @@
                     {{--<polyline points="1 9 7 14 15 4"></polyline>--}}
                 {{--</svg>--}}
             {{--</label>--}}
-        </th>
-        <th class="elipsis">Id</th>
-        <th class="elipsis">Identificador</th>
-        <th class="elipsis">Data recebido</th>
-        <th class="elipsis">Tipo</th>
-        <th class="elipsis">Endereço</th>
-        <th class="elipsis">Latitude</th>
-        <th class="elipsis">Longitude</th>
-        <th class="elipsis">Descrição do serviço</th>
-        <th class="elipsis">Página guia</th>
-        <th class="elipsis">Solicitante</th>
-        <th class="elipsis">Polo</th>
-        <th class="elipsis">Remessa</th>
-    </tr>
+        </div>
+        <div class="elipsis div-table-th">Id</div>
+        <div class="elipsis div-table-th">Identificador</div>
+        <div class="elipsis div-table-th">Data recebido</div>
+        <div class="elipsis div-table-th">Tipo</div>
+        <div class="elipsis div-table-th">Endereço</div>
+        <div class="elipsis div-table-th">Latitude</div>
+        <div class="elipsis div-table-th">Longitude</div>
+        <div class="elipsis div-table-th">Descrição do serviço</div>
+        <div class="elipsis div-table-th">Página guia</div>
+        <div class="elipsis div-table-th">Solicitante</div>
+        <div class="elipsis div-table-th">Polo</div>
+        <div class="elipsis div-table-th">Remessa</div>
+    </label>
     @if($services->count() > 0)
         @foreach($services as $service)
-            <tr class="<?php echo \App\Utils\StatusUltil::getStatus($service->status_id, true)['class'] ?> clickable">
-                <td class="center-text">
+            <label class="<?php echo \App\Utils\StatusUltil::getStatus($service->status_id, true)['class'] ?> clickable div-table-row" for="check-{!! $service->sid !!}">
+                <div class="center-text div-table-td" style="padding: 0">
                     <input type="checkbox" value="{!! $service->sid !!}" id="check-{!! $service->sid !!}" name="ids[]" class="check-input" style="z-index: 20">
                     {{--<label for="check-{!! $service->sid !!}" class="check">--}}
                         {{--<svg width="15px" height="15px" viewBox="0 0 18 18">--}}
@@ -34,27 +34,55 @@
                             {{--<polyline points="1 9 7 14 15 4"></polyline>--}}
                         {{--</svg>--}}
                     {{--</label>--}}
-                </td>
-                <td class="elipsis"><a target="_blank" href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></td>
-                <td class="elipsis">{!! $service->identifier !!}</td>
-                <td class="elipsis">{!! $service->date_received !!}</td>
-                <td class="elipsis">{!! $service->type !!}</td>
-                <td class="elipsis">{!! $service->address . ', ' . $service->n !!}</td>
-                <td class="elipsis">{!! $service->lat !!}</td>
-                <td class="elipsis">{!! $service->lng !!}</td>
-                <td class="elipsis">{!! $service->service_description !!}</td>
-                <td class="elipsis">{!! $service->pg_guia !!}</td>
-                <td class="elipsis">{!! $service->applicant !!}</td>
-                <td class="elipsis">{!! $service->polo !!}</td>
-                <td class="elipsis">{!! $service->delivery !!}</td>
-{{--                <td class="elipsis">{!! $service->distance !!}</td>--}}
-            </tr>
+                </div>
+                <div class="elipsis div-table-td"><a target="_blank" href="servicos/{!! $service->sid !!}" style="color: blue; font-weight: bold">{!! $service->sid !!}</a></div>
+                <div class="elipsis div-table-td">{!! $service->identifier !!}</div>
+                <div class="elipsis div-table-td">{!! $service->date_received !!}</div>
+                <div class="elipsis div-table-td">{!! $service->type !!}</div>
+                <div class="elipsis div-table-td">{!! $service->address . ', ' . $service->n !!}</div>
+                <div class="elipsis div-table-td">{!! $service->lat !!}</div>
+                <div class="elipsis div-table-td">{!! $service->lng !!}</div>
+                <div class="elipsis div-table-td">{!! $service->service_description !!}</div>
+                <div class="elipsis div-table-td">{!! $service->pg_guia !!}</div>
+                <div class="elipsis div-table-td">{!! $service->applicant !!}</div>
+                <div class="elipsis div-table-td">{!! $service->polo !!}</div>
+                <div class="elipsis div-table-td">{!! $service->delivery !!}</div>
+            </label>
         @endforeach
     @else
-        <tr>
-            <td colspan="13">
-                <h1>Nenhum registro encontrado</h1>
-            </td>
-        </tr>
+        <div class="div-table-row" style="height: 52px">
+            <div style="position: absolute; top: 31px; left: 0; right: 0">
+                {{--<span class="div-table-td">--}}
+                <h1 style="text-align: center">Nenhum registro encontrado</h1>
+                {{--</span>--}}
+            </div>
+        </div>
     @endif
-</table>
+</div>
+<script>
+    const boxes = Array.from(document.querySelectorAll('#services-table .check-input'));
+
+    let lastChecked;
+
+    function changeBox(event) {
+        if (event.shiftKey && this !== lastChecked) {
+            checkIntermediateBoxes(lastChecked, this);
+        }
+        lastChecked = this;
+    }
+
+    boxes.forEach(item => item.addEventListener('click', changeBox));
+
+    function checkIntermediateBoxes(first, second) {
+        if (boxes.indexOf(first) > boxes.indexOf(second)) {
+            [second, first] = [first, second];
+        }
+        intermediateBoxes(first, second).forEach(box => box.checked = true);
+    }
+
+    function intermediateBoxes(start, end) {
+        return boxes.filter((item, key) => {
+            return boxes.indexOf(start) < key && key < boxes.indexOf(end);
+        });
+    }
+</script>

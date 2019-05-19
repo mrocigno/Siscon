@@ -17,13 +17,10 @@ $(document).ready(function() {
         closeBlackBackground();
     });
 
-    $("#btnOk").click(function () {
-        closeBlackBackground();
-    });
-
     $("a").click(function () {
         showLoading();
     });
+
 });
 
 function showMenuOptions(){
@@ -49,10 +46,14 @@ function confirmBox(callback){
     });
 }
 
-function customAlert(msg){
+function customAlert(msg, callback){
     $("#black-background").toggleClass("hideClass showClass");
     $("#alert-holder").css("display", "table");
     $("#alert-text").html(msg);
+    $("#btnOk").click(function () {
+        closeBlackBackground();
+        callback();
+    });
 }
 
 function inputAlert(msg, callback, value) {
@@ -108,9 +109,12 @@ function closeBlackBackground(){
     $("#loading-holder").css("display", "none");
     $("#progress-holder").css("display", "none");
     $("#btnYes").unbind();
+    $("#btnOk").unbind();
     $("#btnContinue").unbind();
 }
 
 function selectAll(chkMain) {
-    $('.table-list > tbody > tr > td > .check-input').prop('checked', $(chkMain).is(":checked"));
+    $('.table-list .check-input').prop('checked', $(chkMain).is(":checked"));
 }
+
+

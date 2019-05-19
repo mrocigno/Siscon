@@ -279,7 +279,9 @@ class ServicesController extends Controller{
             ->leftJoin('users as user', 'user.id', '=', 'ds.user_id')
             ->leftJoin('finalized_services as fs', 'fs.distributed_service_id', '=', 'ds.id')
             ->get([
-                'services.id as Siscon_ID',
+                'services.id as ID_do_serviço',
+                'ds.id as ID_de_distribuição',
+                'fs.id as ID_de_finalização',
                 'identifier as Identificador',
                 'date_received as Data_Recebido',
                 'adr.address as Logradouro',
@@ -290,7 +292,6 @@ class ServicesController extends Controller{
                 'pg_guia as Pagina_do_guia',
                 'user.name as Entregue_para',
                 'ds.distributed_date as Entregue_em',
-                'fs.id as id_fin',
                 'fs.observation as Observações_de_execução',
                 DB::raw('\'\' as Fotos'),
                 'fs.created_at as Finalizado_em',

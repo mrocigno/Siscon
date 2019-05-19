@@ -132,8 +132,8 @@
                                         <tr>
                                             <?php $i = 0; ?>
                                             @foreach($photos as $photo)
-                                                <td style="vertical-align: top">
-                                                    <img style="width: 100%" src="{!! $photo->link !!}">
+                                                <td style="vertical-align: top; width: 300px;">
+                                                    <img width="300px" style="width: 100%" src="{!! $photo->link !!}">
                                                 </td>
                                                 @if(++$i == 3)
                                         </tr>

@@ -59,5 +59,4 @@ class WSController extends Controller{
             ->header('Content-Type', 'application/json');
 
     }
-
 }

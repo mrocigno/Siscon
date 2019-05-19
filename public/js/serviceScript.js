@@ -50,7 +50,7 @@ function finalizeReturn(id) {
 }
 
 function printServices(){
-    let rows = $('.table-list > tbody > tr > td > .check-input');
+    let rows = $('.table-list .check-input');
     for(i = 0; i < rows.length; i++){
         let row = rows[i];
         if($(row).prop('checked')){
@@ -62,7 +62,7 @@ function printServices(){
 }
 
 function generateMap(){
-    let rows = $('.table-list > tbody > tr > td > .check-input');
+    let rows = $('.table-list .check-input');
     for(i = 0; i < rows.length; i++){
         let row = rows[i];
         if($(row).prop('checked')){
@@ -79,7 +79,7 @@ function generateMap(){
 }
 
 function exportXlsx() {
-    let rows = $('.table-list > tbody > tr > td > .check-input');
+    let rows = $('.table-list .check-input');
     for(i = 0; i < rows.length; i++){
         let row = rows[i];
         if($(row).prop('checked')){
@@ -162,7 +162,7 @@ $(document).ready(function () {
                         let randId = "load-" + Math.floor(Math.random() * 1000);
                         $("#col-" + sid).append("" +
                             "<div class=\"img-container\">\n" +
-                            "     <img src='"+ dataurl +"'/>" +
+                            "     <img height='200px' src='"+ dataurl +"'/>" +
                             "     <div id='"+ randId +"' class=\"loding-img-container\">\n" +
                             "         <div style=\"display: table; margin: auto;\">\n" +
                             "           <div class='loading-spin fa-spin'></div>"+

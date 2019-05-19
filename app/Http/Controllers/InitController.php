@@ -17,7 +17,7 @@ class InitController extends Controller{
     public function getReportByUsers(Request $request){
         $geral = DistributedServices::query()
             ->groupBy(['distributed_services.user_id', 'distributed_services.distributed_date'])
-//            ->where('u.company_id', Auth::user()->company_id)
+            ->where('u.company_id', Auth::user()->company_id)
             ->where('distributed_services.distributed_date', '>=', $request->start)
             ->where('distributed_services.distributed_date', '<=', $request->end)
             ->join('users as u', 'distributed_services.user_id', '=', 'u.id')

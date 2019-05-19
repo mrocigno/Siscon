@@ -16,7 +16,7 @@
             @foreach($row['data'] as $data)
                 <div style="display: flex; position: relative; background-color: white"
                      class="clickable"
-                     onclick="location.href = 'servicos?user={!! $row['row']->user_id !!}&status={!! $data->status_id !!}&executed_date={!! $row['row']->distributed_date !!}'" >
+                     onclick="location.href = 'servicos?user={!! $row['row']->user_id !!}&status={!! $data->status_id !!}&executed_date={!! date_format($date, 'Y-m-d') !!}'" >
                     <i style="transform: rotate(90deg); float: left; margin: 5px 15px 5px 30px" class="fas fa-level-up-alt"></i>
                     <div style="float: left; width: 150px; text-align: center; margin-right: 15px" class="<?php echo \App\Utils\StatusUltil::getStatus($data->status_id, true)['class']; ?>">
                         {!! $data->status !!}
